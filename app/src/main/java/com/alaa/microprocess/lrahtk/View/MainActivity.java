@@ -16,6 +16,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         setContentView(R.layout.activity_main);
         //presenter initialization .
         presenter = new MainActivityPresenter(this);
+
+
+        // goto Get Started fragement .
+        getSupportFragmentManager().beginTransaction().replace(R.id.Main_fragment,new GetStarted()).commit();
+
     }
 
 
