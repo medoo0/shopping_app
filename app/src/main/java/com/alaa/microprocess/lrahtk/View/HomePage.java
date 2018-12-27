@@ -33,7 +33,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
              home_item = new ResideMenuItem(this, R.drawable.user, "Home");
              setting_item = new ResideMenuItem(this, R.drawable.user, "Setting");
-             signout_item = new ResideMenuItem(this, R.drawable.user, "Sign Out");
+             signout_item = new ResideMenuItem(this, R.drawable.door, "Sign Out");
 
              resideMenu.addMenuItem(home_item,  ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
              resideMenu.addMenuItem(setting_item,  ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
