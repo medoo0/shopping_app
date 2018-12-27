@@ -9,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Adapters.SlideShowAdapter;
+import com.alaa.microprocess.lrahtk.Fragment.SignIn;
 import com.alaa.microprocess.lrahtk.R;
 
 import butterknife.BindView;
@@ -35,7 +37,8 @@ public class GetStarted extends Fragment {
 
     @BindView(R.id.Indictor)
     CircleIndicator circleIndicator;
-
+    @BindView(R.id.btn_start)
+    Button srart_btn;
     AsyncTask asyncTask;
 
     int pos ; //global
@@ -146,6 +149,23 @@ public class GetStarted extends Fragment {
                 }
             });
         }
+
+
+        srart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getActivity().getSupportFragmentManager().popBackStack();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
+                        .replace(R.id.Main_fragment,new SignIn())
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+        });
+
 
         return v ;
     }

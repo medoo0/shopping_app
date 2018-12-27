@@ -12,33 +12,25 @@ import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.Fragment.SignIn;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
 
     MainActivityContract.Presenter presenter ;
 
-    @BindView(R.id.btn_start)
-    Button srart_btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //presenter initialization .
         presenter = new MainActivityPresenter(this);
 
 
         // goto Get Started fragement .
         getSupportFragmentManager().beginTransaction().replace(R.id.Main_fragment,new GetStarted()).commit();
-
-        srart_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                openSignInFragment();
-
-            }
-        });
 
 
     }
