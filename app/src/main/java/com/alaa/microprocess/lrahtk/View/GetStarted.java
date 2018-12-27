@@ -8,6 +8,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Adapters.SlideShowAdapter;
 import com.alaa.microprocess.lrahtk.R;
@@ -21,6 +26,12 @@ public class GetStarted extends Fragment {
 
     @BindView(R.id.ViewPager)
     ViewPager viewPage;
+
+    @BindView(R.id.ViewPagerLinear)
+    LinearLayout ViewPagerLinear;
+
+    @BindView(R.id.linear2)
+    LinearLayout linear2;
 
     @BindView(R.id.Indictor)
     CircleIndicator circleIndicator;
@@ -102,6 +113,39 @@ public class GetStarted extends Fragment {
 
 
         }
+
+
+        //get height
+        final RelativeLayout layout = (RelativeLayout) v.findViewById(R.id.relative);
+
+        ViewTreeObserver viewTreeObserver = layout.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    layout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ViewPagerLinear.getLayoutParams();
+                    params.height = layout.getHeight()/2;
+                    ViewPagerLinear.setLayoutParams(params);
+
+
+                    RelativeLayout.LayoutParams params2 = (RelativeLayout.LayoutParams) linear2.getLayoutParams();
+                    params2.height = layout.getHeight()/2;
+                    linear2.setLayoutParams(params2);
+
+
+                    LinearLayout.LayoutParams params3 = (LinearLayout.LayoutParams) circleIndicator.getLayoutParams();
+                    params3.setMargins(0,layout.getHeight()/2 - 150 ,0,0);
+                    circleIndicator.setLayoutParams(params3);
+
+
+
+
+                }
+            });
+        }
+
         return v ;
     }
 
@@ -111,4 +155,6 @@ public class GetStarted extends Fragment {
         super.onDestroy();
         asyncTask.cancel(true);
     }
+
+
 }

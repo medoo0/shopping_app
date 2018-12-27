@@ -76,7 +76,7 @@ public class Splash extends AppCompatActivity {
                //goto MainActivity
                Intent intent = new Intent(Splash.this , MainActivity.class);
                startActivity(intent);
-                
+                finish();
            }
 
            @Override
