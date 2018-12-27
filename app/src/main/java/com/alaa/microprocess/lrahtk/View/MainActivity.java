@@ -4,8 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.alaa.microprocess.lrahtk.Contract.MainActivityContract;
+import com.alaa.microprocess.lrahtk.Fragment.SignUp;
 import com.alaa.microprocess.lrahtk.Presenter.MainActivityPresenter;
 import com.alaa.microprocess.lrahtk.R;
+import com.alaa.microprocess.lrahtk.Fragment.SignIn;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
 
@@ -19,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
 
         // goto Get Started fragement .
-        getSupportFragmentManager().beginTransaction().replace(R.id.Main_fragment,new GetStarted()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.Main_fragment,new SignUp()).commit();
 
     }
 

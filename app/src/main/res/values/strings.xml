@@ -8,5 +8,11 @@
 but if you want to go shopping in multiple
 places at once, so you only have one bag.
     </string>
+    <string name="skippingtext">Skip</string>
+    <string name="UserName">Email</string>
+    <string name="pass">Password</string>
+    <string name="Login">LOGIN</string>
+    <string name="forGotPass">ForgotPassword?</string>
 
+    <string name="signorRegister">Or sign up with</string>
 </resources>
