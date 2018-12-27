@@ -35,6 +35,7 @@ public class GetStarted extends Fragment {
 
     @BindView(R.id.Indictor)
     CircleIndicator circleIndicator;
+
     AsyncTask asyncTask;
 
     int pos ; //global

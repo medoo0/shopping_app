@@ -2,6 +2,8 @@ package com.alaa.microprocess.lrahtk.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.alaa.microprocess.lrahtk.Contract.MainActivityContract;
 import com.alaa.microprocess.lrahtk.Fragment.SignUp;
@@ -9,9 +11,15 @@ import com.alaa.microprocess.lrahtk.Presenter.MainActivityPresenter;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.Fragment.SignIn;
 
+import butterknife.BindView;
+
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
 
     MainActivityContract.Presenter presenter ;
+
+    @BindView(R.id.btn_start)
+    Button srart_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +30,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
         // goto Get Started fragement .
         getSupportFragmentManager().beginTransaction().replace(R.id.Main_fragment,new GetStarted()).commit();
+
+        srart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                openSignInFragment();
+
+            }
+        });
+
 
     }
 
