@@ -15,4 +15,6 @@ places at once, so you only have one bag.
     <string name="forGotPass">ForgotPassword?</string>
 
     <string name="signorRegister">Or sign up with</string>
+    <string name="user">User name</string>
+    <string name="mobil">Mobil Number</string>
 </resources>

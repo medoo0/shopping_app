@@ -28,9 +28,13 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="00acec" />
-                            <entry key="outputName" value="ic_lock_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\Mohamed Raslan" />
+                            <entry key="height" value="512" />
+                            <entry key="outputName" value="ic_user" />
+                            <entry key="overrideSize" value="true" />
+                            <entry key="sourceFile" value="D:\newProject\user.svg" />
+                            <entry key="width" value="512" />
                           </map>
                         </option>
                       </PersistentState>

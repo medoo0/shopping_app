@@ -30,6 +30,7 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:gravity="center_vertical"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
@@ -38,7 +39,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content">
 
 
@@ -92,7 +93,7 @@
                 android:elevation="4dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:padding="5dp"
                 >
 
@@ -104,22 +105,22 @@
                     android:layoutDirection="ltr"
                     app:hintTextAppearance="@style/HintText"
                     android:gravity="start|center_vertical"
-                    android:layout_height="wrap_content">
+                    android:layout_height="70dp">
 
                     <EditText
                         android:id="@+id/UserName"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
-                        android:drawableLeft="@drawable/ic_email_black_24dp"
+                        android:drawableLeft="@drawable/user"
                         android:drawablePadding="30dp"
-                        android:hint="@string/UserName"
+                        android:hint="@string/user"
                         android:inputType="textEmailAddress"
                         android:textColorHint="@color/blue"
                         android:maxLines="1"
                         android:fontFamily="@font/ubuntu"
                         android:textDirection="ltr"
                         android:gravity="start|center_vertical"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:background="@android:color/white"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
@@ -130,7 +131,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@color/blue" />
 
 
                 <android.support.design.widget.TextInputLayout
@@ -140,13 +141,13 @@
                     android:layoutDirection="ltr"
                     app:hintTextAppearance="@style/HintText"
                     android:gravity="start|center_vertical"
-                    android:layout_height="wrap_content">
+                    android:layout_height="70dp">
 
                     <EditText
-                        android:id="@+id/UserName"
+                        android:id="@+id/Email"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
-                        android:drawableLeft="@drawable/ic_email_black_24dp"
+                        android:drawableLeft="@drawable/emailsignup"
                         android:drawablePadding="30dp"
                         android:hint="@string/UserName"
                         android:inputType="textEmailAddress"
@@ -155,7 +156,7 @@
                         android:fontFamily="@font/ubuntu"
                         android:textDirection="ltr"
                         android:gravity="start|center_vertical"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:background="@android:color/white"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
@@ -166,7 +167,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@color/blue" />
 
 
 
@@ -180,22 +181,22 @@
                     android:layoutDirection="ltr"
                     app:hintTextAppearance="@style/HintText"
                     android:gravity="start|center_vertical"
-                    android:layout_height="wrap_content">
+                    android:layout_height="70dp">
 
                     <EditText
-                        android:id="@+id/email"
+                        android:id="@+id/MobilNumber"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
-                        android:drawableLeft="@drawable/ic_email_black_24dp"
+                        android:drawableLeft="@drawable/smartphone"
                         android:drawablePadding="30dp"
-                        android:hint="@string/UserName"
+                        android:hint="@string/mobil"
                         android:inputType="textEmailAddress"
                         android:textColorHint="@color/blue"
                         android:maxLines="1"
                         android:fontFamily="@font/ubuntu"
                         android:textDirection="ltr"
                         android:gravity="start|center_vertical"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:background="@android:color/white"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
@@ -206,7 +207,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@color/blue" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -216,15 +217,14 @@
                     android:gravity="start|center_vertical"
                     app:hintTextAppearance="@style/HintText"
                     app:passwordToggleEnabled="true"
-                    android:layout_height="wrap_content">
+                    android:layout_height="70dp">
                     <EditText
                         android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
                         android:hint="@string/pass"
-
                         android:drawablePadding="30dp"
-                        android:drawableLeft="@drawable/ic_lock_black_24dp"
+                        android:drawableLeft="@drawable/passsignup"
                         android:gravity="start|center_vertical"
                         android:paddingEnd="15dp"
                         android:textSize="20sp"
@@ -233,6 +233,10 @@
                         android:background="@android:color/white"
                         />
                 </android.support.design.widget.TextInputLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/blue" />
 
             </LinearLayout>
 
@@ -246,53 +250,57 @@
                 android:layout_marginStart="20sp"
                 android:background="@drawable/loginb_button"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="62dp"
-                android:text="@string/Login"
+                android:layout_marginTop="40dp"
+                android:text="ReGISTER"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:elevation="8dp"
                 android:shadowDx="3"
                 android:shadowDy="3"
                 android:textStyle="bold"
                 />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal"
                 android:layout_marginTop="20dp"
 
                 >
 
                 <TextView
                     android:id="@+id/txt_register"
-                    android:layout_alignParentStart="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
                     android:text="@string/signorRegister"
-                    android:textStyle="bold" />
+                    android:textSize="15dp"
+                    android:textStyle="normal" />
 
                 <ImageView
-                    android:layout_width="80dp"
+                    android:id="@+id/face"
                     android:layout_marginStart="20sp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/signuppic"
-                    android:layout_height="60dp" />
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_marginStart="20sp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/signuppic"
-                    android:layout_height="60dp" />
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_marginStart="20sp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/signuppic"
-                    android:layout_height="60dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_facebook" />
 
-            </RelativeLayout>
+                <ImageView
+                    android:id="@+id/twitter"
+                    android:layout_marginStart="20sp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_twitter" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_marginStart="20sp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/google" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
