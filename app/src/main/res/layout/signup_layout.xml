@@ -74,6 +74,7 @@
 
 
                 <ImageView
+                    android:id="@+id/skiptoSignInimage"
                     android:layout_width="80dp"
                     android:layout_marginStart="20sp"
                     android:layout_centerInParent="true"
@@ -114,6 +115,7 @@
                         android:drawableLeft="@drawable/user"
                         android:drawablePadding="30dp"
                         android:hint="@string/user"
+                        android:textColor="@color/blue"
                         android:inputType="textEmailAddress"
                         android:textColorHint="@color/blue"
                         android:maxLines="1"
@@ -151,6 +153,7 @@
                         android:drawablePadding="30dp"
                         android:hint="@string/UserName"
                         android:inputType="textEmailAddress"
+                        android:textColor="@color/blue"
                         android:textColorHint="@color/blue"
                         android:maxLines="1"
                         android:fontFamily="@font/ubuntu"
@@ -189,6 +192,7 @@
                         android:layout_height="75dp"
                         android:drawableLeft="@drawable/smartphone"
                         android:drawablePadding="30dp"
+                        android:textColor="@color/blue"
                         android:hint="@string/mobil"
                         android:inputType="textEmailAddress"
                         android:textColorHint="@color/blue"
@@ -223,6 +227,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
                         android:hint="@string/pass"
+                        android:textColor="@color/blue"
                         android:drawablePadding="30dp"
                         android:drawableLeft="@drawable/passsignup"
                         android:gravity="start|center_vertical"

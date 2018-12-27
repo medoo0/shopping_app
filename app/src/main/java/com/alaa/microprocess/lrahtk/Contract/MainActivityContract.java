@@ -13,5 +13,9 @@ public interface MainActivityContract {
     }
     interface View {
 
+
+        void openSignInFragment();
+        void openSignupFragment();
+
     }
 }
