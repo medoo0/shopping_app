@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
 
         // goto Get Started fragement .
-        getSupportFragmentManager().beginTransaction().replace(R.id.Main_fragment,new SignUp()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.Main_fragment,new GetStarted()).commit();
 
     }
 

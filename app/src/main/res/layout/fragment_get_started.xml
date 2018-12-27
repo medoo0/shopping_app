@@ -1,37 +1,54 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/relative"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.alaa.microprocess.lrahtk.View.GetStarted"
     android:layoutDirection="ltr"
-    android:layout_gravity="center_horizontal"
     >
 
-
-
-    <LinearLayout
-        android:id="@+id/line1"
+    <ScrollView
+        android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
+        android:isScrollContainer="false"
+        android:scrollbars="none"
+        android:fillViewport="true"
+        android:layout_above="@+id/btn_start"
         >
-        <android.support.v4.view.ViewPager
-            android:id="@+id/ViewPager"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:elevation="8dp"/>
 
-    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/ViewPagerLinear"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:orientation="vertical">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/ViewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+            </LinearLayout>
+
 
     <LinearLayout
+        android:id="@+id/linear2"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:orientation="vertical">
 
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/Indictor"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="350dp"
             />
     </LinearLayout>
 
@@ -40,8 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/line1"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ViewPagerLinear"
         >
 
         <TextView
@@ -75,17 +92,9 @@
         android:layout_centerHorizontal="true"
         />
 
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_below="@+id/greenline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/btn_start"
-            android:fillViewport="true"
-            android:scrollbars="vertical"
-            >
 
             <TextView
+                android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu"
@@ -94,9 +103,11 @@
                 android:textColor="#231b0c"
                 android:textSize="18sp"
                 android:layout_margin="5dp"
+                android:layout_below="@+id/greenline"
                 />
 
 
+        </RelativeLayout>
 
         </ScrollView>
 
@@ -109,6 +120,7 @@
         android:textSize="25sp"
         android:text="@string/getstarted"
         android:textColor="@color/white"
+        android:fontFamily="@font/montserrat"
        android:layout_alignParentBottom="true"
 
         />
