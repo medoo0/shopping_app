@@ -140,14 +140,13 @@
                     android:layoutDirection="rtl"
                     android:gravity="start|center_vertical"
                     app:hintTextAppearance="@style/HintText"
-                    app:passwordToggleEnabled="true"
                     android:layout_height="wrap_content">
                     <EditText
                         android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
                         android:hint="@string/pass"
-
+                        android:inputType="textPassword"
                         android:drawablePadding="30dp"
                         android:drawableLeft="@drawable/ic_lock_black_24dp"
                         android:gravity="start|center_vertical"

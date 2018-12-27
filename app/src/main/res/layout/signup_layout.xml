@@ -220,7 +220,6 @@
                     android:layoutDirection="rtl"
                     android:gravity="start|center_vertical"
                     app:hintTextAppearance="@style/HintText"
-                    app:passwordToggleEnabled="true"
                     android:layout_height="70dp">
                     <EditText
                         android:id="@+id/password"
@@ -228,6 +227,7 @@
                         android:layout_height="75dp"
                         android:hint="@string/pass"
                         android:textColor="@color/blue"
+                        android:inputType="textPassword"
                         android:drawablePadding="30dp"
                         android:drawableLeft="@drawable/passsignup"
                         android:gravity="start|center_vertical"
