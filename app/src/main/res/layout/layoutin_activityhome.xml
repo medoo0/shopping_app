@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@color/white"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:layout_width="220dp"
+                android:layout_marginEnd="50dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/lerahtk"
+                android:layout_height="200dp" />
+
+
+            
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_gravity="center"
+                android:src="@drawable/search"
+                android:layout_height="60dp" />
+
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                
+                
+                
+                <Button
+                    android:layout_marginStart="20sp"
+                    android:layout_width="120dp"
+                    android:text="طلابتي"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/loginb_button"
+                    android:layout_height="40dp" />
+                <Button
+                    android:layout_width="120dp"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="20sp"
+                    android:text="عرض اليوم"
+                    android:background="@drawable/loginb_button"
+                    android:layout_height="40dp" />
+
+                
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</RelativeLayout>
