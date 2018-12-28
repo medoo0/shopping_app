@@ -7,45 +7,51 @@
     tools:context=".View.HomePage">
 
 
-
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        tools:context="info.androidhive.bottomnavigation.MainActivity">
+
+        <RelativeLayout
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:elevation="8dp"
-            android:background="@color/white"
-            android:layout_height="70dp"
+            android:layout_height="match_parent"
+
             >
-
-
-            <RelativeLayout
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:elevation="8dp"
+                android:background="@color/white"
+                android:layout_height="70dp"
+                >
 
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_gravity="start"
-                    android:src="@drawable/iconinnav"
-                    android:layout_height="match_parent" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
 
-
-                <ImageView
-                    android:src="@drawable/ic_shopping_cart"
-                    android:layout_width="40dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_height="match_parent" />
-
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_gravity="start"
+                        android:src="@drawable/iconinnav"
+                        android:layout_height="match_parent" />
 
 
 
+                    <ImageView
+                        android:src="@drawable/ic_shopping_cart"
+                        android:layout_width="40dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
 
 
 
@@ -53,25 +59,39 @@
 
 
 
+            </android.support.v7.widget.Toolbar>
 
-        </android.support.v7.widget.Toolbar>
+
+            <include layout="@layout/layoutin_activityhome"
+                android:layout_width="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="53dp"
+                android:layout_below="@+id/toolbar" />
+
+
+
+
+        </RelativeLayout>
+
+
+
+
 
 
         <android.support.design.widget.BottomNavigationView
+            android:id="@+id/custom_bottom_navigation"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_alignParentBottom="true"
-            android:layout_height="65dp" />
+            android:layoutDirection="ltr"
+            app:itemBackground="@drawable/bottonnavigation_background"
+            app:itemIconTint="@drawable/custom_navigation_selector"
+            app:itemTextColor="@android:color/white"
+            app:menu="@menu/bottom_navigation_main" />
 
-
-        <include layout="@layout/layoutin_activityhome"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="65dp"
-            android:layout_below="@+id/toolbar" />
-
-    </RelativeLayout>
-
-
+    </android.support.design.widget.CoordinatorLayout>
 
 
 

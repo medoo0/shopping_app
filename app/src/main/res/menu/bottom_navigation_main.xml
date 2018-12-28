@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@drawable/home"
+        android:title="الرئيسية"
+         />
+    <item
+        android:id="@+id/action_message"
+        android:enabled="true"
+        android:icon="@drawable/ring"
+        android:title="العروض"
+        />
+    <item
+        android:enabled="true"
+        android:icon="@drawable/shoppingcart"
+        android:title="مشتريات"
+        />
+
+    <item
+
+        android:enabled="true"
+        android:icon="@drawable/searchbottonnav"
+        android:title="بحث"
+        />
+
+    <item
+
+        android:enabled="true"
+        android:icon="@drawable/evidence"
+        android:title="الأقسام"
+        />
+
+</menu>
