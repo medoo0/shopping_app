@@ -48,17 +48,22 @@
                 <Button
                     android:layout_marginStart="20sp"
                     android:layout_width="120dp"
-                    android:text="طلابتي"
+                    android:text="طلباتي"
                     android:textColor="@android:color/white"
                     android:background="@drawable/loginb_button"
-                    android:layout_height="40dp" />
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/cairo"
+                    />
+
                 <Button
                     android:layout_width="120dp"
-                    android:textColor="@android:color/white"
+                    android:layout_height="40dp"
                     android:layout_marginStart="20sp"
-                    android:text="عرض اليوم"
                     android:background="@drawable/loginb_button"
-                    android:layout_height="40dp" />
+                    android:fontFamily="@font/cairo"
+                    android:text="عرض اليوم"
+
+                    android:textColor="@android:color/white" />
 
                 
             </LinearLayout>

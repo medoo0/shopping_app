@@ -123,7 +123,7 @@
         android:text="@string/getstarted"
         android:textColor="@color/white"
         android:fontFamily="@font/montserrat"
-       android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="true"
 
         />
 
