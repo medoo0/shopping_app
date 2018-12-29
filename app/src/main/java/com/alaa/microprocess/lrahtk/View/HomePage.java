@@ -41,7 +41,7 @@ public class HomePage extends AppCompatActivity {
         Rec_Nav_Adapter postAdapter;
 
         int dp = 1000;
-        int dp250_To_pixel = 0 ;
+        int dp200_To_pixel = 0 ;
         boolean NavIsOpened = false ;
 
     @Override
@@ -96,9 +96,9 @@ public class HomePage extends AppCompatActivity {
 
                      dp = (int) (relativeLayout.getWidth() / density);
 
-                     dp250_To_pixel = (int) (250 * density);
+                     dp200_To_pixel = (int) (200 * density);
 
-                     Toast.makeText(HomePage.this, "" + dp, Toast.LENGTH_SHORT).show();
+
 
 
 
@@ -124,7 +124,7 @@ public class HomePage extends AppCompatActivity {
                 else {
                     //open
                     relativeLayout.setX(0);
-                    relativeLayout.animate().translationXBy(dp250_To_pixel).setDuration(500);
+                    relativeLayout.animate().translationXBy(dp200_To_pixel).setDuration(500);
                     relativeLayout.animate().scaleX(.6f).scaleY(.6f).setDuration(500);
                     NavIsOpened = true;
 

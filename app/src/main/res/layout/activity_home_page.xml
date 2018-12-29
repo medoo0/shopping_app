@@ -7,12 +7,15 @@
     android:layout_height="match_parent"
     android:background="@color/blue"
     tools:context=".View.HomePage"
+    android:layoutDirection="ltr"
     >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/Rec_Nav"
         android:layout_width="250dp"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
         >
 
     </android.support.v7.widget.RecyclerView>
@@ -259,18 +262,20 @@
             app:itemTextColor="@android:color/white"
             app:menu="@menu/bottom_navigation_main" />
 
+        <LinearLayout
+            android:id="@+id/LastLinear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+           />
+
     </RelativeLayout>
 
 
-<LinearLayout
-    android:id="@+id/LastLinear"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:visibility="gone"
-    >
 
-</LinearLayout>
+
+
 
 
 </android.support.design.widget.CoordinatorLayout>
