@@ -108,9 +108,15 @@ public class SignUp extends Fragment implements View.OnClickListener{
                 Email.setError(getResources().getString(R.string.email_error));
                 Email.requestFocus();
             }
-            else if(isEmailValid(Email.getText().toString())){
+            else if(!isEmailValid(Email.getText().toString())){
                 Email.setError(getResources().getString(R.string.email_error2));
                 Email.requestFocus();
+            }
+            else if (MobilNumber.getText().toString().isEmpty()){
+
+                MobilNumber.setError(getResources().getString(R.string.Phone_error));
+                MobilNumber.requestFocus();
+
             }
             else if(password.getText().toString().isEmpty()){
 
@@ -172,6 +178,7 @@ public void Register(ApiMethod client ,String createdAt, String updatedAt, Strin
     boolean isEmailValid(CharSequence email) {
 
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches(); //returen false if not ok //return true if ok
+
     }
 
 }

@@ -22,4 +22,5 @@ places at once, so you only have one bag.
     <string name="password_error">الرجاء كتابة الرقم السري</string>
     <string name="password_error2">الرقم السري يجيب ان يكون   6 حروف</string>
     <string name="Register">الاشتراك</string>
+    <string name="Phone_error">الرجاء كتابة رقم الهاتف</string>
 </resources>
