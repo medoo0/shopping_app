@@ -39,7 +39,6 @@ public class SignIn extends Fragment implements View.OnClickListener{
     ImageView skiptosignupimage;
     Button button;
     EditText email,password  ;
-    TextInputLayout layoutpass;
 
     @Nullable
     @Override
@@ -49,8 +48,7 @@ public class SignIn extends Fragment implements View.OnClickListener{
         skiptoSignUP      = view.findViewById(R.id.skiptoSignUP);
         skiptosignupimage = view.findViewById(R.id.skiptosignupimage);
         button            = view.findViewById(R.id.email_sign_in_button);
-        password          = view.findViewById(R.id.text);
-        layoutpass        = view.findViewById(R.id.layoutpass);
+        password          = view.findViewById(R.id.password);
         email             = view.findViewById(R.id.email);
         skiptosignupimage.setOnClickListener(this);
         skiptoSignUP.setOnClickListener(this);
@@ -73,32 +71,33 @@ public class SignIn extends Fragment implements View.OnClickListener{
 
                 // from string file (الحقل فارغ)
 
-                email.setError("");
+                email.setError(getString(R.string.email_error));
 
             }
 
-            if (email.getText().toString().length()<6){
 
+
+            if (!isEmailValid(email.getText().toString())){
 
                 // from string file  (minLength: 6)
-                email.setError("");
+                email.setError(getString(R.string.email_error2));
 
             }
 
             if (password.getText().toString().isEmpty()){
 
                 // from string file (الحقل فارغ)
-                password.setError("");
+                password.setError(getString(R.string.password_error));
 
             }
 
             if (password.getText().toString().length()<6){
                 // from string file  (minLength: 6)
-                password.setError("");
+                password.setError(getString(R.string.password_error2));
 
             }
 
-            if (!email.getText().toString().isEmpty()  &&  email.getText().toString().length()>6
+            if (!email.getText().toString().isEmpty()  &&  isEmailValid(email.getText().toString())
                     && !password.getText().toString().isEmpty()  &&  password.getText().toString().length()>6){
 
 
@@ -201,4 +200,10 @@ public class SignIn extends Fragment implements View.OnClickListener{
 
         }
     }
+    boolean isEmailValid(CharSequence email) {
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches(); //returen false if not ok //return true if ok
+
+    }
+
 }

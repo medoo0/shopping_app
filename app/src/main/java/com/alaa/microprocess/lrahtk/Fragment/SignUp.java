@@ -67,7 +67,7 @@ public class SignUp extends Fragment implements View.OnClickListener{
             mainView   = (MainActivityContract.View) getActivity();
             if (mainView!=null){
 
-                mainView.openSignInFragment();
+                mainView.getViewPager().setCurrentItem(1);
 
             }
 
@@ -81,10 +81,9 @@ public class SignUp extends Fragment implements View.OnClickListener{
             mainView   = (MainActivityContract.View) getActivity();
             if (mainView!=null){
 
-                mainView.openSignInFragment();
+                mainView.getViewPager().setCurrentItem(1);
 
             }
-
 
         }
 

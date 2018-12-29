@@ -103,9 +103,8 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="2dp"
                     android:background="@android:color/white"
-                    android:layoutDirection="ltr"
                     app:hintTextAppearance="@style/HintText"
-                    android:gravity="start|center_vertical"
+                    android:gravity="end|center_vertical"
                     android:layout_height="wrap_content">
 
                     <EditText
@@ -119,7 +118,7 @@
                         android:textColorHint="@color/blue"
                         android:maxLines="1"
                         android:fontFamily="@font/cairo"
-                        android:textDirection="ltr"
+                        android:textDirection="rtl"
                         android:gravity="start|center_vertical"
                         android:textSize="20sp"
                         android:background="@android:color/white"
@@ -138,8 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/white"
-                    android:layoutDirection="rtl"
-                    android:gravity="start|center_vertical"
+                    android:gravity="end|center_vertical"
                     app:hintTextAppearance="@style/HintText"
                     android:layout_height="wrap_content">
                     <EditText
@@ -147,7 +145,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
                         android:hint="@string/pass"
-                        android:inputType="textPassword"
+                        android:textDirection="rtl"
                         android:drawablePadding="30dp"
                         android:drawableLeft="@drawable/ic_lock_black_24dp"
                         android:gravity="start|center_vertical"
