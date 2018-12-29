@@ -8,13 +8,18 @@
 but if you want to go shopping in multiple
 places at once, so you only have one bag.
     </string>
-    <string name="skippingtext">Skip</string>
-    <string name="UserName">Email</string>
-    <string name="pass">Password</string>
-    <string name="Login">LOGIN</string>
-    <string name="forGotPass">ForgotPassword?</string>
+    <string name="skippingtext">تخطي</string>
+    <string name="UserName">البريد الالكتروني</string>
+    <string name="pass">الرقم السري</string>
+    <string name="Login">الدخول</string>
+    <string name="forGotPass"> نسيت كلمة السر ؟ </string>
 
     <string name="signorRegister">Or sign up with</string>
     <string name="user">User name</string>
     <string name="mobil">Mobil Number</string>
+    <string name="Name_error">الرجاء كتابة الاسم</string>
+    <string name="email_error">الرجاء كتابة الاميل</string>
+    <string name="email_error2">example: admin@google.com</string>
+    <string name="password_error">الرجاء كتابة الرقم السري</string>
+    <string name="password_error2">الرقم السري يجيب ان يكون   6 حروف</string>
 </resources>
