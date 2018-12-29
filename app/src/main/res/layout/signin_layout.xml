@@ -60,6 +60,7 @@
                     android:layout_alignParentEnd="true"
                     android:gravity="center_vertical"
                     android:text="@string/skippingtext"
+                    android:fontFamily="@font/cairo"
                     android:textSize="17sp" />
 
             </RelativeLayout>
@@ -117,7 +118,7 @@
                         android:inputType="textEmailAddress"
                         android:textColorHint="@color/blue"
                         android:maxLines="1"
-                        android:fontFamily="@font/ubuntu"
+                        android:fontFamily="@font/cairo"
                         android:textDirection="ltr"
                         android:gravity="start|center_vertical"
                         android:textSize="20sp"
@@ -155,6 +156,7 @@
                         android:paddingStart="15dp"
                         android:layout_marginTop="5dp"
                         android:background="@android:color/white"
+                        android:fontFamily="@font/cairo"
                         />
                 </android.support.design.widget.TextInputLayout>
 
@@ -166,6 +168,7 @@
                     android:layout_alignParentEnd="true"
                     android:gravity="center_vertical"
                     android:text="@string/forGotPass"
+                    android:fontFamily="@font/cairo"
                     android:textSize="17sp" />
             </LinearLayout>
 
@@ -186,6 +189,7 @@
                 android:shadowDx="3"
                 android:shadowDy="3"
                 android:textStyle="bold"
+                android:fontFamily="@font/cairo"
                 />
 
             <LinearLayout

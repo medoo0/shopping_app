@@ -100,29 +100,30 @@ public class SignUp extends Fragment implements View.OnClickListener{
 
             if(UserName.getText().toString().isEmpty()){
 
-                UserName.setError(R.string.Name_error);
+                UserName.setError(getResources().getString(R.string.Name_error));
                 UserName.requestFocus();
 
             }
             else if (Email.getText().toString().isEmpty()){
-                Email.setError(R.string.email_error);
+                Email.setError(getResources().getString(R.string.email_error));
                 Email.requestFocus();
             }
             else if(isEmailValid(Email.getText().toString())){
-                Email.setError(R.string.email_error2);
+                Email.setError(getResources().getString(R.string.email_error2));
                 Email.requestFocus();
             }
             else if(password.getText().toString().isEmpty()){
 
-                password.setError(R.string.password_error);
+                password.setError(getResources().getString(R.string.password_error));
                 password.requestFocus();
             }
             else if (password.getText().toString().length() < 6 ){
 
-                password.setError(R.string.password_error2);
+                password.setError(getResources().getString(R.string.password_error2));
                 password.requestFocus();
             }
             else {
+
 
                 Register(client,registerForm.getCreatedAt(), registerForm.getUpdatedAt(), registerForm.getId()
                         , registerForm.getEmail(), registerForm.getPassword(), registerForm.getName(), registerForm.getPhone());

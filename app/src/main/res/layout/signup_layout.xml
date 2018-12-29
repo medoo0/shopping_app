@@ -61,6 +61,7 @@
                     android:layout_alignParentEnd="true"
                     android:gravity="center_vertical"
                     android:text="@string/skippingtext"
+                    android:fontFamily="@font/cairo"
                     android:textSize="17sp" />
 
             </RelativeLayout>
@@ -119,14 +120,15 @@
                         android:inputType="textEmailAddress"
                         android:textColorHint="@color/blue"
                         android:maxLines="1"
-                        android:fontFamily="@font/ubuntu"
                         android:textDirection="ltr"
                         android:gravity="start|center_vertical"
                         android:textSize="16sp"
                         android:background="@android:color/white"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:fontFamily="@font/cairo"
+                        />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -156,13 +158,14 @@
                         android:textColor="@color/blue"
                         android:textColorHint="@color/blue"
                         android:maxLines="1"
-                        android:fontFamily="@font/ubuntu"
+                        android:fontFamily="@font/cairo"
                         android:textDirection="ltr"
                         android:gravity="start|center_vertical"
                         android:textSize="16sp"
                         android:background="@android:color/white"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
+
                         android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -197,7 +200,7 @@
                         android:inputType="textEmailAddress"
                         android:textColorHint="@color/blue"
                         android:maxLines="1"
-                        android:fontFamily="@font/ubuntu"
+                        android:fontFamily="@font/cairo"
                         android:textDirection="ltr"
                         android:gravity="start|center_vertical"
                         android:textSize="16sp"
@@ -236,6 +239,7 @@
                         android:paddingStart="15dp"
                         android:layout_marginTop="5dp"
                         android:background="@android:color/white"
+                        android:fontFamily="@font/cairo"
                         />
                 </android.support.design.widget.TextInputLayout>
                 <View
@@ -256,7 +260,8 @@
                 android:background="@drawable/button_background"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="40dp"
-                android:text="ReGISTER"
+                android:text="@string/Register"
+                android:fontFamily="@font/cairo"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:elevation="8dp"
