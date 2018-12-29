@@ -5,36 +5,154 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".View.HomePage"
     >
 
-
-
-    <include
-        android:id="@+id/layoutin_activityhome"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        layout="@layout/layoutin_activityhome"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="55dp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/Rec_Nav"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
-        />
+        >
+
+    </android.support.v7.widget.RecyclerView>
 
 
 
-
-
-
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/custom_bottom_navigation"
+    <RelativeLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:elevation="16dp"
-        android:layout_gravity="bottom"
-        android:layoutDirection="ltr"
-        app:itemBackground="@drawable/bottonnavigation_background"
-        app:itemIconTint="@drawable/custom_navigation_selector"
-        app:itemTextColor="@android:color/white"
-        app:menu="@menu/bottom_navigation_main" />
+        android:layout_height="match_parent"
+        android:id="@+id/relativeHome"
+        >
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/white"
+            android:elevation="8dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+                    android:id="@+id/Nav_Icon"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:src="@drawable/iconinnav"
+                    android:padding="5dp"
+                    />
+
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_shopping_cart" />
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.Toolbar>
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_below="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content">
+
+
+
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_lrahtk"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"/>
+
+
+
+                <ImageView
+                    android:layout_width="300dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/search"
+                    android:layout_height="60dp" />
+
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+
+
+                    <Button
+                        android:layout_marginStart="20sp"
+                        android:layout_width="120dp"
+                        android:text="طلباتي"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/button_background"
+                        android:layout_height="40dp"
+                        android:fontFamily="@font/cairo"
+                        />
+
+                    <Button
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="20sp"
+                        android:background="@drawable/button_background"
+                        android:fontFamily="@font/cairo"
+                        android:text="عرض اليوم"
+
+                        android:textColor="@android:color/white" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/custom_bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:elevation="16dp"
+            android:layout_alignParentBottom="true"
+            android:layoutDirection="ltr"
+            app:itemBackground="@drawable/bottonnavigation_background"
+            app:itemIconTint="@drawable/custom_navigation_selector"
+            app:itemTextColor="@android:color/white"
+            app:menu="@menu/bottom_navigation_main" />
+
+    </RelativeLayout>
+
 
 
 
