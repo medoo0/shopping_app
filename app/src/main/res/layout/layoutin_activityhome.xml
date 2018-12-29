@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:elevation="8dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:src="@drawable/iconinnav" />
+
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_shopping_cart" />
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.Toolbar>
 
 
     <android.support.v4.widget.NestedScrollView
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,6 +51,7 @@
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content">
+
 
 
             <ImageView
@@ -62,8 +96,8 @@
                     android:background="@drawable/loginb_button"
                     android:fontFamily="@font/cairo"
                     android:text="عرض اليوم"
-
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    />
 
                 
             </LinearLayout>
@@ -80,5 +114,16 @@
 
     </android.support.v4.widget.NestedScrollView>
 
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/custom_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:elevation="16dp"
+        android:layout_alignParentBottom="true"
+        android:layoutDirection="ltr"
+        app:itemBackground="@drawable/bottonnavigation_background"
+        app:itemIconTint="@drawable/custom_navigation_selector"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/bottom_navigation_main" />
 
 </RelativeLayout>

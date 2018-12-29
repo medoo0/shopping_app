@@ -27,6 +27,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".View.HomePage"></activity>
+
     </application>
 
 </manifest>
