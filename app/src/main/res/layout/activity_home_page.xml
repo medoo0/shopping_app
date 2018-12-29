@@ -65,6 +65,7 @@
 
         <android.support.v4.widget.NestedScrollView
             android:layout_below="@+id/toolbar"
+            android:id="@+id/nested"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -72,6 +73,7 @@
 
 
             <LinearLayout
+                android:id="@+id/Linear"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_gravity="center_horizontal"
@@ -80,11 +82,11 @@
 
 
                 <ImageView
-                    android:layout_width="250dp"
+                    android:layout_width="200dp"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_lrahtk"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:layout_marginTop="8dp"/>
 
 
@@ -115,6 +117,7 @@
                         />
 
                     <Button
+
                         android:layout_width="120dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="20sp"
@@ -127,8 +130,113 @@
 
                 </LinearLayout>
 
-            </LinearLayout>
 
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp" />
+
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp" />
+
+
+
+                </LinearLayout>
+
+
+
+                <Button
+
+                    android:layout_width="120dp"
+                    android:text="الأكثر مبيعا"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/button_background"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/cairo"
+                    />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
 
 
@@ -154,7 +262,15 @@
     </RelativeLayout>
 
 
+<LinearLayout
+    android:id="@+id/LastLinear"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="gone"
+    >
 
+</LinearLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

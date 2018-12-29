@@ -5,10 +5,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
-import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.MainActivityContract;
@@ -25,7 +21,6 @@ import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.View.HomePage;
 import com.alaa.microprocess.lrahtk.pojo.LoginForm;
 import com.alaa.microprocess.lrahtk.pojo.RegisterForm;
-import com.alaa.microprocess.lrahtk.pojo.RegisterResponse;
 import com.alaa.microprocess.lrahtk.pojo.User;
 
 import retrofit2.Call;

@@ -1,5 +1,6 @@
 package com.alaa.microprocess.lrahtk.View;
 import android.animation.Animator;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +34,8 @@ public class HomePage extends AppCompatActivity {
         @BindView(R.id.Nav_Icon)
         ImageView Nav_Icon;
 
+        @BindView(R.id.LastLinear)
+             LinearLayout LastLinear;
 
         ArrayList<String> Categories;
         Rec_Nav_Adapter postAdapter;
@@ -111,35 +114,40 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(NavIsOpened) {
-
+                    //close
                     relativeLayout.animate().translationX(0).setDuration(500);
                     relativeLayout.animate().scaleX(1f).scaleY(1f).setDuration(500);
                     NavIsOpened = false;
+                    LastLinear.setVisibility(View.GONE);
 
                 }
                 else {
-
+                    //open
                     relativeLayout.setX(0);
                     relativeLayout.animate().translationXBy(dp250_To_pixel).setDuration(500);
                     relativeLayout.animate().scaleX(.6f).scaleY(.6f).setDuration(500);
                     NavIsOpened = true;
+
+                    LastLinear.setVisibility(View.VISIBLE);
                 }
 
             }
         });
 
+        LastLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-       relativeLayout.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Toast.makeText(HomePage.this, "Touched", Toast.LENGTH_SHORT).show();
-               if(NavIsOpened){
-                   relativeLayout.animate().translationX(0).setDuration(500);
-                   relativeLayout.animate().scaleX(1f).scaleY(1f).setDuration(500);
-                   NavIsOpened = false;
-               }
-           }
-       });
+                   //close
+                    relativeLayout.animate().translationX(0).setDuration(500);
+                    relativeLayout.animate().scaleX(1f).scaleY(1f).setDuration(500);
+                    NavIsOpened = false;
+                    LastLinear.setVisibility(View.GONE);
+
+            }
+        });
+
+
 
     }
 
