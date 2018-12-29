@@ -37,10 +37,10 @@ public class HomePage extends AppCompatActivity {
         @BindView(R.id.LastLinear)
              LinearLayout LastLinear;
 
-        ArrayList<String> Categories;
+        ArrayList<String> Categories ;
+        ArrayList<Integer> Categories_icon;
         Rec_Nav_Adapter postAdapter;
 
-        int dp = 1000;
         int dp200_To_pixel = 0 ;
         boolean NavIsOpened = false ;
 
@@ -52,6 +52,7 @@ public class HomePage extends AppCompatActivity {
 
 
         Categories = new ArrayList<>();
+        Categories_icon = new ArrayList<>();
 
         Categories.add("المخبوزات");
         Categories.add("ألبان و بيض");
@@ -68,10 +69,24 @@ public class HomePage extends AppCompatActivity {
         Categories.add("منظفات");
         Categories.add("مستلزمات الطبخ");
 
+        Categories_icon.add(R.drawable.ic_bread);
+        Categories_icon.add(R.drawable.ic_milk);
+        Categories_icon.add(R.drawable.ic_healthy_food);
+        Categories_icon.add(R.drawable.ic_chicken_leg);
+        Categories_icon.add(R.drawable.ic_coffee_cup);
+        Categories_icon.add(R.drawable.ic_can);
+        Categories_icon.add(R.drawable.ic_cooking_time);
+        Categories_icon.add(R.drawable.ic_bean);
+        Categories_icon.add(R.drawable.ic_cupcake);
+        Categories_icon.add(R.drawable.ic_baby);
+        Categories_icon.add(R.drawable.ic_care);
+        Categories_icon.add(R.drawable.ic_detergent);
+        Categories_icon.add(R.drawable.ic_detergent2);
+        Categories_icon.add(R.drawable.ic_chef_hat);
 
 
         //adapter
-        postAdapter = new Rec_Nav_Adapter(Categories);
+        postAdapter = new Rec_Nav_Adapter(Categories,Categories_icon);
         Rec_Nav.setLayoutManager(new LinearLayoutManager(this));
         Rec_Nav.setAdapter(postAdapter);
 
@@ -94,7 +109,7 @@ public class HomePage extends AppCompatActivity {
 
 
 
-                     dp = (int) (relativeLayout.getWidth() / density);
+                    // dp = (int) (relativeLayout.getWidth() / density);
 
                      dp200_To_pixel = (int) (200 * density);
 
@@ -125,9 +140,8 @@ public class HomePage extends AppCompatActivity {
                     //open
                     relativeLayout.setX(0);
                     relativeLayout.animate().translationXBy(dp200_To_pixel).setDuration(500);
-                    relativeLayout.animate().scaleX(.6f).scaleY(.6f).setDuration(500);
+                    relativeLayout.animate().scaleX(.7f).scaleY(.7f).setDuration(500);
                     NavIsOpened = true;
-
                     LastLinear.setVisibility(View.VISIBLE);
                 }
 

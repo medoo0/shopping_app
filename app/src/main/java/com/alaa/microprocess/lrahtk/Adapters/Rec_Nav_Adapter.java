@@ -22,9 +22,9 @@ public class Rec_Nav_Adapter extends RecyclerView.Adapter<Rec_Nav_Adapter.ViewHo
 
 
     private ArrayList<String> Categories;
-
-    public Rec_Nav_Adapter( ArrayList<String> posts) {
-
+    private ArrayList<Integer> categories_icon;
+    public Rec_Nav_Adapter(ArrayList<String> posts, ArrayList<Integer> categories_icon) {
+        this.categories_icon = categories_icon;
         this.Categories = posts;
     }
 
@@ -38,7 +38,7 @@ public class Rec_Nav_Adapter extends RecyclerView.Adapter<Rec_Nav_Adapter.ViewHo
     public void onBindViewHolder(Rec_Nav_Adapter.ViewHolder holder, int position) {
 
         holder.title.setText(Categories.get(position));
-
+        holder.Icon.setBackgroundResource(categories_icon.get(position));
     }
 
     @Override
