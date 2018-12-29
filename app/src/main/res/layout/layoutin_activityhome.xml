@@ -56,11 +56,11 @@
 
 
             <ImageView
-                android:layout_width="250dp"
+                android:layout_width="200dp"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_lrahtk"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="8dp"/>
 
 
@@ -103,7 +103,115 @@
 
             </LinearLayout>
 
+
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:layout_height="40dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:layout_height="40dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:layout_height="40dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:layout_height="40dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:layout_height="40dp" />
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:layout_height="40dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:layout_height="40dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:layout_height="40dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:layout_height="40dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_shape"
+                    android:layout_height="40dp" />
+
+
+
+            </LinearLayout>
+
+
+
+            <Button
+
+                android:layout_width="120dp"
+                android:text="الأكثر مبيعا"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/button_background"
+                android:layout_height="40dp"
+                android:fontFamily="@font/cairo"
+                />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
+
+
 
 
 
@@ -115,16 +223,4 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/custom_bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:elevation="16dp"
-        android:layout_alignParentBottom="true"
-        android:layoutDirection="ltr"
-        app:itemBackground="@drawable/bottonnavigation_background"
-        app:itemIconTint="@drawable/custom_navigation_selector"
-        app:itemTextColor="@android:color/white"
-        app:menu="@menu/bottom_navigation_main" />
-
-</RelativeLayout>
+   </RelativeLayout>

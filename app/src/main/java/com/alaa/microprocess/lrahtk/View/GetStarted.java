@@ -16,6 +16,7 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Adapters.SlideShowAdapter;
+import com.alaa.microprocess.lrahtk.Contract.MainActivityContract;
 import com.alaa.microprocess.lrahtk.Fragment.SignIn;
 import com.alaa.microprocess.lrahtk.R;
 
@@ -116,6 +117,8 @@ public class GetStarted extends Fragment {
             }.execute();
 
 
+
+
         }
 
 
@@ -155,13 +158,23 @@ public class GetStarted extends Fragment {
             @Override
             public void onClick(View view) {
 
-                getActivity().getSupportFragmentManager().popBackStack();
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
-                        .replace(R.id.Main_fragment,new SignIn())
-                        .addToBackStack(null)
-                        .commit();
+
+                MainActivityContract.View mainView = (MainActivityContract.View) getActivity();
+                if (mainView!=null){
+
+                    mainView.getViewPager().setCurrentItem(1);
+//                mainView.openSignupFragment();
+
+                }
+
+
+//                getActivity().getSupportFragmentManager().popBackStack();
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
+//                        .replace(R.id.Main_fragment,new SignIn())
+//                        .addToBackStack(null)
+//                        .commit();
 
             }
         });
@@ -178,4 +191,13 @@ public class GetStarted extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (asyncTask.isCancelled()){
+
+            asyncTask.execute();
+        }
+
+    }
 }

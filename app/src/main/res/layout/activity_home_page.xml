@@ -11,13 +11,30 @@
 
     <include
         android:id="@+id/layoutin_activityhome"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         layout="@layout/layoutin_activityhome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp"
+        android:layout_height="match_parent"
         />
 
 
 
+
+
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/custom_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:elevation="16dp"
+        android:layout_gravity="bottom"
+        android:layoutDirection="ltr"
+        app:itemBackground="@drawable/bottonnavigation_background"
+        app:itemIconTint="@drawable/custom_navigation_selector"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/bottom_navigation_main" />
 
 
 
