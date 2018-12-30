@@ -1,5 +1,8 @@
 package com.alaa.microprocess.lrahtk.View;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,11 +24,31 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     MainActivityContract.Presenter presenter;
 
     ViewPager viewPager;
+    SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        preferences   = getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
+
+
+        if (preferences.getString("AreInOrNot","").equals("IN")){
+
+
+            Intent intent = new Intent(this , HomePage.class);
+            intent.putExtra("Email",preferences.getString("Email",""));
+            intent.putExtra("Phone",preferences.getString("Phone",""));
+            intent.putExtra("id"   ,preferences.getString("id",""));
+            intent.putExtra("Name", preferences.getString("Name",""));
+            startActivity(intent);
+            finish();
+
+
+        }
+
+
 
         //presenter initialization .
         presenter = new MainActivityPresenter(this);

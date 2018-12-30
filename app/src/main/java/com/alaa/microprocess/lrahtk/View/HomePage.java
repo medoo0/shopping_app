@@ -1,8 +1,12 @@
 package com.alaa.microprocess.lrahtk.View;
 import android.animation.Animator;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -12,9 +16,11 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
 import com.alaa.microprocess.lrahtk.R;
 
@@ -24,7 +30,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements View.OnClickListener{
+
+
         @BindView(R.id.Rec_Nav)
         RecyclerView Rec_Nav ;
 
@@ -34,22 +42,61 @@ public class HomePage extends AppCompatActivity {
         @BindView(R.id.Nav_Icon)
         ImageView Nav_Icon;
 
+        @BindView(R.id.recitems)
+        RecyclerView recitems;
+
+
         @BindView(R.id.LastLinear)
-             LinearLayout LastLinear;
+        LinearLayout LastLinear;
+
+        TextView logout;
 
         ArrayList<String> Categories ;
         ArrayList<Integer> Categories_icon;
         Rec_Nav_Adapter postAdapter;
 
+        ArrayList <String> items;
+        ArrayList<Integer> images;
+        ArrayList<Integer> salary;
         int dp200_To_pixel = 0 ;
         boolean NavIsOpened = false ;
+        SharedPreferences preferences;
+        SharedPreferences.Editor editor;
+        int COLUM_NUM = 3;
+
+        String email , id , name , phone ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        logout   = findViewById(R.id.logout);
+        logout.setOnClickListener(this);
         ButterKnife.bind(this);
+        preferences   = getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
+        editor        = preferences.edit();
 
+        // all Details for User
+
+        Bundle b   =  getIntent().getExtras();
+
+        if (b!=null){
+
+            email      = b.getString("Email" );
+            id         = b.getString("id");
+            name       = b.getString("Name");
+            phone      = b.getString("Phone");
+        }
+
+
+
+
+
+
+        recitems.setNestedScrollingEnabled(false);
+        items   = new ArrayList<>();
+        images  = new ArrayList<>();
+        salary  = new ArrayList<>();
 
         Categories = new ArrayList<>();
         Categories_icon = new ArrayList<>();
@@ -91,6 +138,7 @@ public class HomePage extends AppCompatActivity {
         Rec_Nav.setAdapter(postAdapter);
 
 
+        showItemsinREC();
 
 
 
@@ -151,13 +199,11 @@ public class HomePage extends AppCompatActivity {
         LastLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                    //close
                     relativeLayout.animate().translationX(0).setDuration(500);
                     relativeLayout.animate().scaleX(1f).scaleY(1f).setDuration(500);
                     NavIsOpened = false;
                     LastLinear.setVisibility(View.GONE);
-
             }
         });
 
@@ -167,9 +213,56 @@ public class HomePage extends AppCompatActivity {
 
 
 
+    public void showItemsinREC(){
+
+            items.add("لبن");
+            items.add("شيكولاته");
+            items.add("خبز");
+            items.add("عصائر");
+            items.add("زبادي");
+            items.add("لبن");
+            items.add("لبن");
+            images.add(R.drawable.millkingone);
+            images.add(R.drawable.checlotes);
+            images.add(R.drawable.breads);
+            images.add(R.drawable.drinks);
+            images.add(R.drawable.johina);
+            images.add(R.drawable.millkingone);
+            images.add(R.drawable.millkingone);
+
+
+        Rec_Items_Adapter rec_items_adapter = new Rec_Items_Adapter(items,images,this);
+        rec_items_adapter.notifyDataSetChanged();
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,COLUM_NUM);
+        recitems.setLayoutManager(gridLayoutManager);
+        recitems.setAdapter(rec_items_adapter);
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+        if (v == logout){
+
+            editor.putString("AreInOrNot","");
+            editor.putString("Email","");
+            editor.putString("id","");
+            editor.putString("Phone","");
+            editor.putString("Name","");
+            editor.apply();
+
+            Intent intent = new Intent(this , MainActivity.class);
+            startActivity(intent);
+            finish();
+
+            //  finsh this activity and go back ///     حنشوف بعد كدا لو فيه حاجه متعلقه بالسرفر بالخروج ولا لا
 
 
 
+        }
+
+    }
 }
 
 

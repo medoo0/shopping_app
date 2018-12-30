@@ -231,7 +231,6 @@
                         android:layout_height="75dp"
                         android:hint="@string/pass"
                         android:textColor="@color/blue"
-                        android:inputType="textPassword"
                         android:textDirection="rtl"
                         android:drawablePadding="30dp"
                         android:drawableLeft="@drawable/passsignup"

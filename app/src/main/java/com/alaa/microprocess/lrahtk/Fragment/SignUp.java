@@ -1,9 +1,13 @@
 package com.alaa.microprocess.lrahtk.Fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +21,10 @@ import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.MainActivityContract;
 import com.alaa.microprocess.lrahtk.R;
+import com.alaa.microprocess.lrahtk.View.HomePage;
 import com.alaa.microprocess.lrahtk.pojo.RegisterForm;
 import com.alaa.microprocess.lrahtk.pojo.RegisterResponse;
+import com.alaa.microprocess.lrahtk.pojo.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,13 +38,23 @@ public class SignUp extends Fragment implements View.OnClickListener{
     MainActivityContract.View mainView;
     Button register_btn;
     EditText UserName , Email , MobilNumber , password ;
-
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v            = inflater.inflate(R.layout.signup_layout,container,false);
+
+
+        if (getActivity()!=null){
+
+            preferences   = getActivity().getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
+            editor        = preferences.edit();
+
+        }
+
         skip              = v.findViewById(R.id.skip);
         skiptoSignInimage = v.findViewById(R.id.skiptoSignInimage);
         register_btn      = v.findViewById(R.id.register_btn);
@@ -46,8 +62,7 @@ public class SignUp extends Fragment implements View.OnClickListener{
         Email             = v.findViewById(R.id.Email);
         MobilNumber       = v.findViewById(R.id.MobilNumber);
         password          = v.findViewById(R.id.password);
-
-
+        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         register_btn.setOnClickListener(this);
         skiptoSignInimage.setOnClickListener(this);
         skip.setOnClickListener(this);
@@ -129,7 +144,6 @@ public class SignUp extends Fragment implements View.OnClickListener{
             }
             else {
 
-
                 Register(client,registerForm.getCreatedAt(), registerForm.getUpdatedAt(), registerForm.getId()
                         , registerForm.getEmail(), registerForm.getPassword(), registerForm.getName(), registerForm.getPhone());
 
@@ -152,20 +166,41 @@ public void Register(ApiMethod client ,String createdAt, String updatedAt, Strin
         @Override
         public void onResponse(@NonNull Call<RegisterResponse> call, @NonNull Response<RegisterResponse> response) {
             if (response.isSuccess()) {
-                //lOGIN
-                Toast.makeText(getActivity(), "Tmama", Toast.LENGTH_SHORT).show();
+
+
+
+                Intent intent = new Intent(getActivity() , HomePage.class);
+                User user    = new User();
+                user.setEmail(response.body().getEmail());
+                user.setId(response.body().getId());
+                user.setName(response.body().getName());
+                user.setPhone(response.body().getPhone());
+                editor.putString("Email",user.getEmail());
+                editor.putString("id",user.getId());
+                editor.putString("Phone",user.getPhone());
+                editor.putString("Name",user.getName());
+                editor.putString("AreInOrNot","IN");
+                editor.apply();
+                intent.putExtra("Email",user.getEmail());
+                intent.putExtra("id",user.getId());
+                intent.putExtra("Name",user.getName());
+                intent.putExtra("Phone",user.getPhone());
+                startActivity(intent);
+
+                // finish the firstActivity
+                getActivity().finish();
 
             } else {
 
-                Toast.makeText(getActivity(), "no tmam", Toast.LENGTH_SHORT).show();
+                Email.setError("هذا الأيميل متواجد بالفعل.");
             }
-
 
         }
 
         @Override
         public void onFailure(@NonNull Call<RegisterResponse> call, @NonNull Throwable t) {
-            Toast.makeText(getActivity(), "not registered", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(getActivity(), "تأكد من الأتصال بالخادم.", Toast.LENGTH_SHORT).show();
         }
     });
 

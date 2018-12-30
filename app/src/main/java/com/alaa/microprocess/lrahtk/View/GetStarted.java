@@ -116,9 +116,6 @@ public class GetStarted extends Fragment {
                 }
             }.execute();
 
-
-
-
         }
 
 
@@ -194,10 +191,9 @@ public class GetStarted extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (asyncTask.isCancelled()){
-
+        if(asyncTask.getStatus() == AsyncTask.Status.FINISHED){
+            // My AsyncTask is done and onPostExecute was called
             asyncTask.execute();
         }
-
     }
 }

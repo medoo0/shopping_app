@@ -1,6 +1,8 @@
 package com.alaa.microprocess.lrahtk.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -35,11 +37,19 @@ public class SignIn extends Fragment implements View.OnClickListener{
     Button button;
     EditText email,password  ;
 
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.signin_layout,container,false);
+        if (getActivity()!=null){
 
+            preferences   = getActivity().getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
+            editor        = preferences.edit();
+
+        }
         skiptoSignUP      = view.findViewById(R.id.skiptoSignUP);
         skiptosignupimage = view.findViewById(R.id.skiptosignupimage);
         button            = view.findViewById(R.id.email_sign_in_button);
@@ -119,17 +129,31 @@ public class SignIn extends Fragment implements View.OnClickListener{
 
                            // hide progressbar and go to NextScreen
 
-                           Intent intent = new Intent(getActivity() , HomePage.class);
-                           User user    = new User();
-                           user.setEmail(response.body().getUser().getEmail());
-                           user.setId(response.body().getUser().getId());
-                           user.setName(response.body().getUser().getName());
-                           user.setPhone(response.body().getUser().getPhone());
-                           intent.putExtra("Email",user.getEmail());
-                           intent.putExtra("id",user.getId());
-                           intent.putExtra("Name",user.getName());
-                           intent.putExtra("Phone",user.getPhone());
-                           startActivity(intent);
+                           if (editor!=null){
+
+                               Intent intent = new Intent(getActivity() , HomePage.class);
+                               User user    = new User();
+                               user.setEmail(response.body().getUser().getEmail());
+                               user.setId(response.body().getUser().getId());
+                               user.setName(response.body().getUser().getName());
+                               user.setPhone(response.body().getUser().getPhone());
+                               editor.putString("AreInOrNot","IN");
+                               editor.putString("Email",user.getEmail());
+                               editor.putString("id",user.getId());
+                               editor.putString("Phone",user.getPhone());
+                               editor.putString("Name",user.getName());
+                               editor.apply();
+                               intent.putExtra("Email",user.getEmail());
+                               intent.putExtra("id",user.getId());
+                               intent.putExtra("Name",user.getName());
+                               intent.putExtra("Phone",user.getPhone());
+                               startActivity(intent);
+
+                               // finish the firstActivity
+                               getActivity().finish();
+                           }
+
+
 
                        }
 
@@ -137,7 +161,7 @@ public class SignIn extends Fragment implements View.OnClickListener{
 
                            // email or password error check your private data //
 
-                           email.setError("");
+                           email.setError(getString(R.string.ErroEmailAndPass));
 
                            // hide progressbar and still in this Screen //
 
@@ -183,7 +207,6 @@ public class SignIn extends Fragment implements View.OnClickListener{
         }
 
         if (view == skiptosignupimage){
-
 
             mainView = (MainActivityContract.View) getActivity();
             if (mainView!=null){
