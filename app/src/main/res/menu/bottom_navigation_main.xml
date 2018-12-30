@@ -6,32 +6,32 @@
     <item
         android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@drawable/home"
+        android:icon="@drawable/ic_home"
         android:title="الرئيسية"
          />
     <item
         android:id="@+id/action_message"
         android:enabled="true"
-        android:icon="@drawable/ring"
+        android:icon="@drawable/ic_discount"
         android:title="العروض"
         />
     <item
         android:enabled="true"
-        android:icon="@drawable/shoppingcart"
+        android:icon="@drawable/ic_shopping_cart"
         android:title="مشتريات"
         />
 
     <item
 
         android:enabled="true"
-        android:icon="@drawable/searchbottonnav"
+        android:icon="@drawable/ic_search"
         android:title="بحث"
         />
 
     <item
 
         android:enabled="true"
-        android:icon="@drawable/evidence"
+        android:icon="@drawable/ic_file"
         android:title="الأقسام"
         />
 
