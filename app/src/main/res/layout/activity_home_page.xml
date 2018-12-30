@@ -27,13 +27,17 @@
         <TextView
             android:id="@+id/logout"
             android:layout_width="wrap_content"
-            android:layout_margin="10dp"
-            android:textSize="19dp"
-            android:gravity="center_vertical"
-            android:fontFamily="@font/cairo"
-            android:drawableEnd="@drawable/door"
+            android:layout_height="60dp"
             android:layout_alignParentEnd="true"
-            android:layout_height="60dp" />
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/cairo"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="تسجيل الخروج"
+            android:textColor="@color/white"
+            android:textSize="19dp" />
 
     </RelativeLayout>
 
@@ -46,7 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/relativeHome"
-
+        android:visibility="visible"
+        android:elevation="8dp"
         >
 
 
@@ -167,6 +172,7 @@
                         android:layout_width="40dp"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
+                        android:scaleType="centerInside"
                         android:src="@drawable/ic_bread"
                         android:background="@drawable/circle_shape"
                         android:layout_height="40dp" />
@@ -175,6 +181,7 @@
                         android:layout_margin="10dp"
                         android:src="@drawable/ic_milk"
                         android:layout_gravity="center"
+                        android:scaleType="centerInside"
                         android:background="@drawable/circle_shape"
                         android:layout_height="40dp" />
                     <ImageView
@@ -182,19 +189,28 @@
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:background="@drawable/circle_shape"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_healthy_food"
+                        />
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:background="@drawable/circle_shape"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_chicken_leg"
+                        />
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:background="@drawable/circle_shape"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_coffee_cup"
+                        />
 
 
 
@@ -213,37 +229,94 @@
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:background="@drawable/circle_shape"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_can"
+                        />
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:background="@drawable/circle_shape"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_cooking_time"
+                        />
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:background="@drawable/circle_shape"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_bean"/>
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:background="@drawable/circle_shape"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_cupcake"/>
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_margin="10dp"
                         android:layout_gravity="center"
                         android:background="@drawable/circle_shape"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_baby"
+                        />
 
 
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    >
 
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_care"
+                        />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_detergent"
+                        />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_detergent2"/>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/circle_shape"
+                        android:layout_height="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_chef_hat"/>
+
+
+                </LinearLayout>
 
                 <Button
 
