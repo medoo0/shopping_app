@@ -234,8 +234,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
         Rec_Items_Adapter rec_items_adapter = new Rec_Items_Adapter(items,images,this);
         rec_items_adapter.notifyDataSetChanged();
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,COLUM_NUM);
-        recitems.setLayoutManager(gridLayoutManager);
+        LinearLayoutManager HorizontalLayout  =
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recitems.setLayoutManager(HorizontalLayout);
         recitems.setAdapter(rec_items_adapter);
 
     }

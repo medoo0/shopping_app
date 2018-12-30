@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alaa.microprocess.lrahtk.R;
@@ -41,9 +42,9 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
     @Override
     public void onBindViewHolder(Holder holder, int position) {
 
-        holder.card_view.setScaleX(.9f);
-        holder.card_view.setScaleY(.9f);
-        holder.card_view.animate().scaleX(1f).scaleY(1f).setDuration(900);
+        holder.relative.setScaleX(.9f);
+        holder.relative.setScaleY(.9f);
+        holder.relative.animate().scaleX(1f).scaleY(1f).setDuration(500);
 
 
         holder.thumbnail.setImageResource(images.get(position));
@@ -58,12 +59,12 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
     public static class Holder extends RecyclerView.ViewHolder{
 
-        CardView card_view;
+        RelativeLayout relative;
         ImageView thumbnail;
         TextView text;
         public Holder(View itemView) {
             super(itemView);
-            card_view = itemView.findViewById(R.id.card_view);
+            relative = itemView.findViewById(R.id.Card);
             thumbnail = itemView.findViewById(R.id.thumbnail);
             text      = itemView.findViewById(R.id.text);
 
