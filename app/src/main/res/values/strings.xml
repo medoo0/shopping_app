@@ -20,8 +20,9 @@ places at once, so you only have one bag.
     <string name="email_error">الرجاء كتابة الاميل</string>
     <string name="email_error2">example: admin@google.com</string>
     <string name="password_error">الرجاء كتابة الرقم السري</string>
-    <string name="password_error2">الرقم السري يجيب ان يكون   6 حروف</string>
+    <string name="password_error2">الرقم السري يجيب ان يكون اكثر من  6 حروف</string>
     <string name="ErroEmailAndPass">  يرجي التأكد من الأيميل والباسورد.</string>
     <string name="Register">الاشتراك</string>
     <string name="Phone_error">الرجاء كتابة رقم الهاتف</string>
+    <string name="Check_Internet">تأكد من اتصالك بالانترنت</string>
 </resources>

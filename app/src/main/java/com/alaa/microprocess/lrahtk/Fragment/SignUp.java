@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.MainActivityContract;
+import com.alaa.microprocess.lrahtk.Dialog.AnimatedDialog;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.View.HomePage;
 import com.alaa.microprocess.lrahtk.pojo.RegisterForm;
@@ -40,6 +41,7 @@ public class SignUp extends Fragment implements View.OnClickListener{
     EditText UserName , Email , MobilNumber , password ;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    AnimatedDialog dialog ;
 
     @Nullable
     @Override
@@ -62,6 +64,7 @@ public class SignUp extends Fragment implements View.OnClickListener{
         Email             = v.findViewById(R.id.Email);
         MobilNumber       = v.findViewById(R.id.MobilNumber);
         password          = v.findViewById(R.id.password);
+        dialog            = new AnimatedDialog(getActivity());
         password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         register_btn.setOnClickListener(this);
         skiptoSignInimage.setOnClickListener(this);
@@ -137,12 +140,15 @@ public class SignUp extends Fragment implements View.OnClickListener{
                 password.setError(getResources().getString(R.string.password_error));
                 password.requestFocus();
             }
-            else if (password.getText().toString().length() < 6 ){
+            else if (password.getText().toString().length() < 7 ){
 
                 password.setError(getResources().getString(R.string.password_error2));
                 password.requestFocus();
             }
             else {
+
+                //show Dialog
+                dialog.ShowDialog();
 
                 Register(client,registerForm.getCreatedAt(), registerForm.getUpdatedAt(), registerForm.getId()
                         , registerForm.getEmail(), registerForm.getPassword(), registerForm.getName(), registerForm.getPhone());
@@ -167,7 +173,7 @@ public void Register(ApiMethod client ,String createdAt, String updatedAt, Strin
         public void onResponse(@NonNull Call<RegisterResponse> call, @NonNull Response<RegisterResponse> response) {
             if (response.isSuccess()) {
 
-
+                dialog.Close_Dialog();
 
                 Intent intent = new Intent(getActivity() , HomePage.class);
                 User user    = new User();
@@ -190,6 +196,7 @@ public void Register(ApiMethod client ,String createdAt, String updatedAt, Strin
                 // finish the firstActivity
                 getActivity().finish();
 
+
             } else {
 
                 Email.setError("هذا الأيميل متواجد بالفعل.");
@@ -199,7 +206,7 @@ public void Register(ApiMethod client ,String createdAt, String updatedAt, Strin
 
         @Override
         public void onFailure(@NonNull Call<RegisterResponse> call, @NonNull Throwable t) {
-
+            dialog.Close_Dialog();
             Toast.makeText(getActivity(), "تأكد من الأتصال بالخادم.", Toast.LENGTH_SHORT).show();
         }
     });

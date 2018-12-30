@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.MainActivityContract;
+import com.alaa.microprocess.lrahtk.Dialog.AnimatedDialog;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.View.HomePage;
 import com.alaa.microprocess.lrahtk.pojo.LoginForm;
@@ -39,7 +40,7 @@ public class SignIn extends Fragment implements View.OnClickListener{
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-
+    AnimatedDialog dialog ;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,6 +56,8 @@ public class SignIn extends Fragment implements View.OnClickListener{
         button            = view.findViewById(R.id.email_sign_in_button);
         password          = view.findViewById(R.id.password);
         email             = view.findViewById(R.id.email);
+        dialog            = new AnimatedDialog(getActivity());
+
         skiptosignupimage.setOnClickListener(this);
         skiptoSignUP.setOnClickListener(this);
         button.setOnClickListener(this);
@@ -107,7 +110,7 @@ public class SignIn extends Fragment implements View.OnClickListener{
 
 
                 // create progressbar until Library had been finished //
-
+                dialog.ShowDialog();
 
                 RegisterForm registerForm = new RegisterForm();
 
@@ -128,6 +131,7 @@ public class SignIn extends Fragment implements View.OnClickListener{
                        if (response.isSuccess()&&response.body()!=null){
 
                            // hide progressbar and go to NextScreen
+                           dialog.Close_Dialog();
 
                            if (editor!=null){
 
@@ -174,7 +178,8 @@ public class SignIn extends Fragment implements View.OnClickListener{
                    @Override
                    public void onFailure(@NonNull Call<LoginForm> call, @NonNull Throwable t) {
                        // connection poor or exception in retrofit occur .... //
-                       email.setError("");
+                       dialog.Close_Dialog();
+                       email.setError(getResources().getString(R.string.Check_Internet));
 
                    }
                });
