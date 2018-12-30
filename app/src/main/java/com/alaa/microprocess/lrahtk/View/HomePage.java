@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
+import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.R;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class HomePage extends AppCompatActivity implements View.OnClickListener{
+public class HomePage extends AppCompatActivity implements View.OnClickListener, HomePageContract.viewMain{
 
 
         @BindView(R.id.Rec_Nav)
@@ -133,7 +134,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
 
 
         //adapter
-        postAdapter = new Rec_Nav_Adapter(Categories,Categories_icon);
+        postAdapter = new Rec_Nav_Adapter(Categories,Categories_icon,this,this);
         Rec_Nav.setLayoutManager(new LinearLayoutManager(this));
         Rec_Nav.setAdapter(postAdapter);
 
@@ -261,6 +262,16 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
 
 
         }
+
+    }
+
+    @Override
+    public void whenClickonIteminRecNav() {
+
+        Intent intent = new Intent(this , Product_Activity.class);
+        startActivity(intent);
+        finish();
+
 
     }
 }

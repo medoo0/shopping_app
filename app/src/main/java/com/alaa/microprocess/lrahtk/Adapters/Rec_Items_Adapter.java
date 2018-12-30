@@ -43,7 +43,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
         holder.card_view.setScaleX(.9f);
         holder.card_view.setScaleY(.9f);
-        holder.card_view.animate().scaleX(1f).scaleY(1f).setDuration(500);
+        holder.card_view.animate().scaleX(1f).scaleY(1f).setDuration(900);
 
 
         holder.thumbnail.setImageResource(images.get(position));
