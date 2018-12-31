@@ -1,6 +1,10 @@
 package com.alaa.microprocess.lrahtk.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alaa.microprocess.lrahtk.R;
+import com.alaa.microprocess.lrahtk.View.ShowProduct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +45,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(final Holder holder, final int position) {
 
         holder.relative.setScaleX(.9f);
         holder.relative.setScaleY(.9f);
@@ -49,6 +54,20 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
         holder.thumbnail.setImageResource(images.get(position));
         holder.text.setText(words.get(position));
+
+
+        //onclick
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ShowProduct.class);
+                intent.putExtra("image",images.get(position));
+                ActivityOptionsCompat option = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context
+                        , holder.thumbnail, ViewCompat.getTransitionName(holder.thumbnail));
+                context.startActivity(intent , option.toBundle());
+
+            }
+        });
 
     }
 
@@ -62,11 +81,13 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
         RelativeLayout relative;
         ImageView thumbnail;
         TextView text;
+
         public Holder(View itemView) {
             super(itemView);
             relative = itemView.findViewById(R.id.Card);
             thumbnail = itemView.findViewById(R.id.thumbnail);
             text      = itemView.findViewById(R.id.text);
+
 
         }
     }

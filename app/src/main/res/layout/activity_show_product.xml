@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:layoutDirection="ltr"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="8dp"
+        android:background="@color/white"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            >
+            <ImageView
+                android:id="@+id/Back"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start|center_vertical"
+                android:scaleType="fitXY"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                />
+            <ImageView
+                android:id="@+id/fav"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start|center_vertical"
+                android:scaleType="fitXY"
+                android:src="@drawable/heart"
+                android:layout_margin="5dp"
+                />
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:id="@+id/component_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitXY"
+            android:transitionName="transition"
+            android:src="@drawable/layer1"
+            
+            />
+    </LinearLayout>
+
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+            <RelativeLayout
+                android:id="@+id/rdRecipeLayoutWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp"
+                android:background="@drawable/oval_header"
+                android:elevation="10dp"
+                android:paddingBottom="100dp"
+
+                >
+
+                <TextView
+                    android:textDirection="ltr"
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/black"
+                    android:text="كرانشي صدور بانيه"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/cairo"
+                    android:textAlignment="center"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/cairo"
+                    android:text="كوكي"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:textDirection="ltr"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/type"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/cairo"
+                    android:text="45 L.E"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:textDirection="ltr"
+                    android:textSize="25sp"
+                    />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/price"
+                   android:layout_margin="5dp"
+                    android:fontFamily="@font/cairo"
+                    android:text="كرانشي صدور دجاج بانيه كوكي 10 قطع \n متوفر جميع الكميات "
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textDirection="ltr"
+                    android:textSize="15sp"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/description"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    >
+
+
+                        <TextView
+                            android:id="@+id/rateNumber"
+                            android:layout_width="80dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/ic_rating"
+                            android:textColor="@android:color/black"
+                            android:fontFamily="@font/ubuntu"
+                            android:textSize="30sp"
+                            android:paddingBottom="10dp"
+                            android:paddingStart="15dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="4.0"
+                            android:textAlignment="center"
+                            />
+
+
+                    <RatingBar
+                        android:id="@+id/rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:stepSize=".5"
+                        android:isIndicator="true"
+
+                        />
+
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+    </ScrollView>
+
+
+<LinearLayout
+    android:layout_alignParentBottom="true"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:layout_width="match_parent"
+        android:text=" العدد  2"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:background="@color/dark_blue"
+        android:layout_height="80dp"
+        android:fontFamily="@font/cairo"
+        android:layout_weight="2"
+        android:textSize="20sp"
+        />
+
+    <Button
+
+        android:layout_width="match_parent"
+        android:text="إضافة الي السلة "
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:background="@color/blue"
+        android:layout_height="80dp"
+        android:fontFamily="@font/cairo"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        />
+</LinearLayout>
+</RelativeLayout>
