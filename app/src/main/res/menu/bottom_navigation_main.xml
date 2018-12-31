@@ -24,14 +24,14 @@
     <item
 
         android:enabled="true"
-        android:icon="@drawable/ic_search"
+        android:icon="@drawable/ic_search_black_24dp"
         android:title="بحث"
         />
 
     <item
 
         android:enabled="true"
-        android:icon="@drawable/ic_file"
+        android:icon="@drawable/ic_department"
         android:title="الأقسام"
         />
 

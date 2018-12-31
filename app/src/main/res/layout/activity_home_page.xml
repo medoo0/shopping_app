@@ -73,7 +73,8 @@
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="start"
-                    android:src="@drawable/iconinnav"
+                    android:src="@drawable/nav_icon"
+                    android:scaleType="centerInside"
                     android:padding="5dp"
                     />
 
@@ -83,7 +84,9 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_shopping_cart" />
+                    android:src="@drawable/ic_shopping_cart"
+                    android:scaleType="centerInside"
+                    />
 
             </RelativeLayout>
 
@@ -359,7 +362,8 @@
             app:itemBackground="@drawable/bottonnavigation_background"
             app:itemIconTint="@drawable/custom_navigation_selector"
             app:itemTextColor="@android:color/white"
-            app:menu="@menu/bottom_navigation_main" />
+            app:menu="@menu/bottom_navigation_main"
+            />
 
         <LinearLayout
             android:id="@+id/LastLinear"
