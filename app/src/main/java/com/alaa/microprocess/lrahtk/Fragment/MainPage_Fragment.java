@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
 import com.alaa.microprocess.lrahtk.R;
@@ -31,11 +32,14 @@ public class MainPage_Fragment extends Fragment {
     RecyclerView recitems;
 
     SQLiteDatabase dpwrite , dpread;
+
+    ImageView Search_image;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.main_page_frag_layout,container,false);
         HomePage.texttoolbar.setText("الرئيسية");
+        Search_image  = v.findViewById(R.id.search_image);
         helper = new Helper(getActivity());
         items   = new ArrayList<>();
         images  = new ArrayList<>();
@@ -45,6 +49,22 @@ public class MainPage_Fragment extends Fragment {
         recitems = v.findViewById(R.id.recitems);
         recitems.setNestedScrollingEnabled(false);
         showItemsinREC();
+
+
+
+
+        Search_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().popBackStack(); //finish
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
+                        .replace(R.id.replaceByFragment, new Search())
+                        .commit();
+            }
+        });
+
         return v;
     }
 

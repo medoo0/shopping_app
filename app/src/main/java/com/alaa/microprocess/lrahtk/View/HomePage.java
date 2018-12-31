@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -30,6 +31,7 @@ import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.Fragment.Favourite_Fragment;
 import com.alaa.microprocess.lrahtk.Fragment.MainPage_Fragment;
+import com.alaa.microprocess.lrahtk.Fragment.Search;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.SQLite.Helper;
 
@@ -61,7 +63,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
 
         Helper helper;
-
+        Toolbar toolbar;
         SQLiteDatabase dpwrite , dpread;
         ArrayList<String> Categories ;
         ArrayList<Integer> Categories_icon;
@@ -87,6 +89,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         dpwrite   = helper.getWritableDatabase();
         dpread    = helper.getReadableDatabase();
         logout   = findViewById(R.id.logout);
+        toolbar    = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         BottomNavigationView =  findViewById(R.id.custom_bottom_navigation);
         texttoolbar = findViewById(R.id.texttoolbar);
 //        BottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -201,22 +205,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
             @Override
             public void onClick(View view) {
 
-                if(NavIsOpened) {
-                    //close
-                    relativeLayout.animate().translationX(0).setDuration(500);
-                    relativeLayout.animate().scaleX(1f).scaleY(1f).setDuration(500);
-                    NavIsOpened = false;
-                    LastLinear.setVisibility(View.GONE);
-
-                }
-                else {
-                    //open
-                    relativeLayout.setX(0);
-                    relativeLayout.animate().translationXBy(dp200_To_pixel).setDuration(500);
-                    relativeLayout.animate().scaleX(.7f).scaleY(.7f).setDuration(500);
-                    NavIsOpened = true;
-                    LastLinear.setVisibility(View.VISIBLE);
-                }
+                open_Navigation_drawer();
 
             }
         });
@@ -315,33 +304,57 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.favourite_itemclick:
-
-                    // show Fragment Favoutit  (:
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.replaceByFragment, new Favourite_Fragment())
-                .commit();
-                    return true;
                 case R.id.action_home:
+                    getSupportFragmentManager().popBackStack(); //finish
                     getSupportFragmentManager()
                             .beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
                             .replace(R.id.replaceByFragment, new MainPage_Fragment())
                             .commit();
                     return true;
-                case R.id.basket:
-                    Toast.makeText(HomePage.this, "المفضلات لسه حنفتح فرااااج", Toast.LENGTH_SHORT).show();
-                    return true;
+
+
                 case R.id.action_message:
-                    Toast.makeText(HomePage.this, "المفضلات لسه حنفتح فرااااج", Toast.LENGTH_SHORT).show();
+                    getSupportFragmentManager().popBackStack(); //finish
+                    Toast.makeText(HomePage.this, "العروض لسه حنفتح فرااااج", Toast.LENGTH_SHORT).show();
                     return true;
+
+                case R.id.search :
+                    getSupportFragmentManager().popBackStack(); //finish
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
+                            .replace(R.id.replaceByFragment, new Search())
+                            .commit();
+                    return true ;
+
+                case R.id.navigation_drawer :
+                    open_Navigation_drawer();
+                    return true ;
             }
             return false;
         }
     };
 
+private void open_Navigation_drawer(){
 
+    if(NavIsOpened) {
+        //close
+        relativeLayout.animate().translationX(0).setDuration(500);
+        relativeLayout.animate().scaleX(1f).scaleY(1f).setDuration(500);
+        NavIsOpened = false;
+        LastLinear.setVisibility(View.GONE);
+
+    }
+    else {
+        //open
+        relativeLayout.setX(0);
+        relativeLayout.animate().translationXBy(dp200_To_pixel).setDuration(500);
+        relativeLayout.animate().scaleX(.7f).scaleY(.7f).setDuration(500);
+        NavIsOpened = true;
+        LastLinear.setVisibility(View.VISIBLE);
+    }
+}
 
 }
 
