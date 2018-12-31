@@ -30,7 +30,8 @@
 
         <activity android:name=".View.HomePage" />
         <activity android:name=".View.Product_Activity" />
-        <activity android:name=".View.ShowProduct"></activity>
+        <activity android:name=".View.ShowProduct" />
+        <activity android:name=".View.MyPersonalPage"></activity>
     </application>
 
 </manifest>

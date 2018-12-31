@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilepic"
+                android:layout_width="150dp"
+                android:layout_marginTop="20sp"
+
+                android:layout_centerHorizontal="true"
+                android:layout_height="150dp"
+                android:src="@drawable/beautifullchild"/>
+
+
+            <LinearLayout
+                android:layout_marginTop="60dp"
+                android:layout_below="@+id/profilepic"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="20sp"
+                android:textDirection="ltr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/showUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="20sp"
+                    android:textSize="19sp"
+                    android:text="MohamedRaslan"
+                    android:drawableStart="@drawable/user"
+                    android:fontFamily="@font/cairo"
+                    />
+
+                <TextView
+                    android:id="@+id/ShowEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="20sp"
+                    android:layout_marginTop="30dp"
+                    android:textSize="19sp"
+                    android:text="mohamedraslan79@yahoo.com"
+                    android:drawableLeft="@drawable/emailsignup"
+                    android:fontFamily="@font/cairo"
+                    />
+                <TextView
+                    android:id="@+id/showPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="20sp"
+                    android:layout_marginTop="30dp"
+                    android:textSize="19sp"
+                    android:text="01063924102"
+                    android:drawableStart="@drawable/smartphone"
+                    android:fontFamily="@font/cairo"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:drawablePadding="20sp"
+                    android:textSize="19sp"
+                    android:text="تغير الرقم السري"
+                    android:drawableStart="@drawable/passsignup"
+                    android:fontFamily="@font/cairo"
+                    />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+
+
+</RelativeLayout>

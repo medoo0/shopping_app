@@ -30,8 +30,11 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="00acec" />
-                            <entry key="outputName" value="ic_back" />
-                            <entry key="sourceFile" value="D:\newProject\back.svg" />
+                            <entry key="height" value="53" />
+                            <entry key="outputName" value="ic_profilepic" />
+                            <entry key="overrideSize" value="true" />
+                            <entry key="sourceFile" value="D:\newProject\profilepic.svg" />
+                            <entry key="width" value="53" />
                           </map>
                         </option>
                       </PersistentState>

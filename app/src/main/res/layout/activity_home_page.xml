@@ -89,11 +89,12 @@
                     android:text="الرئيسية"
                     android:layout_centerInParent="true"/>
                 <ImageView
+                    android:id="@+id/gotoPersonalData"
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_shopping_cart"
+                    android:src="@drawable/ic_profilepic"
                     android:scaleType="centerInside"
                     />
 
