@@ -131,7 +131,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
         if (operation_on_sqLite.getData(databaseread, productIdArray.get(position))) {
 
-            holder.image_add_to_Favout.setBackgroundColor(context.getResources().getColor(R.color.blue));
+            holder.image_add_to_Favout.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_color_heart));
             holder.image_add_to_Favout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -139,7 +139,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
                     if (operation_on_sqLite.deleterow(databaseread, productIdArray.get(position))) {
 
 
-                        holder.image_add_to_Favout.setBackgroundColor(context.getResources().getColor(R.color.white));
+                        holder.image_add_to_Favout.setImageDrawable(context.getResources().getDrawable(R.drawable.heart));
 
 
                     }
@@ -154,7 +154,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
         }else {
 
-            holder.image_add_to_Favout.setBackgroundColor(context.getResources().getColor(R.color.white));
+            holder.image_add_to_Favout.setImageDrawable(context.getResources().getDrawable(R.drawable.heart));
 
 
             holder.image_add_to_Favout.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +163,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
 
                     if (operation_on_sqLite.addProduct(databasewrite, productIdArray.get(position), words.get(position), "125", getBitmapAsByteArray(images.get(position), context))) {
-                        holder.image_add_to_Favout.setBackgroundColor(context.getResources().getColor(R.color.blue));
+                        holder.image_add_to_Favout.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_color_heart));
 
                     }
 

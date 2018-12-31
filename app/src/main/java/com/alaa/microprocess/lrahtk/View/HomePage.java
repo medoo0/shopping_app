@@ -77,6 +77,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         boolean NavIsOpened = false ;
         SharedPreferences preferences;
         SharedPreferences.Editor editor;
+        ImageView gotoPersonalData;
         int COLUM_NUM = 3;
 
         String email , id , name , phone ;
@@ -86,8 +87,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         helper = new Helper(this);
-        dpwrite   = helper.getWritableDatabase();
-        dpread    = helper.getReadableDatabase();
+        dpwrite          = helper.getWritableDatabase();
+        dpread           = helper.getReadableDatabase();
+        gotoPersonalData = findViewById(R.id.gotoPersonalData);
+        gotoPersonalData.setOnClickListener(this);
         logout   = findViewById(R.id.logout);
         toolbar    = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -106,10 +109,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
         if (b!=null){
 
+
             email      = b.getString("Email" );
             id         = b.getString("id");
             name       = b.getString("Name");
             phone      = b.getString("Phone");
+
         }
 
 
@@ -281,6 +286,18 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
             //  finsh this activity and go back ///     حنشوف بعد كدا لو فيه حاجه متعلقه بالسرفر بالخروج ولا لا
 
 
+
+        }
+
+        if (v  == gotoPersonalData){
+
+            Intent intent = new Intent(this , MyPersonalPage.class);
+            intent.putExtra("Email",email);
+            intent.putExtra("userName",name);
+            intent.putExtra("id",id);
+            intent.putExtra("phone",phone);
+            startActivity(intent);
+            finish();
 
         }
 

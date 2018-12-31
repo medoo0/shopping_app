@@ -30,9 +30,9 @@ public class MyPersonalPage extends AppCompatActivity {
 
         if(data!=null){
 
-            userName = data.getString("Name");
+            userName = data.getString("userName");
             email    = data.getString("Email");
-            phone    = data.getString("Phone");
+            phone    = data.getString("phone");
         }
         viewPager =  findViewById(R.id.viewpager);
         setupViewPager(viewPager,userName,email,phone);
