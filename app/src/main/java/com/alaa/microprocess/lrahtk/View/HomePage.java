@@ -3,6 +3,10 @@ import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +14,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -23,7 +28,10 @@ import android.widget.Toast;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
+import com.alaa.microprocess.lrahtk.Fragment.Favourite_Fragment;
+import com.alaa.microprocess.lrahtk.Fragment.MainPage_Fragment;
 import com.alaa.microprocess.lrahtk.R;
+import com.alaa.microprocess.lrahtk.SQLite.Helper;
 
 import java.util.ArrayList;
 
@@ -31,7 +39,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class HomePage extends AppCompatActivity implements View.OnClickListener, HomePageContract.viewMain{
+public class HomePage extends AppCompatActivity implements View.OnClickListener,
+        HomePageContract.viewMain{
 
 
         @BindView(R.id.Rec_Nav)
@@ -43,21 +52,24 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         @BindView(R.id.Nav_Icon)
         ImageView Nav_Icon;
 
-        @BindView(R.id.recitems)
-        RecyclerView recitems;
 
-
+        public static TextView texttoolbar;
         @BindView(R.id.LastLinear)
         LinearLayout LastLinear;
 
         TextView logout;
 
+
+        Helper helper;
+
+        SQLiteDatabase dpwrite , dpread;
         ArrayList<String> Categories ;
         ArrayList<Integer> Categories_icon;
         Rec_Nav_Adapter postAdapter;
-
+        BottomNavigationView BottomNavigationView;
         ArrayList <String> items;
         ArrayList<Integer> images;
+        ArrayList<String> productID;
         ArrayList<Integer> salary;
         int dp200_To_pixel = 0 ;
         boolean NavIsOpened = false ;
@@ -71,7 +83,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        helper = new Helper(this);
+        dpwrite   = helper.getWritableDatabase();
+        dpread    = helper.getReadableDatabase();
         logout   = findViewById(R.id.logout);
+        BottomNavigationView =  findViewById(R.id.custom_bottom_navigation);
+        texttoolbar = findViewById(R.id.texttoolbar);
+//        BottomNavigationView.setOnNavigationItemSelectedListener(this);
+        BottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         logout.setOnClickListener(this);
         ButterKnife.bind(this);
         preferences   = getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
@@ -92,12 +111,17 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
 
 
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.replaceByFragment, new MainPage_Fragment())
+                .commit();
 
 
-        recitems.setNestedScrollingEnabled(false);
+//        recitems.setNestedScrollingEnabled(false);
         items   = new ArrayList<>();
         images  = new ArrayList<>();
         salary  = new ArrayList<>();
+        productID= new ArrayList<>();
 
         Categories = new ArrayList<>();
         Categories_icon = new ArrayList<>();
@@ -139,7 +163,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         Rec_Nav.setAdapter(postAdapter);
 
 
-        showItemsinREC();
+//        showItemsinREC();
 
 
 
@@ -214,32 +238,39 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
 
 
-    public void showItemsinREC(){
-
-            items.add("لبن");
-            items.add("شيكولاته");
-            items.add("خبز");
-            items.add("عصائر");
-            items.add("زبادي");
-            items.add("لبن");
-            items.add("لبن");
-            images.add(R.drawable.millkingone);
-            images.add(R.drawable.checlotes);
-            images.add(R.drawable.breads);
-            images.add(R.drawable.drinks);
-            images.add(R.drawable.johina);
-            images.add(R.drawable.millkingone);
-            images.add(R.drawable.millkingone);
-
-
-        Rec_Items_Adapter rec_items_adapter = new Rec_Items_Adapter(items,images,this);
-        rec_items_adapter.notifyDataSetChanged();
-        LinearLayoutManager HorizontalLayout  =
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recitems.setLayoutManager(HorizontalLayout);
-        recitems.setAdapter(rec_items_adapter);
-
-    }
+//    public void showItemsinREC(){
+//
+//            items.add("لبن");
+//            items.add("شيكولاته");
+//            items.add("خبز");
+//            items.add("عصائر");
+//            items.add("زبادي");
+//            items.add("لبن");
+//            items.add("لبن");
+//            images.add(R.drawable.millkingone);
+//            images.add(R.drawable.checlotes);
+//            images.add(R.drawable.breads);
+//            images.add(R.drawable.drinks);
+//            images.add(R.drawable.johina);
+//            images.add(R.drawable.millkingone);
+//            images.add(R.drawable.millkingone);
+//        productID.add("1");
+//        productID.add("2");
+//        productID.add("3");
+//        productID.add("4");
+//        productID.add("5");
+//        productID.add("6");
+//        productID.add("7");
+//
+//
+//        Rec_Items_Adapter rec_items_adapter = new Rec_Items_Adapter(items,images,productID,this,dpwrite,dpread);
+//        rec_items_adapter.notifyDataSetChanged();
+//        LinearLayoutManager HorizontalLayout  =
+//                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+//        recitems.setLayoutManager(HorizontalLayout);
+//        recitems.setAdapter(rec_items_adapter);
+//
+//    }
 
 
     @Override
@@ -271,10 +302,47 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
         Intent intent = new Intent(this , Product_Activity.class);
         startActivity(intent);
-        finish();
 
 
     }
+
+
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.favourite_itemclick:
+
+                    // show Fragment Favoutit  (:
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.replaceByFragment, new Favourite_Fragment())
+                .commit();
+                    return true;
+                case R.id.action_home:
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.replaceByFragment, new MainPage_Fragment())
+                            .commit();
+                    return true;
+                case R.id.basket:
+                    Toast.makeText(HomePage.this, "المفضلات لسه حنفتح فرااااج", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.action_message:
+                    Toast.makeText(HomePage.this, "المفضلات لسه حنفتح فرااااج", Toast.LENGTH_SHORT).show();
+                    return true;
+            }
+            return false;
+        }
+    };
+
+
+
 }
 
 

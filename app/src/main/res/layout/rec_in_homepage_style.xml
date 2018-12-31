@@ -69,6 +69,7 @@
 
 
                 <ImageView
+                    android:id="@+id/image_add_to_Favout"
                     android:layout_width="30dp"
                     android:layout_margin="5dp"
                     android:src="@drawable/heart"

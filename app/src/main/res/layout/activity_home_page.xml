@@ -79,6 +79,15 @@
                     />
 
 
+                <TextView
+                    android:id="@+id/texttoolbar"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/blue"
+                    android:fontFamily="@font/cairo"
+                    android:text="الرئيسية"
+                    android:layout_centerInParent="true"/>
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
@@ -94,263 +103,22 @@
         </android.support.v7.widget.Toolbar>
 
 
-        <android.support.v4.widget.NestedScrollView
-            android:layout_below="@+id/toolbar"
-            android:id="@+id/nested"
-            android:overScrollMode="never"
+
+
+
+
+        <FrameLayout
+            android:id="@+id/replaceByFragment"
             android:layout_width="match_parent"
+            android:layout_below="@+id/toolbar"
             android:paddingBottom="55dp"
             android:layout_height="match_parent">
 
 
 
-
-            <LinearLayout
-                android:id="@+id/Linear"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content">
+        </FrameLayout>
 
 
-
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_gravity="center_horizontal"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_lrahtk"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="8dp"/>
-
-
-
-                <ImageView
-                    android:layout_width="300dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/search"
-                    android:layout_height="60dp" />
-
-
-                <LinearLayout
-                    android:layout_width="300dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-
-
-                    <Button
-                        android:layout_marginStart="20sp"
-                        android:layout_width="120dp"
-                        android:text="طلباتي"
-                        android:textColor="@android:color/white"
-                        android:background="@drawable/button_background"
-                        android:layout_height="40dp"
-                        android:fontFamily="@font/cairo"
-                        />
-
-                    <Button
-
-                        android:layout_width="120dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="20sp"
-                        android:background="@drawable/button_background"
-                        android:fontFamily="@font/cairo"
-                        android:text="عرض اليوم"
-
-                        android:textColor="@android:color/white" />
-
-
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="300dp"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_bread"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp" />
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/ic_milk"
-                        android:layout_gravity="center"
-                        android:scaleType="centerInside"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp" />
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_healthy_food"
-                        />
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_chicken_leg"
-                        />
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_coffee_cup"
-                        />
-
-
-
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="300dp"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_can"
-                        />
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_cooking_time"
-                        />
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_bean"/>
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_cupcake"/>
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_baby"
-                        />
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="300dp"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    >
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_care"
-                        />
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_detergent"
-                        />
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_detergent2"/>
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/circle_shape"
-                        android:layout_height="40dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_chef_hat"/>
-
-
-                </LinearLayout>
-
-                <Button
-
-                    android:layout_width="120dp"
-                    android:text="الأكثر مبيعا"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:textColor="@android:color/white"
-                    android:background="@drawable/button_background"
-                    android:layout_height="40dp"
-                    android:fontFamily="@font/cairo"
-                    />
-
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recitems"
-                    android:layout_marginTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-
-
-
-
-
-
-
-        </android.support.v4.widget.NestedScrollView>
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/custom_bottom_navigation"
