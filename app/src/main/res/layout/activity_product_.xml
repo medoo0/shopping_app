@@ -29,7 +29,7 @@
 
 
             <ImageView
-                android:id="@+id/Back"
+                android:id="@+id/backhome"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_gravity="start|center_vertical"
