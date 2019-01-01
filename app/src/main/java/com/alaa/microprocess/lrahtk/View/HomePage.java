@@ -297,7 +297,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
             intent.putExtra("id",id);
             intent.putExtra("phone",phone);
             startActivity(intent);
-            finish();
+
 
         }
 

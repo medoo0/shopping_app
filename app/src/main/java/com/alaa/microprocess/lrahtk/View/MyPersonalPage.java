@@ -12,12 +12,16 @@ import com.alaa.microprocess.lrahtk.Fragment.MyOrders_Fragment;
 import com.alaa.microprocess.lrahtk.Fragment.Saving_Titles_Fragment;
 import com.alaa.microprocess.lrahtk.R;
 import android.support.v4.view.ViewPager;
-public class MyPersonalPage extends AppCompatActivity {
+import android.view.View;
+import android.widget.ImageView;
+
+public class MyPersonalPage extends AppCompatActivity implements View.OnClickListener {
 
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     String userName , email , phone;
+    ImageView backhome;
 
 
 
@@ -26,6 +30,8 @@ public class MyPersonalPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_personal_page);
 
+        backhome = findViewById(R.id.backhome);
+        backhome.setOnClickListener(this);
         Bundle data = getIntent().getExtras();
 
         if(data!=null){
@@ -41,24 +47,37 @@ public class MyPersonalPage extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
+    private void setupViewPager(ViewPager viewPager, String userName , String email , String phoneNumber) {
 
-
-
-    private void setupViewPager(ViewPager viewPager,String userName , String email , String phoneNumber) {
         MyAccount_Fragment myAccount_fragment = new MyAccount_Fragment();
         Bundle data = new Bundle();
         data.putString("Email",email);
         data.putString("userName",userName);
         data.putString("phone",phoneNumber);
         myAccount_fragment.setArguments(data);
-
-
         TabsPager adapter = new TabsPager(getSupportFragmentManager());
         adapter.addFrag(myAccount_fragment, "حسابي");
         adapter.addFrag(new MyOrders_Fragment(), "طلباتك");
         adapter.addFrag(new Favourite_Fragment(), "المفضل");
         adapter.addFrag(new Saving_Titles_Fragment(), "العناوين المحفوضه");
         viewPager.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if (v == backhome){
+
+            finish();
+
+        }
+
     }
 }
