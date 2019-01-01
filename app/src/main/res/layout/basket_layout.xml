@@ -1,0 +1,191 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layoutDirection="ltr"
+    android:layout_margin="5dp"
+    android:layout_height="100dp">
+
+
+    <LinearLayout
+        android:id="@+id/Cardview2"
+        android:layout_marginEnd="7dp"
+        android:layout_marginStart="7dp"
+        android:background="@drawable/delete_gradient"
+        android:layout_width="match_parent"
+        android:gravity="end"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/delete_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:fontFamily="@font/cairo"
+            android:layout_margin="20dp"
+            android:layout_gravity="end|center_vertical"
+            android:src="@drawable/ic_delete_sweep_black_24dp"
+            android:scaleType="fitXY"
+            />
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/Cardview3"-->
+        <!--android:layout_marginEnd="7dp"-->
+        <!--android:layout_marginStart="7dp"-->
+        <!--android:background="@drawable/edite_gradient"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:gravity="start"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/edite_image"-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:fontFamily="@font/cairo"-->
+            <!--android:layout_margin="20dp"-->
+            <!--android:layout_gravity="start|center_vertical"-->
+            <!--android:src="@drawable/ic_edit_black_24dp"-->
+            <!--android:scaleType="fitXY"-->
+            <!--/>-->
+    <!--</LinearLayout>-->
+
+    <LinearLayout
+        android:id="@+id/foreground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:visibility="visible"
+        android:elevation="8dp"
+        >
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/Cardview"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+                    android:id="@+id/Product_Image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/cairo"
+                    android:scaleType="fitXY"
+                    />
+
+              <LinearLayout
+                  android:id="@+id/countLinear"
+                  android:layout_margin="5dp"
+                  android:orientation="vertical"
+                  android:layout_width="wrap_content"
+                  android:layout_alignParentEnd="true"
+                  android:layout_height="match_parent">
+
+                  <ImageButton
+                      android:id="@+id/add"
+                      android:layout_width="30dp"
+                      android:layout_height="30dp"
+                      android:scaleType="fitXY"
+                      android:background="@drawable/ic_add_circle_outline_black_24dp"
+                      android:elevation="2dp"
+                      />
+                  <TextView
+                      android:gravity="center_vertical|center_horizontal"
+                      android:text="1"
+                      android:layout_width="30dp"
+                      android:layout_height="30dp"
+                      android:textColor="#000"
+                      />
+
+                  <ImageButton
+                      android:id="@+id/min"
+                      android:layout_width="30dp"
+                      android:layout_height="30dp"
+                      android:scaleType="fitXY"
+                      android:background="@drawable/ic_remove_circle_black_24dp"
+                      android:elevation="2dp"
+                      />
+
+              </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:gravity="end"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/countLinear"
+                    android:layout_toEndOf="@+id/Product_Image"
+                    android:layout_marginEnd="5dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/productName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/cairo"
+                        android:text="زبادي جهينة"
+                        />
+                    <TextView
+                        android:id="@+id/product_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/bacG"
+                        android:fontFamily="@font/cairo"
+                        android:text="المراعي"
+                        android:textSize="12sp"
+                        />
+                    <TextView
+                        android:id="@+id/quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/bacG"
+                        android:fontFamily="@font/cairo"
+                        android:text="1 ك"
+                        android:textSize="12sp"
+                      />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:gravity="start|bottom"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/countLinear"
+                    android:layout_toEndOf="@+id/Product_Image"
+                    android:layout_margin="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/Price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue"
+                        android:fontFamily="@font/cairo"
+                        android:text="100 L.E"
+                        />
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

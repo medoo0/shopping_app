@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
+import com.alaa.microprocess.lrahtk.Fragment.Basket;
 import com.alaa.microprocess.lrahtk.Fragment.Favourite_Fragment;
 import com.alaa.microprocess.lrahtk.Fragment.MainPage_Fragment;
 import com.alaa.microprocess.lrahtk.Fragment.Search;
@@ -336,11 +337,18 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
                     Toast.makeText(HomePage.this, "العروض لسه حنفتح فرااااج", Toast.LENGTH_SHORT).show();
                     return true;
 
+                case R.id.basket :
+                    getSupportFragmentManager().popBackStack(); //finish
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.replaceByFragment, new Basket())
+                            .commit();
+                    return true ;
+
                 case R.id.search :
                     getSupportFragmentManager().popBackStack(); //finish
                     getSupportFragmentManager()
                             .beginTransaction()
-                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
                             .replace(R.id.replaceByFragment, new Search())
                             .commit();
                     return true ;
