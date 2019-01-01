@@ -291,13 +291,13 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
         if (v  == gotoPersonalData){
 
+
             Intent intent = new Intent(this , MyPersonalPage.class);
             intent.putExtra("Email",email);
             intent.putExtra("userName",name);
             intent.putExtra("id",id);
             intent.putExtra("phone",phone);
             startActivity(intent);
-
 
         }
 

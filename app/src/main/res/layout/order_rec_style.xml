@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layoutDirection="ltr"
+    android:layout_height="wrap_content">
+
+
+
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:elevation="12dp"
+        android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_alignParentStart="true"
+                android:layout_width="160dp"
+                android:orientation="vertical"
+                android:paddingTop="20sp"
+                android:layout_centerInParent="true"
+                android:paddingBottom="20sp"
+                android:layout_height="130dp">
+
+                <TextView
+                    android:id="@+id/dataofProduct"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/cairo"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="8-jun-2016"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/idofProduct"
+                    android:layout_width="match_parent"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/cairo"
+                    android:layout_marginStart="10dp"
+                    android:text="ccccc5555"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="130dp"
+                android:orientation="horizontal"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="7dp"
+                android:layout_alignParentEnd="true"
+                android:layout_height="130dp">
+
+                <TextView
+                    android:layout_width="95dp"
+                    android:textSize="20sp"
+                    android:id="@+id/whatqwayuserWantProduct"
+                    android:fontFamily="@font/cairo"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_gravity="center"
+                    android:textColor="#dcc320"
+                    android:text="Disbatched"
+                    android:layout_height="wrap_content" />
+
+
+                <ImageView
+                    android:id="@+id/gotoPersonalData"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/rightarrow" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

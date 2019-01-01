@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.alaa.microprocess.lrahtk.Adapters.Adapter_Favourite;
+import com.alaa.microprocess.lrahtk.Adapters.GridSpacingItemDecoration;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
 import com.alaa.microprocess.lrahtk.Enums.Variables;
 import com.alaa.microprocess.lrahtk.R;
@@ -74,11 +75,15 @@ public class Favourite_Fragment extends Fragment {
 
 
         if (!list.isEmpty()){
-
+            int spanCount = 2; // 3 columns
+            int spacing = 20; // 50px
+            boolean includeEdge = false;
             Adapter_Favourite rec_items_adapter = new Adapter_Favourite(list,getActivity());
             rec_items_adapter.notifyDataSetChanged();
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
             rec_favourite.setLayoutManager(gridLayoutManager);
+
+            rec_favourite.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, includeEdge));
             rec_favourite.setAdapter(rec_items_adapter);
 
 

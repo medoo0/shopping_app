@@ -15,6 +15,7 @@ public class Helper extends SQLiteOpenHelper {
 
 
 
+
     public Helper(Context context) {
 
         super(context, DATABASENAME, null, VERSION);
@@ -25,6 +26,7 @@ public class Helper extends SQLiteOpenHelper {
 
 
         String Table_Create
+
 
                 = "CREATE TABLE "+ Variables.TABLE_NAME.getRef()+
                 " ("+Variables.COL_ID.getRef() +" integer primary key autoincrement,"+
