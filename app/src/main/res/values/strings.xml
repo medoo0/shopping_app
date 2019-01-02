@@ -33,5 +33,11 @@ places at once, so you only have one bag.
     <string name="address">العنوان</string>
     <string name="Phone">رقم الهاتف</string>
     <string name="continuation">استمرار</string>
+    <string name="ThanksForYourOrder">شكرا لطلبك</string>
+    <string name="orderNumber">رقم طلبك</string>
+    <string name="appointment">موعد الوصول</string>
+    <string name="end">انتهي</string>
+    <string name="trackYouOrder">تتبع طلبك هنا</string>
+
 
 </resources>

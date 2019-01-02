@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.alaa.microprocess.lrahtk.Fragment.Charge">
+    tools:context="com.alaa.microprocess.lrahtk.Fragment.Charge"
+    android:layoutDirection="ltr"
+    >
 
 
     <ScrollView
-        android:layout_marginTop="20dp"
         android:layout_above="@+id/continuation"
         android:layout_width="match_parent"
         android:scrollbars="none"
@@ -16,14 +17,16 @@
         <RelativeLayout
             android:layout_margin="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+
             >
 
         <LinearLayout
             android:id="@+id/linear"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp">
 
 
 
@@ -34,7 +37,9 @@
                 android:background="@color/white"
                 app:hintTextAppearance="@style/HintText"
                 android:gravity="end|center_vertical"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                >
 
                 <EditText
                     android:layout_weight="1"
@@ -64,7 +69,9 @@
                 android:gravity="end|center_vertical"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:layout_width="match_parent">
+                android:layout_width="match_parent"
+                android:layout_marginStart="2dp"
+                >
 
                 <EditText
                     android:id="@+id/first_Name"
@@ -93,12 +100,13 @@
                 android:id="@+id/addressLn"
                 android:layout_below="@+id/linear"
                 android:layout_weight="1"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/white"
                 app:hintTextAppearance="@style/HintText"
                 android:gravity="end|center_vertical"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent">
+                android:layout_width="match_parent"
+                >
 
                 <EditText
                     android:id="@+id/address"
@@ -122,11 +130,11 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_below="@+id/addressLn"
                 android:layout_weight="1"
-                android:layout_marginTop="2dp"
                 android:background="@color/white"
                 app:hintTextAppearance="@style/HintText"
                 android:gravity="end|center_vertical"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent">
 
                 <EditText
@@ -156,12 +164,13 @@
         android:id="@+id/continuation"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/blue"
+        android:background="@drawable/rectangle_btn_background"
         android:textSize="20sp"
         android:text="@string/continuation"
         android:textColor="@color/white"
         android:fontFamily="@font/cairo"
         android:layout_alignParentBottom="true"
+        android:elevation="8dp"
 
         />
 

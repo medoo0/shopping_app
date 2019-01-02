@@ -435,7 +435,7 @@
         android:text="إضافة الي السلة "
         android:layout_gravity="center"
         android:textColor="@android:color/white"
-        android:background="@color/blue"
+        android:background="@drawable/rectangle_btn_background"
         android:layout_height="80dp"
         android:fontFamily="@font/cairo"
         android:layout_weight="1"

@@ -1,0 +1,125 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="ltr"
+    android:background="@color/white"
+    tools:context="com.alaa.microprocess.lrahtk.Fragment.ThanksOrder">
+<RelativeLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/thanks"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cairo"
+        android:text="@string/ThanksForYourOrder"
+        android:textSize="30sp"
+        android:textColor="#1db131"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/thanks_layout"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/thanks"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/orderNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo"
+            android:text="#sci2515635"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginEnd="5dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo"
+            android:text="@string/orderNumber"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="5dp"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/delivery_image"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/thanks_layout"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/delivery"
+        />
+
+    <TextView
+        android:id="@+id/txappointment"
+        android:layout_below="@+id/delivery_image"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cairo"
+        android:text="@string/appointment"
+        android:textSize="20sp"
+        android:textColor="#1db131"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/appointment"
+        android:layout_below="@+id/txappointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cairo"
+        android:text="friday nov 30 - 2018 / 7:00 pm "
+        android:textSize="12sp"
+        android:textColor="@android:color/black"
+        android:layout_centerHorizontal="true"
+         />
+
+
+    <Button
+        android:id="@+id/trackYouOrder"
+        android:layout_below="@+id/appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trackYouOrder"
+        style="@style/flatbutton"
+        android:textSize="15sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/cairo"
+        />
+
+    <Button
+        android:layout_below="@+id/trackYouOrder"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/finish"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_btn_background"
+        android:textSize="15sp"
+        android:text="@string/end"
+        android:textColor="@color/white"
+        android:fontFamily="@font/cairo"
+        android:layout_alignParentBottom="true"
+        android:elevation="8dp"
+        android:layout_marginTop="20dp"
+        />
+
+</RelativeLayout>
+</ScrollView>
