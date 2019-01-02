@@ -179,7 +179,7 @@ public class SignIn extends Fragment implements View.OnClickListener{
                    public void onFailure(@NonNull Call<LoginForm> call, @NonNull Throwable t) {
                        // connection poor or exception in retrofit occur .... //
                        dialog.Close_Dialog();
-                       email.setError(getResources().getString(R.string.Check_Internet));
+                       email.setError(getResources().getString(R.string.Check_Internet)+" ");
 
                    }
                });

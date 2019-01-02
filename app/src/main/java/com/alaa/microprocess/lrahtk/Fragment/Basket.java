@@ -1,6 +1,7 @@
 package com.alaa.microprocess.lrahtk.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.alaa.microprocess.lrahtk.Adapters.RecyclerItemTouchHelper;
 import com.alaa.microprocess.lrahtk.Adapters.rec_Basket_Adapter;
 import com.alaa.microprocess.lrahtk.R;
+import com.alaa.microprocess.lrahtk.View.Pay;
 
 import java.util.ArrayList;
 
@@ -97,7 +99,9 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
         sendOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Order sent", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(),Pay.class);
+                startActivity(intent);
+
             }
         });
 
@@ -109,4 +113,6 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         Toast.makeText(getActivity(), ""+direction, Toast.LENGTH_SHORT).show();
     }
+
+
 }

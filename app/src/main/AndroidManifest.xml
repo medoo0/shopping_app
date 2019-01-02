@@ -14,11 +14,8 @@
         <activity
             android:name=".View.Splash"
             android:windowSoftInputMode="stateHidden|adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".View.MainActivity"
@@ -28,10 +25,17 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".View.HomePage" />
+        <activity android:name=".View.HomePage" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".View.Product_Activity" />
         <activity android:name=".View.ShowProduct" />
-        <activity android:name=".View.MyPersonalPage"></activity>
+        <activity android:name=".View.MyPersonalPage" />
+        <activity android:name=".View.Pay"></activity>
     </application>
 
 </manifest>

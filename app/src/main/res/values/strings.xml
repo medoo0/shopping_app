@@ -28,5 +28,8 @@ places at once, so you only have one bag.
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="charge">الشحن</string>
+    <string name="pay">الدفع</string>
+    <string name="confirm">التأكيد</string>
 
 </resources>
