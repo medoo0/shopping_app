@@ -16,7 +16,7 @@ import com.alaa.microprocess.lrahtk.R;
 
 public class Pay extends AppCompatActivity {
 
-    TabLayout tabLayout;
+    static  public TabLayout tabLayout;
     ImageView imageView;
 
     @Override
@@ -49,11 +49,11 @@ public class Pay extends AppCompatActivity {
 
 
     }
-    public void setDoneIcon(int index)
+     static public void setDoneIcon(int index)
     {
         tabLayout.getTabAt(index).setIcon(R.drawable.ic_done_black_24dp);
     }
-    public void moveTo(int index){
+    static public void moveTo(int index){
         tabLayout.getTabAt(index).select();
 
     }
