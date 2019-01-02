@@ -35,7 +35,9 @@
         <activity android:name=".View.Product_Activity" />
         <activity android:name=".View.ShowProduct" />
         <activity android:name=".View.MyPersonalPage" />
-        <activity android:name=".View.Pay"></activity>
+        <activity android:name=".View.Pay"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            ></activity>
     </application>
 
 </manifest>
