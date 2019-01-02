@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.alaa.microprocess.lrahtk.Fragment.Paying_Fragment;
 import com.alaa.microprocess.lrahtk.R;
 
 import butterknife.BindView;
@@ -18,9 +20,12 @@ public class Splash extends AppCompatActivity {
 
     @BindView(R.id.lrahtk_img)
     ImageView lrahtk_img;
-    
+
+
     @BindView(R.id.progress)
     ProgressBar progress;
+    @BindView(R.id.replacetest)
+    RelativeLayout replacetest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +35,22 @@ public class Splash extends AppCompatActivity {
           ButterKnife.bind(this);
 
 
+
+
+
           //animate
            lrahtk_img.setX( -300 );
            lrahtk_img.animate().translationXBy(300).setDuration(500).setListener(new Animator.AnimatorListener() {
                @Override
                public void onAnimationStart(Animator animator) {
-                  
+
                }
 
                @Override
                public void onAnimationEnd(Animator animator) {
-                   
+
                    progress();
-               
+
                }
 
                @Override
@@ -59,7 +67,7 @@ public class Splash extends AppCompatActivity {
 
 
     }
-    
+
    public void progress (){
        progress.setAlpha(.5f);
        progress.setVisibility(View.VISIBLE);
@@ -72,7 +80,7 @@ public class Splash extends AppCompatActivity {
 
            @Override
            public void onAnimationEnd(Animator animator) {
-                
+
                //goto MainActivity
                Intent intent = new Intent(Splash.this , MainActivity.class);
                startActivity(intent);

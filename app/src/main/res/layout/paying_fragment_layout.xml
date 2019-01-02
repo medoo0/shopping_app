@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="ltr"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="50dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layoutDirection="ltr"
+        android:layout_height="match_parent"
+        >
+
+
+
+        <RelativeLayout
+
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layoutDirection="ltr"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/relativeOne"
+                android:layout_width="match_parent"
+                android:background="#f1f0f0"
+                android:paddingBottom="50dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/linearOne"
+                    android:layout_marginTop="30dp"
+                    android:padding="1dp"
+
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_centerHorizontal="true"
+                    android:layoutDirection="rtl"
+                    android:layout_height="50dp"
+                    >
+
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo"
+                        android:textDirection="rtl"
+                        android:layout_marginStart="80dp"
+                        android:textSize="20sp"
+                        android:text="رمز ترويجي"
+                        android:textColor="@android:color/black"/>
+
+
+                </LinearLayout>
+
+
+
+
+                <RelativeLayout
+                    android:layout_below="@+id/linearOne"
+
+                    android:padding="1dp"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginEnd="20sp"
+
+                    android:layout_width="match_parent"
+                    android:layoutDirection="ltr"
+                    android:background="@drawable/liear_shape_in_paying"
+                    android:layout_height="50dp"
+                    >
+
+                    <EditText
+                        android:id="@+id/edPay"
+                        android:layout_width="match_parent"
+                        android:hint="#1243"
+                        android:paddingStart="5dp"
+                        android:layout_marginEnd="80dp"
+                        android:paddingEnd="5dp"
+                        android:background="@color/white"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:layout_width="80dp"
+                        android:textColor="@color/white"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/cairo"
+                        android:text="تطبيق"
+                        android:background="@drawable/ather_button_style"
+                        android:layout_height="match_parent" />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_below="@+id/relativeOne"
+                android:layoutDirection="ltr"
+                android:layout_height="400dp">
+
+                <RelativeLayout
+                    android:id="@+id/myRel"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="20sp"
+                    android:layout_centerHorizontal="true"
+                    android:layoutDirection="ltr"
+                    android:layout_marginEnd="20sp"
+                    android:layout_height="60dp">
+
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="40dp"
+                        android:layout_alignParentStart="true"
+                        android:src="@drawable/ic_banknote"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="70dp"
+                        android:layoutDirection="rtl"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:orientation="horizontal"
+                        android:layout_height="match_parent">
+
+
+                            <RadioButton
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                style="@style/radionbutton"
+                                android:fontFamily="@font/cairo"
+                                android:id="@+id/sound" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="الدفع عند الاستلام"
+                            android:gravity="center"
+                            android:fontFamily="@font/cairo"
+                            android:textSize="15dp"
+                            android:layout_marginStart="20sp"
+                            android:layout_height="60dp" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginStart="20sp"
+                    android:layout_below="@+id/myRel"
+                    android:layout_height="50dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="20sp"
+                        android:gravity="start"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/blue"
+                        android:text="L.E 92.50"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_alignParentEnd="true"
+                        android:textSize="20sp"
+                        android:gravity="end"
+                        android:textColor="@android:color/black"
+                        android:text="المبلغ الاجمالي"/>
+
+                </RelativeLayout>
+
+
+
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20sp"
+        android:orientation="vertical"
+        android:layout_marginEnd="20sp"
+        android:layout_height="wrap_content">
+
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="استمرار"
+            android:drawableEnd="@drawable/ic_backintextview"
+            android:fontFamily="@font/cairo"
+            android:paddingEnd="20sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:background="@drawable/ather_button_style"
+            android:layout_height="50dp" />
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+
+
+

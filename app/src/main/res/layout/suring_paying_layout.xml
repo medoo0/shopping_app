@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layoutDirection="ltr"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    
+    
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_marginBottom="50dp"
+        android:layoutDirection="ltr"
+        android:layout_height="match_parent">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/relativeOne"
+                android:layout_width="match_parent"
+                android:layout_margin="20sp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/linearOne"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo"
+                        android:textSize="22sp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:text="الشحن الي"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:textDirection="ltr"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="20sp"
+                    android:layout_below="@+id/linearOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textSize="20sp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo"
+
+                        android:text="Mohamed Raslan"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textSize="20sp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo"
+                        android:text="Egypt - Cairo - sadatCity --55Street"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/cairo"
+                        android:text="+ 20 01063924102"/>
+
+                </LinearLayout>
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_margin="20sp"
+                android:id="@+id/relativetwo"
+                android:layout_below="@+id/relativeOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:id="@+id/linearinrelativeTwo"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo"
+                        android:textSize="22sp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:text="المشتريات"/>
+
+                </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/myRec"
+                    android:textDirection="ltr"
+                    android:layout_marginTop="20sp"
+                    android:layout_below="@+id/linearinrelativeTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+
+
+
+
+
+            <RelativeLayout
+                android:layout_below="@+id/relativetwo"
+                android:layout_width="match_parent"
+                android:layout_margin="20sp"
+                android:layout_marginTop="20sp"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:id="@+id/linearinrelativethree"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textSize="22sp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:text="ملخص الدفع"/>
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/one"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="20sp"
+                    android:layout_below="@+id/linearinrelativethree"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:text="L.E 92.50"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="إجمالي الطلبات"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/cairo"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:layout_height="wrap_content" />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/two"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/one"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/blue"
+                        android:text="L.E 92.50"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="رسوم التوصيل"
+                        android:fontFamily="@font/cairo"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="20sp"
+                    android:layout_below="@+id/two"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/blue"
+                        android:text="L.E 92.50"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="المبلغ الإجمالي"
+                        android:fontFamily="@font/cairo"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+    </ScrollView>
+    
+    
+    
+    
+    
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20sp"
+        android:orientation="vertical"
+        android:layout_marginEnd="20sp"
+        android:layout_height="wrap_content">
+
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="شحن الأن"
+            android:drawableEnd="@drawable/ic_backintextview"
+            android:fontFamily="@font/cairo"
+            android:paddingEnd="20sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:background="@drawable/ather_button_style"
+            android:layout_height="50dp" />
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
