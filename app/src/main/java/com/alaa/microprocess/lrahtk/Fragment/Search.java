@@ -20,7 +20,13 @@ public class Search extends Fragment {
     SearchView searchView;
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        if(((AppCompatActivity)getActivity()).getSupportActionBar().isShowing()){
+
+            ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
+        }
+
+
     }
 
     @Override
@@ -37,6 +43,11 @@ public class Search extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+
+        if(!((AppCompatActivity)getActivity()).getSupportActionBar().isShowing()){
+
+            ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+
+        }
     }
 }

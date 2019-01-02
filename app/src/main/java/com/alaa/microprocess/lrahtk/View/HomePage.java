@@ -355,7 +355,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
                 case R.id.navigation_drawer :
                     open_Navigation_drawer();
-                    return true ;
+                    return false ;
             }
             return false;
         }
