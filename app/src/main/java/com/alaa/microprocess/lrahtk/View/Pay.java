@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alaa.microprocess.lrahtk.Fragment.Charge;
+import com.alaa.microprocess.lrahtk.Fragment.MainPage_Fragment;
 import com.alaa.microprocess.lrahtk.R;
 
 public class Pay extends AppCompatActivity {
@@ -35,11 +37,26 @@ public class Pay extends AppCompatActivity {
             }
         });
 
+
+        //default  fragments .
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
+                .replace(R.id.Frame_layout, new Charge())
+                .commit();
+
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tabLayout.getSelectedTabPosition() == 0) {
-                    Toast.makeText(Pay.this, "Tab " + tabLayout.getSelectedTabPosition(), Toast.LENGTH_LONG).show();
+
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
+                            .replace(R.id.Frame_layout, new Charge())
+                            .commit();
+
                 } else if (tabLayout.getSelectedTabPosition() == 1) {
                     Toast.makeText(Pay.this, "Tab " + tabLayout.getSelectedTabPosition(), Toast.LENGTH_LONG).show();
                 } else if (tabLayout.getSelectedTabPosition() == 2) {
@@ -61,24 +78,4 @@ public class Pay extends AppCompatActivity {
 
     }
 
-    public void setCustomFont() {
-
-        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
-        int tabsCount = vg.getChildCount();
-
-        for (int j = 0; j < tabsCount; j++) {
-            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
-
-            int tabChildsCount = vgTab.getChildCount();
-
-            for (int i = 0; i < tabChildsCount; i++) {
-                View tabViewChild = vgTab.getChildAt(i);
-                if (tabViewChild instanceof TextView) {
-                    //Put your font in assests folder
-                    //assign name of the font here (Must be case sensitive)
-                    ((TextView) tabViewChild).setTypeface(Typeface.createFromAsset(getAssets(), "Nosifer-Regular.ttf"));
-                }
-            }
-        }
-    }
 }

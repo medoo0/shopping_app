@@ -326,7 +326,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
                     getSupportFragmentManager().popBackStack(); //finish
                     getSupportFragmentManager()
                             .beginTransaction()
-                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
                             .replace(R.id.replaceByFragment, new MainPage_Fragment())
                             .commit();
                     return true;
