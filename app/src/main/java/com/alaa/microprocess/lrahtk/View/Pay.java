@@ -27,8 +27,9 @@ public class Pay extends AppCompatActivity {
         imageView = findViewById(R.id.backhome);
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.charge));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.pay));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.confirm));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.pay));
+
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,35 +47,14 @@ public class Pay extends AppCompatActivity {
                 .commit();
 
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                if (tabLayout.getSelectedTabPosition() == 0) {
 
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
-                            .replace(R.id.Frame_layout, new Charge())
-                            .commit();
-
-                } else if (tabLayout.getSelectedTabPosition() == 1) {
-                    Toast.makeText(Pay.this, "Tab " + tabLayout.getSelectedTabPosition(), Toast.LENGTH_LONG).show();
-                } else if (tabLayout.getSelectedTabPosition() == 2) {
-                    Toast.makeText(Pay.this, "Tab " + tabLayout.getSelectedTabPosition(), Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
+    }
+    public void setDoneIcon(int index)
+    {
+        tabLayout.getTabAt(index).setIcon(R.drawable.ic_done_black_24dp);
+    }
+    public void moveTo(int index){
+        tabLayout.getTabAt(index).select();
 
     }
 
