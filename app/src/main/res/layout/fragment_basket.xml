@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,5 +16,56 @@
 
 
 
+   <LinearLayout
+       android:id="@+id/sendOrder"
+       android:orientation="horizontal"
+       android:elevation="8dp"
+       android:layout_alignParentBottom="true"
+       android:layout_margin="50dp"
+       android:layout_width="match_parent"
+       android:background="@drawable/button_background"
+       android:layout_height="80dp"
+       android:gravity="center_vertical|center_horizontal"
+       android:visibility="gone"
+       >
 
-</FrameLayout>
+      <TextView
+
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="@font/cairo"
+          android:textColor="@color/white"
+          android:textSize="18sp"
+          android:gravity="center"
+          android:text="إرسال هذا الطلب"
+          android:background="@android:color/transparent"
+          android:layout_weight="1"
+          />
+
+      <ImageView
+          android:layout_width="5dp"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_points"
+          android:scaleType="fitXY"
+          />
+
+      <TextView
+          android:layout_weight="1"
+          android:id="@+id/total"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="@font/cairo"
+          android:gravity="center"
+          android:textColor="@color/white"
+          android:textSize="18sp"
+          android:text="18 L.E"
+          />
+
+   </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>
