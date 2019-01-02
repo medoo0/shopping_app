@@ -10,11 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alaa.microprocess.lrahtk.Contract.PayScreenContract;
 import com.alaa.microprocess.lrahtk.Fragment.Charge;
 import com.alaa.microprocess.lrahtk.Fragment.MainPage_Fragment;
+import com.alaa.microprocess.lrahtk.Fragment.Paying_Fragment;
+import com.alaa.microprocess.lrahtk.Fragment.Suring_Paying;
+import com.alaa.microprocess.lrahtk.Fragment.ThanksOrder;
 import com.alaa.microprocess.lrahtk.R;
 
-public class Pay extends AppCompatActivity {
+public class Pay extends AppCompatActivity  implements PayScreenContract.payView {
 
     static  public TabLayout tabLayout;
     ImageView imageView;
@@ -72,6 +76,38 @@ public class Pay extends AppCompatActivity {
                 child.setEnabled(false);
             }
         }
+    }
+
+    @Override
+    public void showNextFragment_SuringPay() {
+        setDoneIcon(0);
+        moveTo(1);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left,R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(R.id.Frame_layout, new Suring_Paying())
+                .commit();
+    }
+
+    @Override
+    public void showNextLastFragmentPayingFragment() {
+        setDoneIcon(1);
+        moveTo(2);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left,R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(R.id.Frame_layout, new Paying_Fragment())
+                .commit();
+    }
+
+    @Override
+    public void showThanksOrder() {
+        setDoneIcon(2);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left,R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(R.id.Frame_layout, new ThanksOrder())
+                .commit();
     }
 
 }

@@ -12,10 +12,10 @@
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_marginBottom="50dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layoutDirection="ltr"
         android:layout_height="match_parent"
+        android:layout_above="@+id/LinearBtn"
         >
 
 
@@ -210,28 +210,27 @@
 
 
     <LinearLayout
+        android:id="@+id/LinearBtn"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_marginStart="20sp"
         android:orientation="vertical"
-        android:layout_marginEnd="20sp"
         android:layout_height="wrap_content">
 
 
 
 
 
-        <TextView
+        <Button
+            android:id="@+id/btn_pay"
             android:layout_width="match_parent"
-            android:gravity="center"
-            android:text="استمرار"
-            android:drawableEnd="@drawable/ic_backintextview"
-            android:fontFamily="@font/cairo"
-            android:paddingEnd="20sp"
-            android:textColor="@color/white"
+            android:layout_height="80dp"
+            android:background="@drawable/rectangle_btn_background"
             android:textSize="20sp"
-            android:background="@drawable/ather_button_style"
-            android:layout_height="50dp" />
+            android:text="@string/pay"
+            android:textColor="@color/white"
+            android:fontFamily="@font/cairo"
+            android:elevation="8dp"
+            />
 
 
     </LinearLayout>
