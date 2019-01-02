@@ -38,6 +38,9 @@ public class Pay extends AppCompatActivity {
             }
         });
 
+        //disable Touch or Click on tab layout .
+        disable(tabLayout);
+
 
         //default  fragments .
         getSupportFragmentManager()
@@ -45,6 +48,7 @@ public class Pay extends AppCompatActivity {
                 .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
                 .replace(R.id.Frame_layout, new Charge())
                 .commit();
+
 
 
 
@@ -56,6 +60,18 @@ public class Pay extends AppCompatActivity {
     static public void moveTo(int index){
         tabLayout.getTabAt(index).select();
 
+    }
+
+    private static void disable(ViewGroup layout) {
+        layout.setEnabled(false);
+        for (int i = 0; i < layout.getChildCount(); i++) {
+            View child = layout.getChildAt(i);
+            if (child instanceof ViewGroup) {
+                disable((ViewGroup) child);
+            } else {
+                child.setEnabled(false);
+            }
+        }
     }
 
 }
