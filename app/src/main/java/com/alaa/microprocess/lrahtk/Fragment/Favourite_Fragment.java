@@ -40,7 +40,6 @@ public class Favourite_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        View view  = inflater.inflate(R.layout.favourite_layout,container,false);
-        HomePage.texttoolbar.setText("المفضلة");
         rec_favourite = view.findViewById(R.id.rec_favourite);
         helper    = new Helper(getActivity());
         dpread    = helper.getReadableDatabase();

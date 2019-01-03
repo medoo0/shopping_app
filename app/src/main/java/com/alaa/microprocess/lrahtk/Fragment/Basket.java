@@ -30,22 +30,21 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
     LinearLayout sendOrder;
     Animation downtoup , uptodown;
     boolean last = false ;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
          View v = inflater.inflate(R.layout.fragment_basket, container, false);
-         HomePage.texttoolbar.setText(R.string.buying+"");
-
-
-        HomePageContract.viewMain viewMain = (HomePageContract.viewMain) getActivity();
-
-        if (viewMain!=null){
+         HomePage.texttoolbar.setText(getString(R.string.buying));
+         HomePageContract.viewMain viewMain = (HomePageContract.viewMain) getActivity();
+         if (viewMain!=null){
 
 
             viewMain.showToobar();
 
-        }
+         }
 
 
          recyclerView = v.findViewById(R.id.basket_rec);

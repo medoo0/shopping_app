@@ -316,8 +316,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void hideToolbar() {
 
+        if (toolbar!=null){
 
+
+            setSupportActionBar(toolbar);
             getSupportActionBar().hide();
+
+        }
+
+
 
 
 
@@ -326,7 +333,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void showToobar() {
 
+        if (toolbar!=null){
 
+            setSupportActionBar(toolbar);
+            getSupportActionBar().show();
+
+        }
     }
 
 

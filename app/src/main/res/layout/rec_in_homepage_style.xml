@@ -5,7 +5,7 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/rec_items_shape"
+
     android:layout_margin="5dp"
     app:cardCornerRadius="10dp"
     android:elevation="5dp"
@@ -28,8 +28,8 @@
                 android:layout_height="160dp"
                 android:src="@drawable/millkingone"
                 android:layout_marginBottom="20sp"
+                android:background="@drawable/rec_items_shape"
                 android:layout_margin="5dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:scaleType="fitXY"
                 android:transitionName="transition"
