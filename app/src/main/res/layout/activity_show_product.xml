@@ -31,9 +31,14 @@
                 android:layout_margin="5dp"
                 android:src="@drawable/ic_arrow_back_black_24dp"
                 />
-            <View
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/ProductName"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:textColor="@android:color/black"
+                android:text="شيكولاته"
+                android:fontFamily="@font/cairo"
+                android:gravity="center"
                 android:layout_weight="2"
                 />
             <ImageView
@@ -115,7 +120,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/cairo"
-                    android:text="كوكي"
+                    android:text="النوع"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textDirection="ltr"
@@ -421,6 +426,7 @@
         android:id="@+id/type_spinner2"
         android:layout_width="match_parent"
         android:layout_gravity="center"
+
         android:textColor="@android:color/white"
         android:background="@color/dark_blue"
         android:layout_height="80dp"

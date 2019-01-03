@@ -90,6 +90,8 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
                 Intent intent = new Intent(context, ShowProduct.class);
                 intent.putExtra("image",images.get(position));
+                intent.putExtra("name",words.get(position));
+                intent.putExtra("id",productIdArray.get(position));
                 ActivityOptionsCompat option = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context
                         , holder.thumbnail, ViewCompat.getTransitionName(holder.thumbnail));
                 context.startActivity(intent , option.toBundle());
