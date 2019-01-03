@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/Card"
-    android:layout_width="180dp"
-    android:layout_height="wrap_content"
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rec_items_shape"
-    android:padding="5dp"
-    android:layout_margin="7dp"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
     android:elevation="5dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:id="@+id/Card"
+    card_view:cardUseCompatPadding="true"
+    android:layout_height="wrap_content">
 
 
 
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
 
             <ImageView
                 android:id="@+id/thumbnail"
-                android:layout_width="match_parent"
+                android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:src="@drawable/millkingone"
                 android:layout_marginBottom="20sp"
@@ -29,8 +34,6 @@
                 android:scaleType="fitXY"
                 android:transitionName="transition"
                 />
-
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -75,7 +78,7 @@
                     android:src="@drawable/heart"
                     android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
-                     />
+                    />
 
 
 
@@ -84,10 +87,15 @@
             </RelativeLayout>
 
 
-        </RelativeLayout>
+
+        </LinearLayout>
 
 
 
 
 
-</RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+

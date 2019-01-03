@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.R;
+import com.alaa.microprocess.lrahtk.View.HomePage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,11 +22,11 @@ public class Search extends Fragment {
     SearchView searchView;
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(((AppCompatActivity)getActivity()).getSupportActionBar().isShowing()){
-
-            ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-
-        }
+//        if(((AppCompatActivity)getActivity()).getSupportActionBar().isShowing()){
+//
+//            ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+//
+//        }
 
 
     }
@@ -34,6 +36,20 @@ public class Search extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_search, container, false);
+
+        // make sure if toobar is shown or not
+
+        HomePageContract.viewMain viewMain = (HomePageContract.viewMain) getActivity();
+
+        if (viewMain!=null){
+
+
+            viewMain.hideToolbar();
+
+        }
+
+
+        HomePage.texttoolbar.setText("الرئيسية");
         searchView = view.findViewById(R.id.search);
         searchView.setIconified(false); //expand search view .
 

@@ -17,7 +17,9 @@ import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Adapters.RecyclerItemTouchHelper;
 import com.alaa.microprocess.lrahtk.Adapters.rec_Basket_Adapter;
+import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.R;
+import com.alaa.microprocess.lrahtk.View.HomePage;
 import com.alaa.microprocess.lrahtk.View.Pay;
 
 import java.util.ArrayList;
@@ -33,6 +35,18 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          View v = inflater.inflate(R.layout.fragment_basket, container, false);
+         HomePage.texttoolbar.setText(R.string.buying+"");
+
+
+        HomePageContract.viewMain viewMain = (HomePageContract.viewMain) getActivity();
+
+        if (viewMain!=null){
+
+
+            viewMain.showToobar();
+
+        }
+
 
          recyclerView = v.findViewById(R.id.basket_rec);
          sendOrder    = v.findViewById(R.id.sendOrder);

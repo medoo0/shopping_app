@@ -6,6 +6,10 @@ public interface HomePageContract {
 
         void whenClickonIteminRecNav();
 
+
+        void hideToolbar();
+        void showToobar();
+
     }
 
 

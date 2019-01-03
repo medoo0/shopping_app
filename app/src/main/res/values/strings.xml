@@ -38,6 +38,7 @@ places at once, so you only have one bag.
     <string name="appointment">موعد الوصول</string>
     <string name="end">انتهي</string>
     <string name="trackYouOrder">تتبع طلبك هنا</string>
+    <string name="buying">المشتريات</string>
 
 
 </resources>

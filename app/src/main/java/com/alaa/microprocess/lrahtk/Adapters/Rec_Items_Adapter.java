@@ -108,7 +108,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
     public static class Holder extends RecyclerView.ViewHolder{
 
-        RelativeLayout relative;
+        CardView relative;
         ImageView thumbnail;
         TextView text;
         ImageView image_add_to_Favout;

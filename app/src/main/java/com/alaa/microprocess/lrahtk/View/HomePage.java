@@ -313,7 +313,21 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
     }
 
+    @Override
+    public void hideToolbar() {
 
+
+            getSupportActionBar().hide();
+
+
+
+    }
+
+    @Override
+    public void showToobar() {
+
+
+    }
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
