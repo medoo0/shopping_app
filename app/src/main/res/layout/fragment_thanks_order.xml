@@ -6,7 +6,7 @@
     android:background="@color/white"
     tools:context="com.alaa.microprocess.lrahtk.Fragment.ThanksOrder">
 <RelativeLayout
-
+    android:paddingBottom="20dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -119,6 +119,7 @@
         android:layout_alignParentBottom="true"
         android:elevation="8dp"
         android:layout_marginTop="20dp"
+
         />
 
 </RelativeLayout>

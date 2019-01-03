@@ -77,10 +77,12 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
                 super.onScrollStateChanged(recyclerView, newState);
 
                 if ( mLayoutManager.findLastCompletelyVisibleItemPosition() == recyclerView.getAdapter().getItemCount()-1) {
-                    last = true ;
-                    sendOrder.setVisibility(View.VISIBLE);
-                    sendOrder.startAnimation(downtoup);
 
+                    if(!last) {
+                        last = true;
+                        sendOrder.setVisibility(View.VISIBLE);
+                        sendOrder.startAnimation(downtoup);
+                    }
 
                 }
 
