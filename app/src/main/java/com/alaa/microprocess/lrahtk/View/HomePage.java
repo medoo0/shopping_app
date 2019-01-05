@@ -28,6 +28,8 @@ import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
+import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
+import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.Fragment.Basket;
 import com.alaa.microprocess.lrahtk.Fragment.Favourite_Fragment;
@@ -35,11 +37,21 @@ import com.alaa.microprocess.lrahtk.Fragment.MainPage_Fragment;
 import com.alaa.microprocess.lrahtk.Fragment.Search;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.SQLite.Helper;
+import com.alaa.microprocess.lrahtk.pojo.Categories;
+import com.alaa.microprocess.lrahtk.pojo.LoginForm;
+import com.alaa.microprocess.lrahtk.pojo.parent_Categories;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener,
@@ -167,10 +179,28 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         Categories_icon.add(R.drawable.ic_chef_hat);
 
 
-        //adapter
-        postAdapter = new Rec_Nav_Adapter(Categories,Categories_icon,this,this);
-        Rec_Nav.setLayoutManager(new LinearLayoutManager(this));
-        Rec_Nav.setAdapter(postAdapter);
+        ApiMethod client = ApiRetrofit.getRetrofit().create(ApiMethod.class);
+        Call<List<com.alaa.microprocess.lrahtk.pojo.Categories>> call = client.getCategories();
+        call.enqueue(new Callback<List<com.alaa.microprocess.lrahtk.pojo.Categories>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Categories>> call,@NonNull Response<List<Categories>> response) {
+
+
+                //adapter
+                postAdapter = new Rec_Nav_Adapter(response.body(),HomePage.this,HomePage.this);
+                Rec_Nav.setLayoutManager(new LinearLayoutManager(HomePage.this));
+                Rec_Nav.setAdapter(postAdapter);
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Categories>> call, @NonNull Throwable t) {
+
+            }
+        });
+
+
+
 
 
 //        showItemsinREC();

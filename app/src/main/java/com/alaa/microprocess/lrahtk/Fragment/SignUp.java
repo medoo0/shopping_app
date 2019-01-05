@@ -198,7 +198,7 @@ public void Register(ApiMethod client ,String createdAt, String updatedAt, Strin
 
 
             } else {
-
+                dialog.Close_Dialog();
                 Email.setError("هذا الأيميل متواجد بالفعل.");
             }
 

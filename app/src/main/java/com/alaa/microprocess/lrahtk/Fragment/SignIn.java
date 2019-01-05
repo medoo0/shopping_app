@@ -166,7 +166,7 @@ public class SignIn extends Fragment implements View.OnClickListener{
                            // email or password error check your private data //
 
                            email.setError(getString(R.string.ErroEmailAndPass));
-
+                           dialog.Close_Dialog();
                            // hide progressbar and still in this Screen //
 
                        }

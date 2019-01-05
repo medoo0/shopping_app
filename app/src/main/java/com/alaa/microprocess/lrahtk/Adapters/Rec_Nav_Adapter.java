@@ -14,8 +14,11 @@ import android.widget.Toast;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.View.HomePage;
+import com.alaa.microprocess.lrahtk.pojo.Categories;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by microprocess on 2018-12-29.
@@ -26,28 +29,30 @@ public class Rec_Nav_Adapter extends RecyclerView.Adapter<Rec_Nav_Adapter.ViewHo
 
 
 
-    private ArrayList<String> Categories;
-    private ArrayList<Integer> categories_icon;
-    private Context context;
+    List<Categories> categories;
     HomePageContract.viewMain main;
-    public Rec_Nav_Adapter(ArrayList<String> posts, ArrayList<Integer> categories_icon,Context context,HomePageContract.viewMain main) {
-        this.categories_icon = categories_icon;
-        this.Categories = posts;
-        this.context    = context;
+    Context context;
+    public Rec_Nav_Adapter( List<Categories> categories,Context context ,HomePageContract.viewMain main) {
+        this.categories = categories;
         this.main  = main;
+        this.context = context;
     }
 
     @Override
-    public Rec_Nav_Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.nav_layout,parent,false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(Rec_Nav_Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.title.setText(Categories.get(position));
-        holder.Icon.setBackgroundResource(categories_icon.get(position));
+
+
+        holder.title.setText(categories.get(position).getName());
+
+        Glide.with(context).load(categories.get(position).getThumbnail()).into(holder.Icon);
+
         holder.clickOn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +67,7 @@ public class Rec_Nav_Adapter extends RecyclerView.Adapter<Rec_Nav_Adapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return Categories.size();
+        return categories.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder   {
