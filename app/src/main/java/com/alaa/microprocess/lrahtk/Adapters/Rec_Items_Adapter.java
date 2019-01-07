@@ -102,11 +102,13 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
                 intent.putExtra("brand",products.get(position).getBrand().getName());
                 intent.putExtra("category",products.get(position).getCategory().getName());
                 intent.putExtra("ImageURl",ApiRetrofit.API_IMAGE_BASE_URL + products.get(position).getThumbnail());
-
+                intent.putExtra("proID",products.get(position).getId());
                 try {
                     Bitmap bitmap = ((BitmapDrawable)holder.thumbnail.getDrawable()).getBitmap();
-                    intent.putExtra("Image",bitmap);
-                }catch (Exception e){}
+                    intent.putExtra("Image",ConvertTobyteArray(bitmap));
+                }catch (Exception e){
+
+                }
 
 
                 ActivityOptionsCompat option = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context
@@ -141,9 +143,15 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
 
         }
+
     }
 
-
+    public byte[] ConvertTobyteArray(Bitmap bitmap){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
+    }
 
 
 

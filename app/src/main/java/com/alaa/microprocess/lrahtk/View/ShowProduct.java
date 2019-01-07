@@ -1,8 +1,7 @@
 package com.alaa.microprocess.lrahtk.View;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.os.Parcelable;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,17 +14,13 @@ import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Adapters.SpinnerAdapter;
 import com.alaa.microprocess.lrahtk.R;
-import com.alaa.microprocess.lrahtk.SQLite.Helper;
-import com.alaa.microprocess.lrahtk.SQLite.Operation_On_SQLite;
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ShowProduct extends AppCompatActivity {
     ImageView image , back,fav;
     TextView name,price,ProductName ,Category , Description , txRate , txbrand , size;
-    String ProName ,ProDesc,ProBrand,ProCategory;
+    String proID , ProName ,ProDesc,ProBrand,ProCategory;
     int ProRate, ProLength ,ProPrice,proQuantity;
     RatingBar ratingBar;
 
@@ -84,10 +79,12 @@ public class ShowProduct extends AppCompatActivity {
            if( bundle.getParcelable("Image") == null){
               Glide.with(this).load(bundle.getString("ImageURl")).into(image) ;
            }else {
-               image.setImageBitmap((Bitmap) bundle.getParcelable("Image"));
+               byte[] byteArray = getIntent().getByteArrayExtra("Image");
+               Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+               image.setImageBitmap(bmp);
            }
 
-
+           proID = bundle.getString("proID");
 
         }
 

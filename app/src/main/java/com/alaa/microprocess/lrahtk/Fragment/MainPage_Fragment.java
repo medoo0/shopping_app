@@ -2,8 +2,10 @@ package com.alaa.microprocess.lrahtk.Fragment;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,14 +14,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
+import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
+import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter2;
+import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
+import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.SQLite.Helper;
 import com.alaa.microprocess.lrahtk.View.HomePage;
+import com.alaa.microprocess.lrahtk.pojo.Categories;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainPage_Fragment extends Fragment {
@@ -27,6 +39,9 @@ public class MainPage_Fragment extends Fragment {
     ArrayList<String> items;
     ArrayList<Integer> images;
     ArrayList<String> productID;
+
+    @BindView(R.id.yellowCircle_rec)
+    RecyclerView yellowCircle_rec ;
 
     Helper helper;
     @BindView(R.id.recitems)
@@ -39,6 +54,8 @@ public class MainPage_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.main_page_frag_layout,container,false);
+        ButterKnife.bind(this,v);
+
         HomePage.texttoolbar.setText("الرئيسية");
 
         HomePageContract.viewMain viewMain = (HomePageContract.viewMain) getActivity();
@@ -59,6 +76,7 @@ public class MainPage_Fragment extends Fragment {
         dpread    = helper.getReadableDatabase();
         recitems = v.findViewById(R.id.recitems);
         recitems.setNestedScrollingEnabled(false);
+        ShowIteminYellowRec();
         showItemsinREC();
 
 
@@ -81,7 +99,30 @@ public class MainPage_Fragment extends Fragment {
 
 
 
+public void ShowIteminYellowRec(){
 
+    ApiMethod client = ApiRetrofit.getRetrofit().create(ApiMethod.class);
+    Call<List<Categories>> call = client.getCategories();
+    call.enqueue(new Callback<List<Categories>>() {
+        @Override
+        public void onResponse(@NonNull Call<List<Categories>> call, @NonNull Response<List<Categories>> response) {
+
+
+            //adapter (Yellow Circles)
+            Rec_Nav_Adapter2 rec_items_adapter = new Rec_Nav_Adapter2(response.body(),getActivity(), (HomePageContract.viewMain) getActivity());
+            rec_items_adapter.notifyDataSetChanged();
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),5);
+            yellowCircle_rec.setLayoutManager(gridLayoutManager);
+            yellowCircle_rec.setAdapter(rec_items_adapter);
+
+        }
+
+        @Override
+        public void onFailure(@NonNull Call<List<Categories>> call, @NonNull Throwable t) {
+
+        }
+    });
+}
 
     public void showItemsinREC(){
 

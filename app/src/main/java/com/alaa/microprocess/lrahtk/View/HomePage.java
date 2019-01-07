@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
+import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter2;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
@@ -46,6 +49,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
         @BindView(R.id.Rec_Nav)
         RecyclerView Rec_Nav ;
+
 
         @BindView(R.id.relativeHome)
          RelativeLayout relativeLayout;
@@ -129,10 +133,13 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
             public void onResponse(@NonNull Call<List<Categories>> call,@NonNull Response<List<Categories>> response) {
 
 
-                //adapter
+                //adapter (Navigation Drawer)
                 postAdapter = new Rec_Nav_Adapter(response.body(),HomePage.this,HomePage.this);
                 Rec_Nav.setLayoutManager(new LinearLayoutManager(HomePage.this));
                 Rec_Nav.setAdapter(postAdapter);
+
+
+
 
             }
 
