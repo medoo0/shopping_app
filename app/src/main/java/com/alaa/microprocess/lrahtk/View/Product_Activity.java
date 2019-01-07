@@ -1,55 +1,62 @@
 package com.alaa.microprocess.lrahtk.View;
 
-import android.content.Context;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
+import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
+import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
+import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
+import com.alaa.microprocess.lrahtk.Dialog.AnimatedDialog;
 import com.alaa.microprocess.lrahtk.R;
-import com.alaa.microprocess.lrahtk.SQLite.Helper;
-import com.alaa.microprocess.lrahtk.SQLite.Operation_On_SQLite;
+import com.alaa.microprocess.lrahtk.pojo.Categories;
+import com.alaa.microprocess.lrahtk.pojo.Products;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class Product_Activity extends AppCompatActivity implements View.OnClickListener{
 
 
     RecyclerView rectwo;
-    ArrayList <String> items,productID;
-    int COLUM_NUM = 2;
     ImageView backhome;
-    SQLiteDatabase dpwrite , dpread;
-    ArrayList<Integer> images;
-    Helper helper;
-    Operation_On_SQLite operation_on_sqLite;
     ImageView searchindadding;
-
+    TextView CatName;
+    AnimatedDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_);
         rectwo  = findViewById(R.id.rectwo);
-        helper = new Helper(this);
-        dpwrite   = helper.getWritableDatabase();
-        dpread    = helper.getReadableDatabase();
-        operation_on_sqLite = new Operation_On_SQLite() ;
         backhome = findViewById(R.id.backhome);
+        CatName = findViewById(R.id.categoryName);
         backhome.setOnClickListener(this);
+        dialog = new AnimatedDialog(this);
         searchindadding = findViewById(R.id.searchindadding);
-        items   = new ArrayList<>();
-        images  = new ArrayList<>();
-        productID= new ArrayList<>();
-        showItemsinREC();
+
+
+
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            CatName.setText(bundle.getString("name"));
+            showItemsinREC(bundle.getString("id"));
+            dialog.ShowDialog();
+        }
+
+
 
 
     }
@@ -58,35 +65,45 @@ public class Product_Activity extends AppCompatActivity implements View.OnClickL
 
 
 
-    public void showItemsinREC(){
+    public void showItemsinREC(final String ID){
 
-        items.add("لبن");
-        items.add("شيكولاته");
-        items.add("خبز");
-        items.add("عصائر");
-        items.add("زبادي");
-        items.add("لبن");
-        items.add("لبن");
-        images.add(R.drawable.millkingone);
-        images.add(R.drawable.checlotes);
-        images.add(R.drawable.breads);
-        images.add(R.drawable.drinks);
-        images.add(R.drawable.johina);
-        images.add(R.drawable.millkingone);
-        images.add(R.drawable.millkingone);
-        productID.add("1");
-        productID.add("2");
-        productID.add("3");
-        productID.add("4");
-        productID.add("5");
-        productID.add("6");
-        productID.add("7");
 
-        Rec_Items_Adapter rec_items_adapter = new Rec_Items_Adapter(items,images,productID,this,dpwrite,dpread);
+        ApiMethod client = ApiRetrofit.getRetrofit().create(ApiMethod.class);
+        Call<List<Products>> call = client.getProducts();
+        call.enqueue(new Callback<List<Products>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Products>> call, @NonNull Response<List<Products>> response) {
+
+                List<Products> filterProduct = new ArrayList<>();
+                for (int i = 0 ; i<response.body().size(); i++){
+
+                    if(response.body().get(i).getCategory().getId().equals(ID)){
+                        filterProduct.add(response.body().get(i));
+                    }
+                    if(i == response.body().size() - 1){
+                        dialog.Close_Dialog();
+                    }
+                }
+
+
+        //adapter
+        Rec_Items_Adapter rec_items_adapter = new Rec_Items_Adapter(filterProduct,Product_Activity.this);
         rec_items_adapter.notifyDataSetChanged();
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,COLUM_NUM);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(Product_Activity.this,2);
         rectwo.setLayoutManager(gridLayoutManager);
         rectwo.setAdapter(rec_items_adapter);
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Products>> call, @NonNull Throwable t) {
+                dialog.Close_Dialog();
+            }
+        });
+
+
+
+
 
     }
 

@@ -2,6 +2,7 @@ package com.alaa.microprocess.lrahtk.ApiClient;
 
 import com.alaa.microprocess.lrahtk.pojo.Categories;
 import com.alaa.microprocess.lrahtk.pojo.LoginForm;
+import com.alaa.microprocess.lrahtk.pojo.Products;
 import com.alaa.microprocess.lrahtk.pojo.RegisterResponse;
 
 import java.util.List;
@@ -41,5 +42,9 @@ public interface ApiMethod {
 
     @GET("categories")
     Call<List<Categories>> getCategories();
+
+    @GET("products")
+    Call<List<Products>> getProducts();
+
 
 }

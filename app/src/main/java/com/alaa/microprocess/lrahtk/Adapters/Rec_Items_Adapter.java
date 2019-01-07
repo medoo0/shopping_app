@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
+import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.CardView;
@@ -17,53 +20,40 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
+import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.SQLite.Helper;
 import com.alaa.microprocess.lrahtk.SQLite.Operation_On_SQLite;
 import com.alaa.microprocess.lrahtk.View.ShowProduct;
+import com.alaa.microprocess.lrahtk.pojo.Products;
 import com.alaa.microprocess.lrahtk.pojo.We_Will_Remove_This_Model_afterThat;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Holder> {
 
 
+    List<Products> products;
+    Context context;
 
-    private List<String> words;
-    private List<Integer> images;
-    private List<String> productIdArray;
-    private Context context;
-    List<We_Will_Remove_This_Model_afterThat>antherList;
-    Operation_On_SQLite operation_on_sqLite;
-    SQLiteDatabase databasewrite,databaseread;
-
-    String what = "";
-
-    public Rec_Items_Adapter(List<String> words, List<Integer> images, List<String> productIdArray, Context context, SQLiteDatabase databasewrite,SQLiteDatabase databaseread) {
-        this.words = words;
-        this.images = images;
-        this.context = context;
-        this.productIdArray = productIdArray;
-        operation_on_sqLite = new Operation_On_SQLite();
-        this.databaseread = databaseread;
-        this.databasewrite = databasewrite;
+    public Rec_Items_Adapter(List<Products> products , Context context ) {
+    this.context = context;
+    this.products = products;
     }
 
 
-    public Rec_Items_Adapter(List<We_Will_Remove_This_Model_afterThat>list,Context context,String what){
-
-        this.antherList = list;
-        this.context    = context;
-        this.what       = what;
-
-
-    }
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(context).inflate(R.layout.rec_in_homepage_style,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.rec_in_homepage_style,parent,false);
 
 
         return new Holder(v);
@@ -79,8 +69,22 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
         holder.relative.animate().scaleX(1f).scaleY(1f).setDuration(500);
 
 
-        holder.thumbnail.setImageResource(images.get(position));
-        holder.text.setText(words.get(position));
+        Glide.with(context)
+                .load(ApiRetrofit.API_IMAGE_BASE_URL + products.get(position).getThumbnail())
+                .asBitmap()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation glideAnimation) {
+                        holder.thumbnail.setImageBitmap(resource); // Possibly runOnUiThread()
+                    }
+                });
+
+
+        //        Glide.with(context).load(ApiRetrofit.API_IMAGE_BASE_URL + products.get(position).getThumbnail())
+//                .diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.thumbnail);
+
+        holder.text.setText(products.get(position).getName());
 
 
         //onclick
@@ -89,23 +93,36 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
             public void onClick(View view) {
 
                 Intent intent = new Intent(context, ShowProduct.class);
-                intent.putExtra("image",images.get(position));
-                intent.putExtra("name",words.get(position));
-                intent.putExtra("id",productIdArray.get(position));
+                intent.putExtra("name",products.get(position).getName());
+                intent.putExtra("description",products.get(position).getDescription());
+                intent.putExtra("price",products.get(position).getPrice());
+                intent.putExtra("quantity",products.get(position).getQuantity());
+                intent.putExtra("rating",products.get(position).getRating().getRate());
+                intent.putExtra("length",products.get(position).getRating().getLength());
+                intent.putExtra("brand",products.get(position).getBrand().getName());
+                intent.putExtra("category",products.get(position).getCategory().getName());
+                intent.putExtra("ImageURl",ApiRetrofit.API_IMAGE_BASE_URL + products.get(position).getThumbnail());
+
+                try {
+                    Bitmap bitmap = ((BitmapDrawable)holder.thumbnail.getDrawable()).getBitmap();
+                    intent.putExtra("Image",bitmap);
+                }catch (Exception e){}
+
+
                 ActivityOptionsCompat option = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context
                         , holder.thumbnail, ViewCompat.getTransitionName(holder.thumbnail));
                 context.startActivity(intent , option.toBundle());
 
             }
         });
-        CheckIfItem_Favourite_Or_Not(holder,position,context);
+
     }
 
     @Override
     public int getItemCount() {
 
 
-        return images.size();
+        return products.size();
     }
 
     public static class Holder extends RecyclerView.ViewHolder{
@@ -128,103 +145,10 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
 
 
-    public void CheckIfItem_Favourite_Or_Not(final Holder holder, final int position, final Context context) {
-
-
-        if (operation_on_sqLite.getData(databaseread, productIdArray.get(position))) {
-
-            holder.image_add_to_Favout.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_color_heart));
-            holder.image_add_to_Favout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (operation_on_sqLite.deleterow(databaseread, productIdArray.get(position))) {
-
-
-                        holder.image_add_to_Favout.setImageDrawable(context.getResources().getDrawable(R.drawable.heart));
-
-
-                    }
-
-
-                }
-            });
 
 
 
 
-
-        }else {
-
-            holder.image_add_to_Favout.setImageDrawable(context.getResources().getDrawable(R.drawable.heart));
-
-
-            holder.image_add_to_Favout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    if (operation_on_sqLite.addProduct(databasewrite, productIdArray.get(position), words.get(position), "125", getBitmapAsByteArray(images.get(position), context))) {
-                        holder.image_add_to_Favout.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_color_heart));
-
-                    }
-
-
-                }
-            });
-
-
-
-
-        }
-
-
-
-
-
-//
-//
-//            holder.image_add_to_Favout.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    String s = productIdArray.get(position);
-//                    if (operation_on_sqLite.getData(databaseread, productIdArray.get(position))) {
-//
-//
-//                        if (operation_on_sqLite.deleterow(databaseread, productIdArray.get(position))) {
-//
-//                            holder.image_add_to_Favout.setBackgroundColor(context.getResources().getColor(R.color.white));
-//
-//
-//                        }
-//
-//
-//                    } else {
-//
-//                        if (operation_on_sqLite.addProduct(databasewrite, productIdArray.get(position), words.get(position), "125", getBitmapAsByteArray(images.get(position), context))) {
-//                            holder.image_add_to_Favout.setBackgroundColor(context.getResources().getColor(R.color.blue));
-//
-//                        }
-//
-//
-//                    }
-//
-//
-//                }
-//            });
-
-
-
-    }
-
-
-    public static byte[] getBitmapAsByteArray(int image ,Context context) {
-
-        Bitmap Icon = BitmapFactory.decodeResource(context.getResources(),image);
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        Icon.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
-        return outputStream.toByteArray();
-    }
 
 
 }

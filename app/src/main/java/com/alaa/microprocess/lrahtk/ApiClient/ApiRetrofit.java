@@ -15,7 +15,8 @@ public class ApiRetrofit {
 
 
     public static Retrofit retrofit1 = null;
-    static String API_BASE_URL = "http://142.93.207.35:8080/api/";
+    public static String API_BASE_URL = "http://142.93.207.35:8080/api/";
+    public static String API_IMAGE_BASE_URL = "http://142.93.207.35:8080/";
 
     static public Retrofit getRetrofit(){
         OkHttpClient client = new OkHttpClient();

@@ -11,11 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.View.HomePage;
 import com.alaa.microprocess.lrahtk.pojo.Categories;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,19 +47,20 @@ public class Rec_Nav_Adapter extends RecyclerView.Adapter<Rec_Nav_Adapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
 
 
         holder.title.setText(categories.get(position).getName());
 
-        Glide.with(context).load(categories.get(position).getThumbnail()).into(holder.Icon);
+        Glide.with(context).load(ApiRetrofit.API_IMAGE_BASE_URL + categories.get(position).getThumbnail())
+                .diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.Icon);
 
         holder.clickOn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                main.whenClickonIteminRecNav();
+                main.whenClickonIteminRecNav(categories.get(position).getId(),categories.get(position).getName());
 
 
 

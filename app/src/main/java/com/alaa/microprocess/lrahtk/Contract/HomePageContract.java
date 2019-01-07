@@ -4,7 +4,7 @@ public interface HomePageContract {
 
     interface viewMain{
 
-        void whenClickonIteminRecNav();
+        void whenClickonIteminRecNav(String id, String name);
 
 
         void hideToolbar();

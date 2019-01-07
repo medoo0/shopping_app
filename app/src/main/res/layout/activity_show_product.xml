@@ -215,7 +215,7 @@
 
 
                         <TextView
-                            android:id="@+id/type2"
+                            android:id="@+id/brand"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/price"
@@ -247,82 +247,7 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
 
-
-                        <TextView
-                            android:id="@+id/Expired_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/price"
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/cairo"
-                            android:text=" 1 / 5 / 2010 "
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textDirection="ltr"
-                            android:textSize="15sp"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/txt2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/price"
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/cairo"
-                            android:text=" تاريخ الانتاج : "
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textSize="15sp"
-
-                            />
-
-
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-
-                        <TextView
-                            android:id="@+id/product_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/price"
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/cairo"
-                            android:text=" 1 / 5 / 2010 "
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textDirection="ltr"
-                            android:textSize="15sp"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/txt3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/price"
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/cairo"
-                            android:text=" تاريخ الانتهاء : "
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textSize="15sp"
-
-                            />
-
-
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -351,7 +276,7 @@
                             android:layout_below="@+id/price"
                             android:layout_margin="5dp"
                             android:fontFamily="@font/cairo"
-                            android:text=" الحجم : "
+                            android:text=" الكمية : "
                             android:textAlignment="center"
                             android:textColor="@android:color/black"
                             android:textSize="15sp"
@@ -361,44 +286,7 @@
 
 
                     </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
 
-
-                        <TextView
-                            android:id="@+id/city"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/price"
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/cairo"
-                            android:text=" مصر "
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textDirection="ltr"
-                            android:textSize="15sp"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/txt5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/price"
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/cairo"
-                            android:text=" بلد المنشأ : "
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textSize="15sp"
-
-                            />
-
-
-
-                    </LinearLayout>
                 </LinearLayout>
 
 

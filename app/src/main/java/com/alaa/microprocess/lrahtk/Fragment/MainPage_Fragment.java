@@ -85,35 +85,35 @@ public class MainPage_Fragment extends Fragment {
 
     public void showItemsinREC(){
 
-        items.add("لبن");
-        items.add("شيكولاته");
-        items.add("خبز");
-        items.add("عصائر");
-        items.add("زبادي");
-        items.add("لبن");
-        items.add("لبن");
-        images.add(R.drawable.millkingone);
-        images.add(R.drawable.checlotes);
-        images.add(R.drawable.breads);
-        images.add(R.drawable.drinks);
-        images.add(R.drawable.johina);
-        images.add(R.drawable.millkingone);
-        images.add(R.drawable.millkingone);
-        productID.add("1");
-        productID.add("2");
-        productID.add("3");
-        productID.add("4");
-        productID.add("5");
-        productID.add("6");
-        productID.add("7");
-
-
-        Rec_Items_Adapter rec_items_adapter = new Rec_Items_Adapter(items,images,productID,getActivity(),dpwrite,dpread);
-        rec_items_adapter.notifyDataSetChanged();
-        LinearLayoutManager HorizontalLayout  =
-                new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recitems.setLayoutManager(HorizontalLayout);
-        recitems.setAdapter(rec_items_adapter);
+//        items.add("لبن");
+//        items.add("شيكولاته");
+//        items.add("خبز");
+//        items.add("عصائر");
+//        items.add("زبادي");
+//        items.add("لبن");
+//        items.add("لبن");
+//        images.add(R.drawable.millkingone);
+//        images.add(R.drawable.checlotes);
+//        images.add(R.drawable.breads);
+//        images.add(R.drawable.drinks);
+//        images.add(R.drawable.johina);
+//        images.add(R.drawable.millkingone);
+//        images.add(R.drawable.millkingone);
+//        productID.add("1");
+//        productID.add("2");
+//        productID.add("3");
+//        productID.add("4");
+//        productID.add("5");
+//        productID.add("6");
+//        productID.add("7");
+//
+//
+//        Rec_Items_Adapter rec_items_adapter = new Rec_Items_Adapter(items,images,productID,getActivity(),dpwrite,dpread);
+//        rec_items_adapter.notifyDataSetChanged();
+//        LinearLayoutManager HorizontalLayout  =
+//                new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        recitems.setLayoutManager(HorizontalLayout);
+//        recitems.setAdapter(rec_items_adapter);
 
     }
 }

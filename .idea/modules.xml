@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://C:\Users\microprocess\AndroidStudioProjects\shopping_app\Lrahtk.iml" filepath="C:\Users\microprocess\AndroidStudioProjects\shopping_app\Lrahtk.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\microprocess\AndroidStudioProjects\shopping_app\app\app.iml" filepath="C:\Users\microprocess\AndroidStudioProjects\shopping_app\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/shopping_app.iml" filepath="$PROJECT_DIR$/shopping_app.iml" />
     </modules>
   </component>

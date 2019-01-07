@@ -32,7 +32,6 @@
                     android:id="@+id/thumbnail"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-                    android:src="@drawable/millkingone"
                     android:layout_marginBottom="20sp"
                     android:layout_margin="5dp"
                     android:scaleType="fitXY"
