@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +36,8 @@ public class Product_Activity extends AppCompatActivity implements View.OnClickL
     ImageView searchindadding;
     TextView CatName;
     AnimatedDialog dialog;
+    SearchView searchView;
+    Rec_Items_Adapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +48,7 @@ public class Product_Activity extends AppCompatActivity implements View.OnClickL
         backhome.setOnClickListener(this);
         dialog = new AnimatedDialog(this);
         searchindadding = findViewById(R.id.searchindadding);
-
+        searchView = findViewById(R.id.SearchView);
 
 
 
@@ -58,6 +61,37 @@ public class Product_Activity extends AppCompatActivity implements View.OnClickL
 
 
 
+        searchindadding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(searchView.isShown()){
+                    searchView.setVisibility(View.GONE);
+                }
+                else {
+                    searchView.setVisibility(View.VISIBLE);
+                    searchView.setIconified(false);
+                }
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (adapter!=null){
+
+                    adapter.getFilter().filter(query);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (adapter!=null){
+                    adapter.getFilter().filter(newText);
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -87,11 +121,11 @@ public class Product_Activity extends AppCompatActivity implements View.OnClickL
 
 
         //adapter
-        Rec_Items_Adapter rec_items_adapter = new Rec_Items_Adapter(filterProduct,Product_Activity.this);
-        rec_items_adapter.notifyDataSetChanged();
+        adapter = new Rec_Items_Adapter(filterProduct,Product_Activity.this);
+                adapter.notifyDataSetChanged();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(Product_Activity.this,2);
         rectwo.setLayoutManager(gridLayoutManager);
-        rectwo.setAdapter(rec_items_adapter);
+        rectwo.setAdapter(adapter);
 
             }
 

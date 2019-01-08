@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +8,9 @@
 
 
    <LinearLayout
+    android:id="@+id/Linear"
     android:orientation="vertical"
+    android:layout_above="@+id/linear2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -35,4 +37,42 @@
 
  </LinearLayout>
 
-</FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/bacG"
+            android:textSize="20sp"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:fontFamily="@font/cairo"
+            android:elevation="8dp"
+            android:layout_weight="2"
+            android:visibility="gone"
+            />
+
+
+
+    <Button
+        android:id="@+id/btn_filter"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/rectangle_btn_background"
+        android:textSize="20sp"
+        android:text="@string/filter"
+        android:textColor="@color/white"
+        android:fontFamily="@font/cairo"
+        android:elevation="8dp"
+        android:layout_weight="1"
+        />
+
+    </LinearLayout>
+</RelativeLayout>

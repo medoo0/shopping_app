@@ -39,6 +39,8 @@ places at once, so you only have one bag.
     <string name="end">انتهي</string>
     <string name="trackYouOrder">تتبع طلبك هنا</string>
     <string name="buying">المشتريات</string>
+    <string name="filter">تصفية</string>
+    <string name="cancel">الغاء</string>
 
 
 </resources>

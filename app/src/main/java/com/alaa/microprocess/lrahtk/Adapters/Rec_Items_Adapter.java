@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
     List<Products> products;
     Context context;
+    private List<Products> listnew;
 
     public Rec_Items_Adapter(List<Products> products , Context context ) {
     this.context = context;
@@ -85,7 +87,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 //                .diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.thumbnail);
 
         holder.text.setText(products.get(position).getName());
-
+        holder.txprice.setText(products.get(position).getPrice()+" L.E");
 
         //onclick
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +133,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
         CardView relative;
         ImageView thumbnail;
-        TextView text;
+        TextView text , txprice;
         ImageView image_add_to_Favout;
 
         public Holder(View itemView) {
@@ -140,7 +142,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
             thumbnail = itemView.findViewById(R.id.thumbnail);
             text      = itemView.findViewById(R.id.text);
             image_add_to_Favout = itemView.findViewById(R.id.image_add_to_Favout);
-
+            txprice = itemView.findViewById(R.id.price);
 
         }
 
@@ -154,7 +156,53 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
     }
 
 
+    public Filter getFilter() {
 
+
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+
+                FilterResults results = new FilterResults();        // Holds the results of a filtering operation in values
+                ArrayList<Products> FilteredArrList = new ArrayList<>();
+                if (listnew == null) {
+
+                    listnew = new ArrayList<>(products); // saves the original data in mOriginalValues
+
+                }
+
+                if (constraint == null || constraint.length() == 0) {
+
+                    // set the Original result to return
+                    results.count = listnew.size();
+                    results.values = listnew;
+                } else {
+                    constraint = constraint.toString().toLowerCase();
+                    for (int i = 0; i < listnew.size(); i++) {
+                        String data = listnew.get(i).getName();
+                        if (data.toLowerCase().contains(constraint.toString())) {
+                            FilteredArrList.add(listnew.get(i));
+                        }
+                    }
+                    // set the Filtered result to return
+                    results.count = FilteredArrList.size();
+                    results.values = FilteredArrList;
+                }
+                return results;
+            }
+
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+                products = (ArrayList<Products>) results.values;
+
+                notifyDataSetChanged();
+
+            }
+        };
+        return filter;
+    }
 
 
 

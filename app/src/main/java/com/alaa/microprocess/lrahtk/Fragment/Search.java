@@ -9,6 +9,7 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
@@ -20,6 +21,7 @@ import com.alaa.microprocess.lrahtk.View.HomePage;
  */
 public class Search extends Fragment {
     SearchView searchView;
+    Button BtnFilter , BtnCancel;
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        if(((AppCompatActivity)getActivity()).getSupportActionBar().isShowing()){
@@ -37,8 +39,11 @@ public class Search extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_search, container, false);
 
-        // make sure if toobar is shown or not
+        BtnFilter = view.findViewById(R.id.btn_filter);
+        BtnCancel = view.findViewById(R.id.btn_cancel);
 
+
+        // make sure if toobar is shown or not
         HomePageContract.viewMain viewMain = (HomePageContract.viewMain) getActivity();
 
         if (viewMain!=null){
@@ -52,6 +57,21 @@ public class Search extends Fragment {
         HomePage.texttoolbar.setText("الرئيسية");
         searchView = view.findViewById(R.id.search);
         searchView.setIconified(false); //expand search view .
+
+        BtnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BtnCancel.setVisibility(View.VISIBLE);
+
+
+
+
+
+
+            }
+        });
+
+
 
         return view ;
     }
