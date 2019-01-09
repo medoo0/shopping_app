@@ -41,6 +41,10 @@ places at once, so you only have one bag.
     <string name="buying">المشتريات</string>
     <string name="filter">تصفية</string>
     <string name="cancel">الغاء</string>
+    <string name="no">لا</string>
+    <string name="message">هل حقا انت متأكد ؟</string>
+    <string name="yes">نعم</string>
+    <string name="Ok">حسناً</string>
 
 
 </resources>

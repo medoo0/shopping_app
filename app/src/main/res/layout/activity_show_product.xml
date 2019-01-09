@@ -325,6 +325,7 @@
         />
 
     <Button
+        android:id="@+id/BtnAddToBasket"
         android:layout_width="match_parent"
         android:text="إضافة الي السلة "
         android:layout_gravity="center"

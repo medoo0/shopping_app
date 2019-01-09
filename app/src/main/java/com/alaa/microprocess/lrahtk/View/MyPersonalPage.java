@@ -20,7 +20,7 @@ public class MyPersonalPage extends AppCompatActivity implements View.OnClickLis
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    String userName , email , phone;
+    String userID,userName , email , phone;
     ImageView backhome;
 
 
@@ -35,10 +35,11 @@ public class MyPersonalPage extends AppCompatActivity implements View.OnClickLis
         Bundle data = getIntent().getExtras();
 
         if(data!=null){
-
+            userID   = data.getString("id");
             userName = data.getString("userName");
             email    = data.getString("Email");
             phone    = data.getString("phone");
+
         }
         viewPager =  findViewById(R.id.viewpager);
         setupViewPager(viewPager,userName,email,phone);

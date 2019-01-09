@@ -1,14 +1,14 @@
 package com.alaa.microprocess.lrahtk.Adapters;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
-import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.CardView;
@@ -18,17 +18,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.R;
-import com.alaa.microprocess.lrahtk.SQLite.Helper;
-import com.alaa.microprocess.lrahtk.SQLite.Operation_On_SQLite;
+import com.alaa.microprocess.lrahtk.SQLite.FavHelper;
+import com.alaa.microprocess.lrahtk.View.HomePage;
 import com.alaa.microprocess.lrahtk.View.ShowProduct;
 import com.alaa.microprocess.lrahtk.pojo.Products;
-import com.alaa.microprocess.lrahtk.pojo.We_Will_Remove_This_Model_afterThat;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -37,7 +34,6 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Holder> {
 
@@ -45,10 +41,24 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
     List<Products> products;
     Context context;
     private List<Products> listnew;
+    FavHelper helper;
+    SQLiteDatabase db ;
+    SharedPreferences preferences ;
+    String UserID , TableName ;
 
     public Rec_Items_Adapter(List<Products> products , Context context ) {
     this.context = context;
     this.products = products;
+    this.helper   = new FavHelper(context);
+    this.db       = helper.getWritableDatabase();
+    preferences = context.getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
+
+        if (preferences.getString("AreInOrNot","").equals("IN")){
+
+
+            UserID      = preferences.getString("id","");
+            TableName = "T"+UserID;
+        }
     }
 
 
@@ -116,6 +126,43 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
                 ActivityOptionsCompat option = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context
                         , holder.thumbnail, ViewCompat.getTransitionName(holder.thumbnail));
                 context.startActivity(intent , option.toBundle());
+
+            }
+        });
+
+        if(Check_if_product_in_Fav_List(products.get(position).getId())){
+
+            holder.image_add_to_Favout.setImageResource(R.drawable.ic_color_heart);
+        }
+        else {
+            holder.image_add_to_Favout.setImageResource(R.drawable.heart);
+
+        }
+
+        holder.image_add_to_Favout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                helper.CreateFavTable(TableName);
+
+                if(!Check_if_product_in_Fav_List(products.get(position).getId())) {
+                    // insert
+                    ContentValues row = new ContentValues();
+                    row.put(helper.FavID, products.get(position).getId());
+                    db.insert(TableName, null, row);
+                    holder.image_add_to_Favout.setImageResource(R.drawable.ic_color_heart);
+                }
+                else {
+
+                    int deleted = db.delete(TableName,FavHelper.FavID+" = ? ",new String[]{products.get(position).getId()} );
+                    if (deleted > 0 ){
+                       //deleted
+                        holder.image_add_to_Favout.setImageResource(R.drawable.heart);
+
+
+                    }
+
+                }
 
             }
         });
@@ -205,6 +252,21 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
     }
 
 
+        public boolean Check_if_product_in_Fav_List(String ProductID){
+            //create if not exists .
+            helper.CreateFavTable(TableName);
 
+            String [] Cols = {FavHelper.FavID};
+            Cursor Pointer = db.query(TableName,Cols,Cols[0]+" = ?",new String[]{ProductID},null,null,null);
+            if(Pointer.moveToNext()){
+             return true ;
+            }
+            else {
+
+                return false ;
+
+            }
+
+        }
 
 }

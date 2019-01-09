@@ -1,26 +1,22 @@
 package com.alaa.microprocess.lrahtk.Fragment;
 
-import android.database.sqlite.SQLiteDatabase;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
-import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter2;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.R;
-import com.alaa.microprocess.lrahtk.SQLite.Helper;
 import com.alaa.microprocess.lrahtk.View.HomePage;
 import com.alaa.microprocess.lrahtk.pojo.Categories;
 
@@ -43,11 +39,9 @@ public class MainPage_Fragment extends Fragment {
     @BindView(R.id.yellowCircle_rec)
     RecyclerView yellowCircle_rec ;
 
-    Helper helper;
     @BindView(R.id.recitems)
     RecyclerView recitems;
 
-    SQLiteDatabase dpwrite , dpread;
 
     ImageView Search_image;
     @Nullable
@@ -68,12 +62,11 @@ public class MainPage_Fragment extends Fragment {
         }
 
         Search_image  = v.findViewById(R.id.search_image);
-        helper = new Helper(getActivity());
+
         items   = new ArrayList<>();
         images  = new ArrayList<>();
         productID= new ArrayList<>();
-        dpwrite   = helper.getWritableDatabase();
-        dpread    = helper.getReadableDatabase();
+
         recitems = v.findViewById(R.id.recitems);
         recitems.setNestedScrollingEnabled(false);
         ShowIteminYellowRec();

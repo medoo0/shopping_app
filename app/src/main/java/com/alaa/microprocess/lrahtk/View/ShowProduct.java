@@ -1,11 +1,17 @@
 package com.alaa.microprocess.lrahtk.View;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
@@ -13,17 +19,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Adapters.SpinnerAdapter;
+import com.alaa.microprocess.lrahtk.Dialog.AlertDialog;
 import com.alaa.microprocess.lrahtk.R;
+import com.alaa.microprocess.lrahtk.SQLite.FavHelper;
 import com.bumptech.glide.Glide;
 
 
 public class ShowProduct extends AppCompatActivity {
     ImageView image , back,fav;
     TextView name,price,ProductName ,Category , Description , txRate , txbrand , size;
-    String proID , ProName ,ProDesc,ProBrand,ProCategory;
+    String proID , ProName ,ProDesc,ProBrand,ProCategory , Quantity = "";
     int ProRate, ProLength ,ProPrice,proQuantity;
     RatingBar ratingBar;
-
+    FavHelper helper;
+    SQLiteDatabase db ;
+    SharedPreferences preferences ;
+    String UserID , FavTableName , BasketTableName ;
+    Button BtnAddToBasket ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +54,22 @@ public class ShowProduct extends AppCompatActivity {
         txbrand = findViewById(R.id.brand);
         size = findViewById(R.id.size);
         ratingBar = findViewById(R.id.rating);
+        BtnAddToBasket = findViewById(R.id.BtnAddToBasket);
 
 
+
+
+        this.helper   = new FavHelper(this);
+        this.db       = helper.getWritableDatabase();
+        preferences = getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
+
+        if (preferences.getString("AreInOrNot","").equals("IN")){
+
+
+            UserID      = preferences.getString("id","");
+            FavTableName = "T"+UserID;
+            BasketTableName = "B"+UserID;
+        }
 
 
 
@@ -100,6 +126,64 @@ public class ShowProduct extends AppCompatActivity {
 
 
 
+
+        if(Check_if_product_in_Fav_List(proID)){
+
+            fav.setImageResource(R.drawable.ic_color_heart);
+        }
+        else {
+            fav.setImageResource(R.drawable.heart);
+
+        }
+
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                helper.CreateFavTable(FavTableName);
+
+                if(!Check_if_product_in_Fav_List(proID)) {
+                    // insert
+                    ContentValues row = new ContentValues();
+                    row.put(helper.FavID,proID);
+                    db.insert(FavTableName, null, row);
+                   fav.setImageResource(R.drawable.ic_color_heart);
+                }
+                else {
+
+                    int deleted = db.delete(FavTableName,FavHelper.FavID+" = ? ",new String[]{proID} );
+                    if (deleted > 0 ){
+                        //deleted
+                        fav.setImageResource(R.drawable.heart);
+
+                    }
+
+                }
+            }
+        });
+
+        BtnAddToBasket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Quantity.isEmpty()){
+                    Toast.makeText(ShowProduct.this, "يرجي اختيار العدد", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    helper.CreateBasketTable(BasketTableName);
+                    ContentValues row = new ContentValues();
+                    row.put(FavHelper.BasketID , proID);
+                    row.put(FavHelper.BasketQuantity , Quantity);
+                    long insert = db.insert(BasketTableName , null , row);
+                    if(insert > 0 ){
+                        AlertDialog alertDialog = new AlertDialog(ShowProduct.this,"تم اضافة المنتج داخل سلة المشتريات . ");
+                        alertDialog.show();
+                    }
+
+
+                }
+            }
+        });
+
     }
 
     private void SpinnerChoose(){
@@ -115,8 +199,11 @@ public class ShowProduct extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (position>0) {
-                    Toast.makeText(ShowProduct.this, Qualifi[position], Toast.LENGTH_SHORT).show();
 
+                    Quantity = Qualifi[position] ;
+
+                }else if (position == 0 ){
+                    Quantity = "";
                 }
 
 
@@ -128,9 +215,21 @@ public class ShowProduct extends AppCompatActivity {
             }
         });
 
+    }
+    public boolean Check_if_product_in_Fav_List(String ProductID){
+        //create if not exists .
+        helper.CreateFavTable(FavTableName);
 
+        String [] Cols = {FavHelper.FavID};
+        Cursor Pointer = db.query(FavTableName,Cols,Cols[0]+" = ?",new String[]{ProductID},null,null,null);
+        if(Pointer.moveToNext()){
+            return true ;
+        }
+        else {
 
+            return false ;
 
+        }
 
     }
 }
