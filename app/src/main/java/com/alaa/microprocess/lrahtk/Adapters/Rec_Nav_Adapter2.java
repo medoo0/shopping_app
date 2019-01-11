@@ -46,7 +46,9 @@ public class Rec_Nav_Adapter2 extends RecyclerView.Adapter<Rec_Nav_Adapter2.View
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
 
-
+        holder.Icon.setScaleX(.5f);
+        holder.Icon.setScaleY(.5f);
+        holder.Icon.animate().scaleX(1f).scaleY(1f).setDuration(500);
 
 
         Glide.with(context).load(ApiRetrofit.API_IMAGE_BASE_URL + categories.get(position).getThumbnail())

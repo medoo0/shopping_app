@@ -62,7 +62,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
 
         Toolbar toolbar;
-        SQLiteDatabase dpwrite , dpread;
         Rec_Nav_Adapter postAdapter;
         BottomNavigationView BottomNavigationView;
 

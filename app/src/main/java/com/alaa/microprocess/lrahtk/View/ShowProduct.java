@@ -2,6 +2,7 @@ package com.alaa.microprocess.lrahtk.View;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,8 +29,10 @@ import com.bumptech.glide.Glide;
 public class ShowProduct extends AppCompatActivity {
     ImageView image , back,fav;
     TextView name,price,ProductName ,Category , Description , txRate , txbrand , size;
-    String proID , ProName ,ProDesc,ProBrand,ProCategory , Quantity = "";
-    int ProRate, ProLength ,ProPrice,proQuantity;
+    String proID , ProName ,ProDesc,ProBrand,ProCategory , Quantity = "" , ImageURl;
+    int ProRate, ProLength ,proQuantity  ;
+    double ProPrice ;
+
     RatingBar ratingBar;
     FavHelper helper;
     SQLiteDatabase db ;
@@ -85,7 +88,7 @@ public class ShowProduct extends AppCompatActivity {
            ProDesc = bundle.getString("description");
            Description.setText(ProDesc);
 
-           ProPrice = bundle.getInt("price");
+           ProPrice = bundle.getDouble("price");
            price.setText(ProPrice + " L.E");
 
            proQuantity = bundle.getInt("quantity");
@@ -102,8 +105,9 @@ public class ShowProduct extends AppCompatActivity {
            ProCategory = bundle.getString("category");
            Category.setText(ProCategory);
 
+            ImageURl =  bundle.getString("ImageURl");
            if( bundle.getParcelable("Image") == null){
-              Glide.with(this).load(bundle.getString("ImageURl")).into(image) ;
+              Glide.with(this).load(ImageURl).into(image) ;
            }else {
                byte[] byteArray = getIntent().getByteArrayExtra("Image");
                Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
@@ -146,7 +150,7 @@ public class ShowProduct extends AppCompatActivity {
                     ContentValues row = new ContentValues();
                     row.put(helper.FavID,proID);
                     db.insert(FavTableName, null, row);
-                   fav.setImageResource(R.drawable.ic_color_heart);
+                    fav.setImageResource(R.drawable.ic_color_heart);
                 }
                 else {
 
@@ -171,14 +175,22 @@ public class ShowProduct extends AppCompatActivity {
 
                     helper.CreateBasketTable(BasketTableName);
                     ContentValues row = new ContentValues();
+                    row.put(FavHelper.BasketName ,ProName );
                     row.put(FavHelper.BasketID , proID);
                     row.put(FavHelper.BasketQuantity , Quantity);
+                    row.put(FavHelper.Brand , ProBrand );
+                    row.put(FavHelper.Image_Url , ImageURl );
+                    row.put(FavHelper.prices , ProPrice);
+
+
                     long insert = db.insert(BasketTableName , null , row);
                     if(insert > 0 ){
                         AlertDialog alertDialog = new AlertDialog(ShowProduct.this,"تم اضافة المنتج داخل سلة المشتريات . ");
                         alertDialog.show();
                     }
-
+                    //refresh basket fragment if opened  .
+                    Intent intent = new Intent("Refresh");
+                    sendBroadcast(intent);
 
                 }
             }

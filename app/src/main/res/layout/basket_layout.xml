@@ -167,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/blue"
                         android:fontFamily="@font/cairo"
-                        android:text="100 L.E"
+                        android:text=""
                         />
 
 

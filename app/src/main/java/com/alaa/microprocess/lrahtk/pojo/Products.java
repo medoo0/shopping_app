@@ -33,7 +33,7 @@ public class Products implements Parcelable {
     private String name;
     @SerializedName("price")
     @Expose
-    private int price;
+    private double price;
     @SerializedName("quantity")
     @Expose
     private int quantity;
@@ -134,7 +134,7 @@ public class Products implements Parcelable {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -219,7 +219,7 @@ public class Products implements Parcelable {
         parcel.writeString(createdAt);
         parcel.writeString(updatedAt);
         parcel.writeString(name);
-        parcel.writeInt(price);
+        parcel.writeInt((int) price);
         parcel.writeInt(quantity);
         parcel.writeString(code);
         parcel.writeString(description);

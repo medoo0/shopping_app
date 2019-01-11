@@ -1,7 +1,9 @@
 package com.alaa.microprocess.lrahtk.Adapters;
 
+import android.content.ContentValues;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,25 +13,29 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.R;
-import com.alaa.microprocess.lrahtk.pojo.Products;
+import com.alaa.microprocess.lrahtk.SQLite.FavHelper;
+import com.alaa.microprocess.lrahtk.pojo.SqlProduct;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class rec_Basket_Adapter extends RecyclerView.Adapter<rec_Basket_Adapter.ViewHolder> {
-    private List<Products> Products;
-    private ArrayList<String> quantity_list;
+
+
     Context context;
-
-
-    public rec_Basket_Adapter(Context activity, List<Products> Products, ArrayList<String> quantity_list) {
+    List<SqlProduct> sqlProducts ;
+    String BasketTableName;
+    FavHelper helper;
+    SQLiteDatabase db;
+    public rec_Basket_Adapter(Context activity,String BasketTableName,List<SqlProduct> sqlProducts ) {
         this.context = activity;
-        this.Products = Products ;
-        this.quantity_list = quantity_list;
+        this.sqlProducts = sqlProducts;
+        this.BasketTableName = BasketTableName;
+        helper = new FavHelper(activity);
+        db = helper.getWritableDatabase();
+
     }
 
     @Override
@@ -39,35 +45,92 @@ public class rec_Basket_Adapter extends RecyclerView.Adapter<rec_Basket_Adapter.
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        holder.foreground.setScaleX(.9f);
-        holder.foreground.setScaleY(.9f);
-        holder.foreground.animate().scaleX(1f).scaleY(1f).setDuration(500);
+        if (position % 2 == 0) {
 
+            holder.delete_background.setX(-1000);
+            holder.delete_background.animate().translationXBy(1000).setDuration(500);
+            holder.foreground.setX(-1000);
+            holder.foreground.animate().translationXBy(1000).setDuration(500);
+        }
+        else
+        {
+
+            holder.delete_background.setX(1000);
+            holder.delete_background.animate().translationXBy(-1000).setDuration(500);
+            holder.foreground.setX(1000);
+            holder.foreground.animate().translationXBy(-1000).setDuration(500);
+
+        }
 
         //
 
-        holder.delete_background.setScaleX(.9f);
-        holder.delete_background.setScaleY(.9f);
-        holder.delete_background.animate().scaleX(1f).scaleY(1f).setDuration(500);
+//        holder.foreground.setScaleX(.9f);
+//        holder.foreground.setScaleY(.9f);
+//        holder.foreground.animate().scaleX(1f).scaleY(1f).setDuration(500);
+//
+//        holder.delete_background.setScaleX(.9f);
+//        holder.delete_background.setScaleY(.9f);
+//        holder.delete_background.animate().scaleX(1f).scaleY(1f).setDuration(500);
 
 
         Glide // fast to get Item in Local //Picasso is the faster than glide from internet
                 .with(context)
-                .load(ApiRetrofit.API_IMAGE_BASE_URL + Products.get(position).getThumbnail())
+                .load(sqlProducts.get(position).getImage_Url())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.Product_Image);
 
-        holder.productName.setText(Products.get(position).getName());
-        holder.quantity.setText(quantity_list.get(position));
-        holder.product_company.setText(Products.get(position).getBrand().getName()+"");
-        holder.Price.setText(Products.get(position).getPrice()+" L.E");
+        holder.productName.setText(sqlProducts.get(position).getBasketName());
+        holder.quantity.setText(sqlProducts.get(position).getBasketQuantity()+"");
+        holder.product_company.setText(sqlProducts.get(position).getBrand()+"");
+        final double price = sqlProducts.get(position).getPrice() *  Integer.parseInt(sqlProducts.get(position).getBasketQuantity());
+        holder.Price.setText(price +" L.E");
+
+
+        holder.add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int count = Integer.parseInt(holder.quantity.getText().toString());
+
+                count++;
+                holder.quantity.setText(count+"");
+
+                double price = sqlProducts.get(position).getPrice() *  count ;
+                holder.Price.setText(price +" L.E");
+
+                Update_Quantity(sqlProducts.get(position).getSqlID(),holder.quantity.getText().toString());
+                //Update Total
+                Intent intent = new Intent("Update");
+                context.sendBroadcast(intent);
+
+            }
+        });
+        holder.min.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int count = Integer.parseInt(holder.quantity.getText().toString());
+                if(count > 1 ) {
+                    count--;
+                    holder.quantity.setText(count + "");
+                    double price = sqlProducts.get(position).getPrice() *  count ;
+                    holder.Price.setText(price +" L.E");
+                    Update_Quantity(sqlProducts.get(position).getSqlID(),holder.quantity.getText().toString());
+
+                    //Update Total
+                    Intent intent = new Intent("Update");
+                    context.sendBroadcast(intent);
+                }
+
+            }
+        });
+
+
     }
 
     @Override
     public int getItemCount() {
-        return Products.size();
+        return sqlProducts.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder   {
@@ -87,6 +150,21 @@ public class rec_Basket_Adapter extends RecyclerView.Adapter<rec_Basket_Adapter.
             foreground = itemView.findViewById(R.id.foreground);
             Product_Image = itemView.findViewById(R.id.Product_Image);
             delete_background = itemView.findViewById(R.id.Cardview2);
+
+        }
+
+    }
+
+    public void Update_Quantity(String SqlID , String NewQuantity){
+        ContentValues row = new ContentValues();
+        row.put(helper.BasketQuantity , NewQuantity);
+
+
+        int Updated = db.update(BasketTableName,row,helper.ID+" = ?",new String[]{SqlID});
+        if (Updated > 0 ){
+
+        }
+        else {
 
         }
 
