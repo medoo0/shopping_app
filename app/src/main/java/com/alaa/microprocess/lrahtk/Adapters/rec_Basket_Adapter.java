@@ -29,6 +29,7 @@ public class rec_Basket_Adapter extends RecyclerView.Adapter<rec_Basket_Adapter.
     String BasketTableName;
     FavHelper helper;
     SQLiteDatabase db;
+
     public rec_Basket_Adapter(Context activity,String BasketTableName,List<SqlProduct> sqlProducts ) {
         this.context = activity;
         this.sqlProducts = sqlProducts;
@@ -45,8 +46,9 @@ public class rec_Basket_Adapter extends RecyclerView.Adapter<rec_Basket_Adapter.
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
-
+    public void onBindViewHolder( ViewHolder holder1,  int position1) {
+        final int position = position1 ;
+        final ViewHolder holder = holder1;
         if (position % 2 == 0) {
 
             holder.delete_background.setX(-1000);
@@ -104,6 +106,8 @@ public class rec_Basket_Adapter extends RecyclerView.Adapter<rec_Basket_Adapter.
                 Intent intent = new Intent("Update");
                 context.sendBroadcast(intent);
 
+
+
             }
         });
         holder.min.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +136,7 @@ public class rec_Basket_Adapter extends RecyclerView.Adapter<rec_Basket_Adapter.
     public int getItemCount() {
         return sqlProducts.size();
     }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder   {
             ImageButton add , min ;

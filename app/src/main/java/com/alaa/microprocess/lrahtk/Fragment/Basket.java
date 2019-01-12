@@ -38,89 +38,72 @@ import java.util.Objects;
 
 
 public class Basket extends Fragment implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
-    RecyclerView recyclerView ;
+    RecyclerView recyclerView;
     LinearLayout sendOrder;
-    Animation downtoup , uptodown;
-    boolean last = false ;
+    Animation downtoup, uptodown;
+    boolean last = false;
     FavHelper helper;
-    SQLiteDatabase db ;
-    SharedPreferences preferences ;
-    String UserID  , BasketTableName ;
-    List<SqlProduct> sqlProduct  ;
+    SQLiteDatabase db;
+    SharedPreferences preferences;
+    String UserID, BasketTableName;
+    List<SqlProduct> sqlProduct;
     TextView txTotal;
-
+    rec_Basket_Adapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-         View v = inflater.inflate(R.layout.fragment_basket, container, false);
-         HomePage.texttoolbar.setText(getString(R.string.buying));
-         HomePageContract.viewMain viewMain = (HomePageContract.viewMain) getActivity();
+        View v = inflater.inflate(R.layout.fragment_basket, container, false);
+        HomePage.texttoolbar.setText(getString(R.string.buying));
+        HomePageContract.viewMain viewMain = (HomePageContract.viewMain) getActivity();
 
-         if (viewMain!=null){
+        if (viewMain != null) {
 
 
             viewMain.showToobar();
 
-         }
+        }
 
 
-
-         recyclerView = v.findViewById(R.id.basket_rec);
-         sendOrder    = v.findViewById(R.id.sendOrder);
-         txTotal      = v.findViewById(R.id.total);
-         sqlProduct = new ArrayList<>();
-
+        recyclerView = v.findViewById(R.id.basket_rec);
+        sendOrder = v.findViewById(R.id.sendOrder);
+        txTotal = v.findViewById(R.id.total);
+        sqlProduct = new ArrayList<>();
 
 
-         downtoup = AnimationUtils.loadAnimation(getActivity(),R.anim.downtoup);
-         uptodown = AnimationUtils.loadAnimation(getActivity(),R.anim.uptodown);
+        downtoup = AnimationUtils.loadAnimation(getActivity(), R.anim.downtoup);
+        uptodown = AnimationUtils.loadAnimation(getActivity(), R.anim.uptodown);
 
 
-
-
-        this.helper   = new FavHelper(getActivity());
-        this.db       = helper.getWritableDatabase();
+        this.helper = new FavHelper(getActivity());
+        this.db = helper.getWritableDatabase();
         preferences = getActivity().getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
 
-        if (preferences.getString("AreInOrNot","").equals("IN")){
+        if (preferences.getString("AreInOrNot", "").equals("IN")) {
 
 
-            UserID      = preferences.getString("id","");
-            BasketTableName = "B"+UserID;
+            UserID = preferences.getString("id", "");
+            BasketTableName = "B" + UserID;
             //لازم السطر ده
             helper.CreateBasketTable(BasketTableName);
         }
-
-
-        //get all basket .
-        String [] Cols = {FavHelper.ID,FavHelper.BasketName,FavHelper.BasketID,FavHelper.BasketQuantity,FavHelper.Brand,FavHelper.Image_Url,FavHelper.prices};
-        Cursor Pointer = db.query(BasketTableName,Cols,null,null,null,null,null);
-
-        while (Pointer.moveToNext()){
-            SqlProduct product = new SqlProduct(Pointer.getString(0),Pointer.getString(1),Pointer.getString(2),Pointer.getString(3)
-                    ,Pointer.getString(4),Pointer.getString(5),Pointer.getDouble(6));
-            sqlProduct.add(product);
-
-        }
-
+        //get List
+        getBasketList();
         //Get Total in Button .
         TotalPrice();
 
 
-       //Configrations
+        //Configrations
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
         //  Recycler adapter .
-        final rec_Basket_Adapter adapter = new rec_Basket_Adapter(getActivity(),BasketTableName,sqlProduct);
+        adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct);
         recyclerView.setAdapter(adapter);
-
-
 
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -130,30 +113,25 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                if ( mLayoutManager.findLastCompletelyVisibleItemPosition() == recyclerView.getAdapter().getItemCount()-1) {
+                if (mLayoutManager.findLastCompletelyVisibleItemPosition() == recyclerView.getAdapter().getItemCount() - 1) {
 
-                    if(!last) {
+                    if (!last) {
                         last = true;
                         sendOrder.setVisibility(View.VISIBLE);
                         sendOrder.startAnimation(downtoup);
                     }
 
-                }
+                } else if (mLayoutManager.findFirstCompletelyVisibleItemPosition() == 0) {
 
-                else if ( mLayoutManager.findFirstCompletelyVisibleItemPosition() == 0) {
-
-                    if(!last) {
+                    if (!last) {
                         last = true;
                         sendOrder.setVisibility(View.VISIBLE);
                         sendOrder.startAnimation(downtoup);
                     }
 
-                }
+                } else {
 
-
-                else {
-
-                    if(last) {
+                    if (last) {
                         sendOrder.setVisibility(View.GONE);
                         last = false;
                     }
@@ -164,14 +142,13 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
             }
 
 
-
         });
 
         //scroll to the end
         recyclerView.post(new Runnable() {
             @Override
             public void run() {
-                if(adapter.getItemCount() > 0) {
+                if (adapter.getItemCount() > 0) {
                     recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
                 }
 
@@ -182,37 +159,55 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(),Pay.class);
+                Intent intent = new Intent(getActivity(), Pay.class);
                 startActivity(intent);
 
             }
         });
 
 
-        return v ;
+        return v;
     }
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
-        Toast.makeText(getActivity(), ""+direction, Toast.LENGTH_SHORT).show();
-    }
+
+        int deleted = db.delete(BasketTableName, helper.ID + " = ? ", new String[]{sqlProduct.get(position).getSqlID()});
+        if (deleted > 0) {
+
+            sqlProduct.clear();
+            recyclerView.removeAllViews();
+
+            getBasketList();
+            //  Recycler adapter .
+            adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct);
+            recyclerView.setAdapter(adapter);
 
 
+            //get total again
+            TotalPrice();
 
-    public void TotalPrice() {
-        double Total = 0 ;
-        //get all basket .
-        String [] Cols = {FavHelper.BasketQuantity,FavHelper.prices};
-        Cursor Pointer = db.query(BasketTableName,Cols,null,null,null,null,null);
-
-        while (Pointer.moveToNext()){
-
-           double pricePerQuantity =   Integer.parseInt(Pointer.getString(0))*   Pointer.getDouble(1);
-           Total += pricePerQuantity;
 
         }
 
-        txTotal.setText(Total+"");
+
+    }
+
+
+    public void TotalPrice() {
+        double Total = 0;
+        //get all basket .
+        String[] Cols = {FavHelper.BasketQuantity, FavHelper.prices};
+        Cursor Pointer = db.query(BasketTableName, Cols, null, null, null, null, null);
+
+        while (Pointer.moveToNext()) {
+
+            double pricePerQuantity = Integer.parseInt(Pointer.getString(0)) * Pointer.getDouble(1);
+            Total += pricePerQuantity;
+
+        }
+
+        txTotal.setText(Total + "");
 
     }
 
@@ -222,31 +217,55 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("Update");
         intentFilter.addAction("Refresh");
-        getActivity().registerReceiver(broadcastReceiver,intentFilter);
+        getActivity().registerReceiver(broadcastReceiver, intentFilter);
 
     }
 
-    private BroadcastReceiver broadcastReceiver =   new BroadcastReceiver() {
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-                if(Objects.equals(intent.getAction(), "Update")) {
-                    TotalPrice();
-                }
-                else if (Objects.equals(intent.getAction(), "Refresh")){
+            if (Objects.equals(intent.getAction(), "Update")) {
+                TotalPrice();
 
-                    //still work on it .
+            } else if (Objects.equals(intent.getAction(), "Refresh")) {
 
-                }
+                sqlProduct.clear();
+                recyclerView.removeAllViews();
+
+                getBasketList();
+                //  Recycler adapter .
+                adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct);
+                recyclerView.setAdapter(adapter);
+
+
+                //get total again
+                TotalPrice();
+            }
 
 
         }
-    } ;
+    };
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(broadcastReceiver != null) {
+        if (broadcastReceiver != null) {
             getActivity().unregisterReceiver(broadcastReceiver);
         }
+
     }
+
+    public void getBasketList() {
+        //get all basket .
+        String[] Cols = {FavHelper.ID, FavHelper.BasketName, FavHelper.BasketID, FavHelper.BasketQuantity, FavHelper.Brand, FavHelper.Image_Url, FavHelper.prices};
+        Cursor Pointer = db.query(BasketTableName, Cols, null, null, null, null, null);
+
+        while (Pointer.moveToNext()) {
+            SqlProduct product = new SqlProduct(Pointer.getString(0), Pointer.getString(1), Pointer.getString(2), Pointer.getString(3)
+                    , Pointer.getString(4), Pointer.getString(5), Pointer.getDouble(6));
+            sqlProduct.add(product);
+
+        }
+    }
+
 }
