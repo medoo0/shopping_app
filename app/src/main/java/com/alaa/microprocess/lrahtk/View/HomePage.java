@@ -58,7 +58,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         @BindView(R.id.LastLinear)
         LinearLayout LastLinear;
 
-        TextView logout;
+        TextView logout , settings;
 
 
         Toolbar toolbar;
@@ -81,6 +81,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         gotoPersonalData = findViewById(R.id.gotoPersonalData);
         gotoPersonalData.setOnClickListener(this);
         logout   = findViewById(R.id.logout);
+        settings = findViewById(R.id.settings);
         toolbar    = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         BottomNavigationView =  findViewById(R.id.custom_bottom_navigation);
@@ -88,6 +89,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 //        BottomNavigationView.setOnNavigationItemSelectedListener(this);
         BottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         logout.setOnClickListener(this);
+        settings.setOnClickListener(this);
         ButterKnife.bind(this);
         preferences   = getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
         editor        = preferences.edit();
@@ -225,6 +227,17 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
             //  finsh this activity and go back ///     حنشوف بعد كدا لو فيه حاجه متعلقه بالسرفر بالخروج ولا لا
 
 
+
+        }
+
+        if (v == settings){
+
+            Intent intent = new Intent(this , MyPersonalPage.class);
+            intent.putExtra("Email",email);
+            intent.putExtra("userName",name);
+            intent.putExtra("id",id);
+            intent.putExtra("phone",phone);
+            startActivity(intent);
 
         }
 

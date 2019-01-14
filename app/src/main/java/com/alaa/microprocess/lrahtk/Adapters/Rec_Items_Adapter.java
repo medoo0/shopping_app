@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
+import com.alaa.microprocess.lrahtk.Dialog.AlertDialog;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.SQLite.FavHelper;
 import com.alaa.microprocess.lrahtk.View.HomePage;
@@ -44,7 +45,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
     FavHelper helper;
     SQLiteDatabase db ;
     SharedPreferences preferences ;
-    String UserID , TableName ;
+    String UserID , TableName , BasketTableName ;
 
     public Rec_Items_Adapter(List<Products> products , Context context ) {
     this.context = context;
@@ -58,6 +59,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
             UserID      = preferences.getString("id","");
             TableName = "T"+UserID;
+            BasketTableName = "B"+UserID;
         }
     }
 
@@ -167,6 +169,30 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
             }
         });
 
+        holder.addToBasket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                helper.CreateBasketTable(BasketTableName);
+                ContentValues row = new ContentValues();
+                row.put(FavHelper.BasketName ,products.get(position).getName() );
+                row.put(FavHelper.BasketID , products.get(position).getId());
+                row.put(FavHelper.BasketQuantity , 1);
+                row.put(FavHelper.Brand , products.get(position).getBrand().getName() );
+                row.put(FavHelper.Image_Url , ApiRetrofit.API_IMAGE_BASE_URL + products.get(position).getThumbnail() );
+                row.put(FavHelper.prices , products.get(position).getPrice() );
+
+
+                long insert = db.insert(BasketTableName , null , row);
+                if(insert > 0 ){
+                    AlertDialog alertDialog = new AlertDialog(context,"تم اضافة المنتج داخل سلة المشتريات . ");
+                    alertDialog.show();
+                }
+                //refresh basket fragment if opened  .
+                Intent intent = new Intent("Refresh");
+                context.sendBroadcast(intent);
+            }
+        });
+
     }
 
     @Override
@@ -181,7 +207,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
         CardView relative;
         ImageView thumbnail;
         TextView text , txprice;
-        ImageView image_add_to_Favout;
+        ImageView image_add_to_Favout , addToBasket;
 
         public Holder(View itemView) {
             super(itemView);
@@ -190,7 +216,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
             text      = itemView.findViewById(R.id.text);
             image_add_to_Favout = itemView.findViewById(R.id.image_add_to_Favout);
             txprice = itemView.findViewById(R.id.price);
-
+            addToBasket = itemView.findViewById(R.id.addToBasket);
         }
 
     }

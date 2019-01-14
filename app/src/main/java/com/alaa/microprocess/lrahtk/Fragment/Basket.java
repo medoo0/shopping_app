@@ -158,10 +158,12 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
         sendOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(Double.parseDouble(txTotal.getText().toString()) != 0) {
 
-                Intent intent = new Intent(getActivity(), Pay.class);
-                startActivity(intent);
+                    Intent intent = new Intent(getActivity(), Pay.class);
+                    startActivity(intent);
 
+                }
             }
         });
 

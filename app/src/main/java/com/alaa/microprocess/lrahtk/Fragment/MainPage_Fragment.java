@@ -1,10 +1,12 @@
 package com.alaa.microprocess.lrahtk.Fragment;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter2;
+import com.alaa.microprocess.lrahtk.Adapters.SlideShowAdapter;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
@@ -25,6 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.relex.circleindicator.CircleIndicator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,8 +46,17 @@ public class MainPage_Fragment extends Fragment {
     @BindView(R.id.recitems)
     RecyclerView recitems;
 
+    @BindView(R.id.ViewPager)
+    ViewPager viewPage;
 
     ImageView Search_image;
+
+    AsyncTask asyncTask;
+
+    int pos ; //global
+    @BindView(R.id.Indictor)
+    CircleIndicator circleIndicator;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -86,6 +99,72 @@ public class MainPage_Fragment extends Fragment {
                         .commit();
             }
         });
+
+        if(getActivity() != null) {
+
+            viewPage.setAdapter(new SlideShowAdapter(getActivity()));  // Set Adapter
+            circleIndicator.setViewPager(viewPage);
+
+
+            viewPage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    pos = position;
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+
+            final SlideShowAdapter slideShowAdapter = new SlideShowAdapter(getActivity());
+
+            asyncTask = new AsyncTask<Integer, Integer, Void>() {
+
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+                    pos = viewPage.getCurrentItem();
+                }
+
+                @Override
+                protected Void doInBackground(Integer... integers) {
+                    boolean still = !false;
+                    while (still) {
+
+                        try {
+                            Thread.sleep(4000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        pos++;
+                        publishProgress(pos);
+
+                    }
+
+                    return null;
+                }
+
+                @Override
+                protected void onProgressUpdate(Integer... values) {
+                    super.onProgressUpdate(values);
+                    if (values[0] == slideShowAdapter.getCount()) {
+                        pos = 0;
+                        viewPage.setCurrentItem(pos, true);
+                    } else {
+                        viewPage.setCurrentItem(values[0], true);
+                    }
+
+                }
+            }.execute();
+
+        }
 
         return v;
     }

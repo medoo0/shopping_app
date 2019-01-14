@@ -75,16 +75,15 @@
 
 
     <ScrollView
-        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
 
             <RelativeLayout
@@ -99,18 +98,17 @@
                 >
 
                 <TextView
-                    android:textDirection="ltr"
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="22sp"
-                    android:textColor="@android:color/black"
-                    android:text="كرانشي صدور بانيه"
                     android:layout_marginStart="5dp"
-                    android:fontFamily="@font/cairo"
-                    android:textAlignment="center"
                     android:layout_marginTop="15dp"
-                    />
+                    android:fontFamily="@font/cairo"
+                    android:text="كرانشي صدور بانيه"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textDirection="ltr"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/type"
@@ -139,15 +137,14 @@
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textDirection="ltr"
-                    android:textSize="25sp"
-                    />
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/price"
-                   android:layout_margin="5dp"
+                    android:layout_margin="5dp"
                     android:fontFamily="@font/cairo"
                     android:text="كرانشي صدور دجاج بانيه كوكي 10 قطع \n متوفر جميع الكميات "
                     android:textAlignment="center"
@@ -162,143 +159,156 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/description"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal"
                     android:layout_marginTop="5dp"
-                    >
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
 
 
-                        <TextView
-                            android:id="@+id/rateNumber"
-                            android:layout_width="80dp"
-                            android:layout_height="60dp"
-                            android:background="@drawable/ic_rating"
-                            android:textColor="@android:color/black"
-                            android:fontFamily="@font/ubuntu"
-                            android:textSize="30sp"
-                            android:paddingBottom="10dp"
-                            android:paddingStart="15dp"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:text="4.0"
-                            android:textAlignment="center"
-                            />
+                    <TextView
+                        android:id="@+id/rateNumber"
+                        android:layout_width="80dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/ic_rating"
+                        android:fontFamily="@font/ubuntu"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingStart="15dp"
+                        android:text="4.0"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="30sp" />
 
 
                     <RatingBar
                         android:id="@+id/rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:numStars="5"
-                        android:stepSize=".5"
                         android:isIndicator="true"
+                        android:numStars="5"
                         android:rating="3"
-                        android:theme="@style/RatingBar"
-                        />
-
+                        android:stepSize=".5"
+                        android:theme="@style/RatingBar" />
 
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_below="@+id/ratLinear"
+                <!--<LinearLayout-->
+                <!--android:layout_below="@+id/ratLinear"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="end"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:orientation="vertical"-->
+                <!--&gt;-->
+
+                <!--<LinearLayout-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+
+
+                <!--<TextView-->
+                <!--android:id="@+id/brand"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/price"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:fontFamily="@font/cairo"-->
+                <!--android:text=" كوكي "-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textDirection="ltr"-->
+                <!--android:textSize="15sp"-->
+
+                <!--/>-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/txt1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/price"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:fontFamily="@font/cairo"-->
+                <!--android:text=" إسم الشركة : "-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="15sp"-->
+
+                <!--/>-->
+
+
+                <!--</LinearLayout>-->
+
+
+                <!--<LinearLayout-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+
+
+                <!--<TextView-->
+                <!--android:id="@+id/size"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/price"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:fontFamily="@font/cairo"-->
+                <!--android:text="  10 قطع "-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="15sp"-->
+
+                <!--/>-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/txt4"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/price"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:fontFamily="@font/cairo"-->
+                <!--android:text=" الكمية : "-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="15sp"-->
+
+                <!--/>-->
+
+
+                <!--</LinearLayout>-->
+
+                <!--</LinearLayout>-->
+
+            <Button
+                android:layout_below="@+id/ratLinear"
+                android:id="@+id/Btn_writeComment"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:padding="5dp"
+                android:text="ضع تعليق"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/cairo"
+                android:background="@drawable/button_background"
+                android:layout_centerHorizontal="true"
+
+                />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rec_Comments"
+                    android:layout_below="@+id/Btn_writeComment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical"
+                    android:layout_marginStart="10dp"
                     >
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
 
-
-                        <TextView
-                            android:id="@+id/brand"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/price"
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/cairo"
-                            android:text=" كوكي "
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textDirection="ltr"
-                            android:textSize="15sp"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/txt1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/price"
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/cairo"
-                            android:text=" إسم الشركة : "
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textSize="15sp"
-
-                            />
-
-
-
-                    </LinearLayout>
-
-
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-
-                        <TextView
-                            android:id="@+id/size"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/price"
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/cairo"
-                            android:text="  10 قطع "
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textSize="15sp"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/txt4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/price"
-                            android:layout_margin="5dp"
-                            android:fontFamily="@font/cairo"
-                            android:text=" الكمية : "
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textSize="15sp"
-
-                            />
-
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
+                </android.support.v7.widget.RecyclerView>
 
             </RelativeLayout>
 
 
-
         </LinearLayout>
-
-
-
 
 
     </ScrollView>
@@ -310,19 +320,58 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/type_spinner2"
-        android:layout_width="match_parent"
-        android:layout_gravity="center"
+    <!--<Spinner-->
+        <!--android:id="@+id/type_spinner2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:fontFamily="@font/cairo"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textAlignment="center"-->
+        <!--/>-->
 
-        android:textColor="@android:color/white"
-        android:background="@color/dark_blue"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:fontFamily="@font/cairo"
         android:layout_weight="2"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        />
+        android:background="@color/dark_blue"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/min"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_remove_circle_black_24dp"
+            android:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/txCounter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="1"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+
+            />
+
+        <ImageButton
+            android:id="@+id/plus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_add_circle_outline_black_24dp"
+            android:tint="@color/white" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/BtnAddToBasket"

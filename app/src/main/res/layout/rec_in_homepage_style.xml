@@ -52,7 +52,7 @@
                 <LinearLayout
                     android:layout_width="90dp"
                     android:orientation="vertical"
-                    android:gravity="center_horizontal"
+                    android:gravity="start"
                     android:layout_alignParentStart="true"
                     android:layout_height="wrap_content">
 
@@ -78,6 +78,12 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="90dp"
+                    android:orientation="vertical"
+                    android:gravity="end"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/image_add_to_Favout"
@@ -85,11 +91,19 @@
                     android:layout_margin="5dp"
                     android:src="@drawable/heart"
                     android:layout_height="30dp"
-                    android:layout_alignParentEnd="true"
+
                     />
 
+                    <ImageView
+                        android:id="@+id/addToBasket"
+                        android:layout_width="30dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/ic_shopping_cart"
+                        android:layout_height="30dp"
 
+                        />
 
+                </LinearLayout>
 
 
             </RelativeLayout>
