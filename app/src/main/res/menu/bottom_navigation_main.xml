@@ -15,6 +15,15 @@
         android:icon="@drawable/ic_discount"
         android:title="العروض"
         />
+
+
+    <item
+        android:id="@+id/gifts"
+        android:enabled="true"
+        android:icon="@drawable/ic_gift"
+        android:title="الهدايا"
+        />
+
     <item
         android:id="@+id/basket"
         android:enabled="true"
@@ -29,11 +38,11 @@
         android:title="بحث"
         />
 
-    <item
-        android:id="@+id/navigation_drawer"
-        android:enabled="true"
-        android:icon="@drawable/ic_department"
-        android:title="الأقسام"
-        />
+    <!--<item-->
+        <!--android:id="@+id/navigation_drawer"-->
+        <!--android:enabled="true"-->
+        <!--android:icon="@drawable/ic_department"-->
+        <!--android:title="الأقسام"-->
+        <!--/>-->
 
 </menu>

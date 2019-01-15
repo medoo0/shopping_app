@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="250dp"
-    android:layout_height="300dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="15dp"
     android:orientation="vertical"
     android:background="@drawable/rec_items_shape"
@@ -11,7 +11,7 @@
 
     >
 <TextView
-    android:layout_marginTop="50dp"
+    android:layout_marginTop="25dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="الرجاء تقييم المنتج "
@@ -33,18 +33,28 @@
         android:theme="@style/RatingBar"
         android:rating="1"
         android:isIndicator="false" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal|center_vertical"
+        app:hintTextAppearance="@style/HintText"
+        android:layout_height="wrap_content">
     <EditText
         android:id="@+id/etComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:textSize="20sp"
-        android:layout_margin="5dp"
+        android:background="@color/white"
+        android:textSize="18sp"
+        android:paddingTop="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:fontFamily="@font/cairo"
         android:hint="تعليقك ؟!"
-        android:gravity="center_horizontal"
+        android:gravity="center_horizontal|bottom"
 
         />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/submit"

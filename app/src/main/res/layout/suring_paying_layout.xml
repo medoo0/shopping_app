@@ -56,25 +56,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="20sp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/cairo"
 
-                        android:text="Mohamed Raslan"/>
                     <TextView
+                        android:id="@+id/txAddress"
                         android:layout_width="match_parent"
                         android:textSize="20sp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cairo"
                         android:text="Egypt - Cairo - sadatCity --55Street"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/cairo"
-                        android:text="+ 20 01063924102"/>
+
 
                 </LinearLayout>
 
@@ -120,7 +110,7 @@
                     android:layout_marginTop="20sp"
                     android:layout_below="@+id/linearinrelativeTwo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="200dp" />
 
             </RelativeLayout>
 
@@ -156,37 +146,41 @@
                 </LinearLayout>
 
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/one"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginTop="20sp"
+                    android:gravity="center_horizontal"
                     android:layout_below="@+id/linearinrelativethree"
                     android:layout_height="wrap_content">
 
 
                     <TextView
-                        android:layout_width="100dp"
-                        android:text="L.E 92.50"
-                        android:layout_alignParentStart="true"
+                        android:id="@+id/txTotal1"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:text="0"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
                         android:text="إجمالي الطلبات"
-                        android:layout_alignParentEnd="true"
                         android:fontFamily="@font/cairo"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:layout_height="wrap_content" />
 
 
-                </RelativeLayout>
-                <RelativeLayout
+                </LinearLayout>
+                <LinearLayout
                     android:id="@+id/two"
+                    android:orientation="horizontal"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginTop="20sp"
@@ -194,22 +188,24 @@
                     android:layout_below="@+id/one"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:layout_width="100dp"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
                         android:textSize="18sp"
-                        android:textColor="@color/blue"
-                        android:text="L.E 92.50"
+                        android:textColor="@color/dark_blue"
+                        android:text="0"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
                         android:text="رسوم التوصيل"
                         android:fontFamily="@font/cairo"
-                        android:layout_alignParentEnd="true"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:layout_height="wrap_content" />
 
-                </RelativeLayout>
-                <RelativeLayout
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
@@ -217,13 +213,16 @@
                     android:layout_below="@+id/two"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:layout_width="100dp"
+                        android:id="@+id/finalTotal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
                         android:textSize="18sp"
                         android:textColor="@color/blue"
-                        android:text="L.E 92.50"
+                        android:text="0"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
                         android:text="المبلغ الإجمالي"
                         android:fontFamily="@font/cairo"
                         android:layout_alignParentEnd="true"
@@ -231,7 +230,7 @@
                         android:textSize="18sp"
                         android:layout_height="wrap_content" />
 
-                </RelativeLayout>
+                </LinearLayout>
 
             </RelativeLayout>
 

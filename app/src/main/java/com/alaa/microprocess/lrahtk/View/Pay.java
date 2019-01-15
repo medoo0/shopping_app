@@ -1,18 +1,14 @@
 package com.alaa.microprocess.lrahtk.View;
 
-import android.graphics.Typeface;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Contract.PayScreenContract;
 import com.alaa.microprocess.lrahtk.Fragment.Charge;
-import com.alaa.microprocess.lrahtk.Fragment.MainPage_Fragment;
 import com.alaa.microprocess.lrahtk.Fragment.Paying_Fragment;
 import com.alaa.microprocess.lrahtk.Fragment.Suring_Paying;
 import com.alaa.microprocess.lrahtk.Fragment.ThanksOrder;
@@ -22,6 +18,7 @@ public class Pay extends AppCompatActivity  implements PayScreenContract.payView
 
     static  public TabLayout tabLayout;
     ImageView imageView;
+    String address ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +76,16 @@ public class Pay extends AppCompatActivity  implements PayScreenContract.payView
     }
 
     @Override
-    public void showNextFragment_SuringPay() {
+    public void showNextFragment_SuringPay(String address) {
         setDoneIcon(0);
         moveTo(1);
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left,R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(R.id.Frame_layout, new Suring_Paying())
+                .replace(R.id.Frame_layout, new Suring_Paying(address))
                 .commit();
+
+        this.address = address;
     }
 
     @Override

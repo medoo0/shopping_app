@@ -315,6 +315,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
                     Toast.makeText(HomePage.this, "العروض لسه حنفتح فرااااج", Toast.LENGTH_SHORT).show();
                     return true;
 
+                case R.id.gifts:
+                    getSupportFragmentManager().popBackStack(); //finish
+                    Toast.makeText(HomePage.this, "العروض لسه حنفتح فرااااج بردو ", Toast.LENGTH_SHORT).show();
+                    return true;
+
                 case R.id.basket :
                     getSupportFragmentManager().popBackStack(); //finish
                     getSupportFragmentManager()
@@ -331,9 +336,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
                             .commit();
                     return true ;
 
-                case R.id.navigation_drawer :
-                    open_Navigation_drawer();
-                    return false ;
+//                case R.id.navigation_drawer :
+//                    open_Navigation_drawer();
+//                    return false ;
             }
             return false;
         }

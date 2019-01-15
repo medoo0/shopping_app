@@ -5,7 +5,7 @@ public interface PayScreenContract {
     interface payView{
 
 
-        void showNextFragment_SuringPay();
+        void showNextFragment_SuringPay(String s);
 
         void showNextLastFragmentPayingFragment();
 
