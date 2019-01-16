@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.alaa.microprocess.lrahtk.Adapters.rec_Basket_Adapter;
 import com.alaa.microprocess.lrahtk.Contract.PayScreenContract;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.SQLite.FavHelper;
+import com.alaa.microprocess.lrahtk.pojo.SqlProduct;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Suring_Paying extends Fragment implements View.OnClickListener {
 
@@ -27,9 +33,9 @@ public class Suring_Paying extends Fragment implements View.OnClickListener {
     SQLiteDatabase db;
     SharedPreferences preferences;
     String UserID, BasketTableName , address;
-    double Total = 0 , extra = 0 ;
+    double Total = 0 , extra = 0 , finaltotal =  0;
     TextView txTotal1 , txAddress , finalTotal;
-
+    List<SqlProduct> sqlProduct;
     @SuppressLint("ValidFragment")
     public Suring_Paying(String address) {
         this.address = address;
@@ -45,7 +51,7 @@ public class Suring_Paying extends Fragment implements View.OnClickListener {
         txTotal1 = view.findViewById(R.id.txTotal1);
         txAddress = view.findViewById(R.id.txAddress);
         finalTotal = view.findViewById(R.id.finalTotal);
-
+        sqlProduct = new ArrayList<>();
         sure.setOnClickListener(this);
 
 
@@ -62,19 +68,34 @@ public class Suring_Paying extends Fragment implements View.OnClickListener {
             helper.CreateBasketTable(BasketTableName);
         }
 
+        //get List
+        getBasketList();
+
         txAddress.setText(address);
+        //get total .
         TotalPrice();
-        double finaltotal =  extra + Total ;
+
+         finaltotal =  extra + Total ;
         finalTotal.setText( finaltotal +" L.E");
+
+        //show item in Recycler View  .
+        showItems();
+
+
+
 
         return view;
     }
 
 
 
-    void showItems(){
-
-
+   public void showItems(){
+       //Configrations
+       final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+       myRec.setLayoutManager(mLayoutManager);
+       //  Recycler adapter .
+       rec_Basket_Adapter adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct,true);
+       myRec.setAdapter(adapter);
 
     }
 
@@ -111,5 +132,17 @@ public class Suring_Paying extends Fragment implements View.OnClickListener {
 
         txTotal1.setText(Total + " L.E");
 
+    }
+    public void getBasketList() {
+        //get all basket .
+        String[] Cols = {FavHelper.ID, FavHelper.BasketName, FavHelper.BasketID, FavHelper.BasketQuantity, FavHelper.Brand, FavHelper.Image_Url, FavHelper.prices};
+        Cursor Pointer = db.query(BasketTableName, Cols, null, null, null, null, null);
+
+        while (Pointer.moveToNext()) {
+            SqlProduct product = new SqlProduct(Pointer.getString(0), Pointer.getString(1), Pointer.getString(2), Pointer.getString(3)
+                    , Pointer.getString(4), Pointer.getString(5), Pointer.getDouble(6));
+            sqlProduct.add(product);
+
+        }
     }
 }

@@ -73,7 +73,7 @@
                         android:text="$1255"
                         android:layout_margin="5dp"
                         android:textDirection="ltr"
-                        android:textColor="@color/blue"
+                        android:textColor="@android:color/black"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
@@ -100,7 +100,7 @@
                         android:layout_margin="5dp"
                         android:src="@drawable/ic_shopping_cart"
                         android:layout_height="30dp"
-
+                        android:tint="@android:color/black"
                         />
 
                 </LinearLayout>

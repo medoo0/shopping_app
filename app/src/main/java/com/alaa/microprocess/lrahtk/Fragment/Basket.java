@@ -102,7 +102,7 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
         //  Recycler adapter .
-        adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct);
+        adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct,false);
         recyclerView.setAdapter(adapter);
 
 
@@ -182,7 +182,7 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
 
             getBasketList();
             //  Recycler adapter .
-            adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct);
+            adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct,false);
             recyclerView.setAdapter(adapter);
 
 
@@ -236,7 +236,7 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
 
                 getBasketList();
                 //  Recycler adapter .
-                adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct);
+                adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct,false);
                 recyclerView.setAdapter(adapter);
 
 

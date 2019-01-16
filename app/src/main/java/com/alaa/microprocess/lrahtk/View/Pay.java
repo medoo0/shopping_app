@@ -95,17 +95,17 @@ public class Pay extends AppCompatActivity  implements PayScreenContract.payView
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left,R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(R.id.Frame_layout, new Paying_Fragment())
+                .replace(R.id.Frame_layout, new Paying_Fragment(address))
                 .commit();
     }
 
     @Override
-    public void showThanksOrder() {
+    public void showThanksOrder(String OrderID) {
         setDoneIcon(2);
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left,R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(R.id.Frame_layout, new ThanksOrder())
+                .replace(R.id.Frame_layout, new ThanksOrder(OrderID))
                 .commit();
     }
 

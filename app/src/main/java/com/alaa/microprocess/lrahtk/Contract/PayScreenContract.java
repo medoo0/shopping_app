@@ -9,7 +9,7 @@ public interface PayScreenContract {
 
         void showNextLastFragmentPayingFragment();
 
-        void showThanksOrder();
+        void showThanksOrder(String OrderID);
 
     }
 

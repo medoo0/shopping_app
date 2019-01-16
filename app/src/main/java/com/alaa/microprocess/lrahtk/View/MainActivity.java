@@ -90,34 +90,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
 
 
-//
-//    @Override
-//    public void openSignInFragment() {
-//
-//        getSupportFragmentManager().popBackStack();
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
-//                .replace(R.id.Main_fragment, new SignIn())
-//                .addToBackStack(null)
-//                .commit();
-//
-//
-//    }
-//
-//    @Override
-//    public void openSignupFragment() {
-//
-//        getSupportFragmentManager().popBackStack();
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-//                .replace(R.id.Main_fragment, new SignUp())
-//                .addToBackStack(null)
-//                .commit();
-//
-//
-//    }
+
+
+
 
 }
 

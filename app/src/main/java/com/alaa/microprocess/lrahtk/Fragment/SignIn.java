@@ -1,5 +1,6 @@
 package com.alaa.microprocess.lrahtk.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,10 +38,21 @@ public class SignIn extends Fragment implements View.OnClickListener{
     ImageView skiptosignupimage;
     Button button;
     EditText email,password  ;
-
+    String Email , Password  ;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     AnimatedDialog dialog ;
+    boolean fromSuccesfullRegister = false ;
+    public SignIn(){
+
+    }
+    @SuppressLint("ValidFragment")
+    public SignIn(String email, String password) {
+        fromSuccesfullRegister = true ;
+        Email = email;
+        Password = password;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,6 +75,13 @@ public class SignIn extends Fragment implements View.OnClickListener{
         button.setOnClickListener(this);
         password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         password.setTypeface(Typeface.DEFAULT);
+
+        if(fromSuccesfullRegister){
+            email.setText(Email);
+            password.setText(Password);
+            button.performClick();
+        }
+
         return view;
     }
 
@@ -146,6 +165,7 @@ public class SignIn extends Fragment implements View.OnClickListener{
                                editor.putString("id",user.getId());
                                editor.putString("Phone",user.getPhone());
                                editor.putString("Name",user.getName());
+                               editor.putString("Token",response.body().getToken());
                                editor.apply();
                                intent.putExtra("Email",user.getEmail());
                                intent.putExtra("id",user.getId());

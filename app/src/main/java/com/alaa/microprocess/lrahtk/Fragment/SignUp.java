@@ -23,6 +23,7 @@ import com.alaa.microprocess.lrahtk.Contract.MainActivityContract;
 import com.alaa.microprocess.lrahtk.Dialog.AnimatedDialog;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.View.HomePage;
+import com.alaa.microprocess.lrahtk.pojo.LoginForm;
 import com.alaa.microprocess.lrahtk.pojo.RegisterForm;
 import com.alaa.microprocess.lrahtk.pojo.RegisterResponse;
 import com.alaa.microprocess.lrahtk.pojo.User;
@@ -163,7 +164,7 @@ public class SignUp extends Fragment implements View.OnClickListener{
     }
 
 
-public void Register(ApiMethod client ,String createdAt, String updatedAt, String id, String email, String password, String name, String phone) {
+public void Register(ApiMethod client , String createdAt, String updatedAt, String id, String email, final String password, String name, String phone) {
 
     Call<RegisterResponse> call = client.insertData(createdAt,updatedAt,id
             ,email,password, name, phone);
@@ -173,28 +174,10 @@ public void Register(ApiMethod client ,String createdAt, String updatedAt, Strin
         public void onResponse(@NonNull Call<RegisterResponse> call, @NonNull Response<RegisterResponse> response) {
             if (response.isSuccess()) {
 
-                dialog.Close_Dialog();
 
-                Intent intent = new Intent(getActivity() , HomePage.class);
-                User user    = new User();
-                user.setEmail(response.body().getEmail());
-                user.setId(response.body().getId());
-                user.setName(response.body().getName());
-                user.setPhone(response.body().getPhone());
-                editor.putString("Email",user.getEmail());
-                editor.putString("id",user.getId());
-                editor.putString("Phone",user.getPhone());
-                editor.putString("Name",user.getName());
-                editor.putString("AreInOrNot","IN");
-                editor.apply();
-                intent.putExtra("Email",user.getEmail());
-                intent.putExtra("id",user.getId());
-                intent.putExtra("Name",user.getName());
-                intent.putExtra("Phone",user.getPhone());
-                startActivity(intent);
+                Login(response.body().getEmail(),password);
 
-                // finish the firstActivity
-                getActivity().finish();
+
 
 
             } else {
@@ -207,13 +190,86 @@ public void Register(ApiMethod client ,String createdAt, String updatedAt, Strin
         @Override
         public void onFailure(@NonNull Call<RegisterResponse> call, @NonNull Throwable t) {
             dialog.Close_Dialog();
-            Toast.makeText(getActivity(), "تأكد من الأتصال بالخادم.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "تأكد من الاتصال بالخادم.", Toast.LENGTH_SHORT).show();
         }
     });
 
 
 }
 
+    private void Login(String email, String password) {
+        RegisterForm registerForm = new RegisterForm();
+
+        registerForm.setEmail(email);
+        registerForm.setPassword(password);
+        ApiMethod client = ApiRetrofit.getRetrofit().create(ApiMethod.class);
+
+        retrofit2.Call<LoginForm> call = client.login(registerForm.getCreatedAt(),registerForm.getUpdatedAt(),registerForm.getId()
+                ,registerForm.getEmail(),registerForm.getPassword());
+
+        call.enqueue(new Callback<LoginForm>() {
+            @Override
+            public void onResponse(@NonNull Call<LoginForm> call,@NonNull Response<LoginForm> response) {
+
+
+
+
+                if (response.isSuccess()&&response.body()!=null){
+
+                    // hide progressbar and go to NextScreen
+                    dialog.Close_Dialog();
+
+                    if (editor!=null){
+
+                        Intent intent = new Intent(getActivity() , HomePage.class);
+                        User user    = new User();
+                        user.setEmail(response.body().getUser().getEmail());
+                        user.setId(response.body().getUser().getId());
+                        user.setName(response.body().getUser().getName());
+                        user.setPhone(response.body().getUser().getPhone());
+                        editor.putString("AreInOrNot","IN");
+                        editor.putString("Email",user.getEmail());
+                        editor.putString("id",user.getId());
+                        editor.putString("Phone",user.getPhone());
+                        editor.putString("Name",user.getName());
+                        editor.putString("Token",response.body().getToken());
+                        editor.apply();
+                        intent.putExtra("Email",user.getEmail());
+                        intent.putExtra("id",user.getId());
+                        intent.putExtra("Name",user.getName());
+                        intent.putExtra("Phone",user.getPhone());
+                        startActivity(intent);
+
+                        // finish the firstActivity
+                        getActivity().finish();
+                    }
+
+
+
+                }
+
+                else {
+
+                    Toast.makeText(getActivity(), "حدث خطأ في تسجيل الدخول . سجل دخولك بطريقة يدوية .", Toast.LENGTH_LONG).show();
+                    dialog.Close_Dialog();
+                    // hide progressbar and still in this Screen //
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<LoginForm> call, @NonNull Throwable t) {
+                // connection poor or exception in retrofit occur .... //
+                dialog.Close_Dialog();
+                Toast.makeText(getActivity(), getResources().getString(R.string.Check_Internet), Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+    }
 
 
     boolean isEmailValid(CharSequence email) {

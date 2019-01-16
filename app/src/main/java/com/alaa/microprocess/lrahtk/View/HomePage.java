@@ -218,6 +218,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
             editor.putString("id","");
             editor.putString("Phone","");
             editor.putString("Name","");
+            editor.putString("Token","");
             editor.apply();
 
             Intent intent = new Intent(this , MainActivity.class);

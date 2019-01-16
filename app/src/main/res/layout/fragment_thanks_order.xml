@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cairo"
-            android:text="#sci2515635"
+            android:text="#"
             android:textSize="20sp"
             android:textColor="@android:color/black"
             android:layout_marginEnd="5dp"
@@ -64,36 +64,36 @@
         android:src="@drawable/delivery"
         />
 
-    <TextView
-        android:id="@+id/txappointment"
-        android:layout_below="@+id/delivery_image"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/cairo"
-        android:text="@string/appointment"
-        android:textSize="20sp"
-        android:textColor="#1db131"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold" />
+    <!--<TextView-->
+        <!--android:id="@+id/txappointment"-->
+        <!--android:layout_below="@+id/delivery_image"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:fontFamily="@font/cairo"-->
+        <!--android:text="@string/appointment"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textColor="#1db131"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:textStyle="bold" />-->
 
 
-    <TextView
-        android:id="@+id/appointment"
-        android:layout_below="@+id/txappointment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/cairo"
-        android:text="friday nov 30 - 2018 / 7:00 pm "
-        android:textSize="12sp"
-        android:textColor="@android:color/black"
-        android:layout_centerHorizontal="true"
-         />
+    <!--<TextView-->
+        <!--android:id="@+id/appointment"-->
+        <!--android:layout_below="@+id/txappointment"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:fontFamily="@font/cairo"-->
+        <!--android:text="friday nov 30 - 2018 / 7:00 pm "-->
+        <!--android:textSize="12sp"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:layout_centerHorizontal="true"-->
+         <!--/>-->
 
 
     <Button
         android:id="@+id/trackYouOrder"
-        android:layout_below="@+id/appointment"
+        android:layout_below="@+id/delivery_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/trackYouOrder"

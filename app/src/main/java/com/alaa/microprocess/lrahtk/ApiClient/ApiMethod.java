@@ -1,21 +1,23 @@
 package com.alaa.microprocess.lrahtk.ApiClient;
 
+import com.alaa.microprocess.lrahtk.pojo.Basket;
 import com.alaa.microprocess.lrahtk.pojo.Categories;
 import com.alaa.microprocess.lrahtk.pojo.LoginForm;
+import com.alaa.microprocess.lrahtk.pojo.Order;
 import com.alaa.microprocess.lrahtk.pojo.Products;
 import com.alaa.microprocess.lrahtk.pojo.RegisterResponse;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
-/**
- * Created by microprocess on 2018-09-19.
- */
 
 public interface ApiMethod {
 
@@ -40,11 +42,18 @@ public interface ApiMethod {
     );
 
 
+
+    @POST("orders")
+    Call<Order> ORDER_CALL (
+            @Body Order order
+    );
+
     @GET("categories")
     Call<List<Categories>> getCategories();
 
     @GET("products")
     Call<List<Products>> getProducts();
+
 
 
 }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alaa.microprocess.lrahtk.R;
@@ -29,14 +30,15 @@ public class rec_Basket_Adapter extends RecyclerView.Adapter<rec_Basket_Adapter.
     String BasketTableName;
     FavHelper helper;
     SQLiteDatabase db;
+    boolean fromSurefragment = false ;
 
-    public rec_Basket_Adapter(Context activity,String BasketTableName,List<SqlProduct> sqlProducts ) {
+    public rec_Basket_Adapter(Context activity,String BasketTableName,List<SqlProduct> sqlProducts , boolean FromSureFragmentOrNot) {
         this.context = activity;
         this.sqlProducts = sqlProducts;
         this.BasketTableName = BasketTableName;
         helper = new FavHelper(activity);
         db = helper.getWritableDatabase();
-
+        fromSurefragment = FromSureFragmentOrNot ;
     }
 
     @Override
@@ -47,26 +49,26 @@ public class rec_Basket_Adapter extends RecyclerView.Adapter<rec_Basket_Adapter.
 
     @Override
     public void onBindViewHolder( ViewHolder holder1,  int position1) {
-        final int position = position1 ;
-        final ViewHolder holder = holder1;
-        if (position % 2 == 0) {
 
-            holder.delete_background.setX(-1000);
-            holder.delete_background.animate().translationXBy(1000).setDuration(500);
-            holder.foreground.setX(-1000);
-            holder.foreground.animate().translationXBy(1000).setDuration(500);
-        }
-        else
-        {
+        if(!fromSurefragment) {
+            final int position = position1;
+            final ViewHolder holder = holder1;
+            if (position % 2 == 0) {
 
-            holder.delete_background.setX(1000);
-            holder.delete_background.animate().translationXBy(-1000).setDuration(500);
-            holder.foreground.setX(1000);
-            holder.foreground.animate().translationXBy(-1000).setDuration(500);
+                holder.delete_background.setX(-1000);
+                holder.delete_background.animate().translationXBy(1000).setDuration(500);
+                holder.foreground.setX(-1000);
+                holder.foreground.animate().translationXBy(1000).setDuration(500);
+            } else {
 
-        }
+                holder.delete_background.setX(1000);
+                holder.delete_background.animate().translationXBy(-1000).setDuration(500);
+                holder.foreground.setX(1000);
+                holder.foreground.animate().translationXBy(-1000).setDuration(500);
 
-        //
+            }
+
+            //
 
 //        holder.foreground.setScaleX(.9f);
 //        holder.foreground.setScaleY(.9f);
@@ -77,59 +79,83 @@ public class rec_Basket_Adapter extends RecyclerView.Adapter<rec_Basket_Adapter.
 //        holder.delete_background.animate().scaleX(1f).scaleY(1f).setDuration(500);
 
 
-        Glide // fast to get Item in Local //Picasso is the faster than glide from internet
-                .with(context)
-                .load(sqlProducts.get(position).getImage_Url())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(holder.Product_Image);
+            Glide // fast to get Item in Local //Picasso is the faster than glide from internet
+                    .with(context)
+                    .load(sqlProducts.get(position).getImage_Url())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.Product_Image);
 
-        holder.productName.setText(sqlProducts.get(position).getBasketName());
-        holder.quantity.setText(sqlProducts.get(position).getBasketQuantity()+"");
-        holder.product_company.setText(sqlProducts.get(position).getBrand()+"");
-        final double price = sqlProducts.get(position).getPrice() *  Integer.parseInt(sqlProducts.get(position).getBasketQuantity());
-        holder.Price.setText(price +" L.E");
-
-
-        holder.add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int count = Integer.parseInt(holder.quantity.getText().toString());
-
-                count++;
-                holder.quantity.setText(count+"");
-
-                double price = sqlProducts.get(position).getPrice() *  count ;
-                holder.Price.setText(price +" L.E");
-
-                Update_Quantity(sqlProducts.get(position).getSqlID(),holder.quantity.getText().toString());
-                //Update Total
-                Intent intent = new Intent("Update");
-                context.sendBroadcast(intent);
+            holder.productName.setText(sqlProducts.get(position).getBasketName());
+            holder.quantity.setText(sqlProducts.get(position).getBasketQuantity() + "");
+            holder.product_company.setText(sqlProducts.get(position).getBrand() + "");
+            final double price = sqlProducts.get(position).getPrice() * Integer.parseInt(sqlProducts.get(position).getBasketQuantity());
+            holder.Price.setText(price + " L.E");
 
 
+            holder.add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int count = Integer.parseInt(holder.quantity.getText().toString());
 
-            }
-        });
-        holder.min.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int count = Integer.parseInt(holder.quantity.getText().toString());
-                if(count > 1 ) {
-                    count--;
+                    count++;
                     holder.quantity.setText(count + "");
-                    double price = sqlProducts.get(position).getPrice() *  count ;
-                    holder.Price.setText(price +" L.E");
-                    Update_Quantity(sqlProducts.get(position).getSqlID(),holder.quantity.getText().toString());
 
+                    double price = sqlProducts.get(position).getPrice() * count;
+                    holder.Price.setText(price + " L.E");
+
+                    Update_Quantity(sqlProducts.get(position).getSqlID(), holder.quantity.getText().toString());
                     //Update Total
                     Intent intent = new Intent("Update");
                     context.sendBroadcast(intent);
+
+
                 }
+            });
+            holder.min.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int count = Integer.parseInt(holder.quantity.getText().toString());
+                    if (count > 1) {
+                        count--;
+                        holder.quantity.setText(count + "");
+                        double price = sqlProducts.get(position).getPrice() * count;
+                        holder.Price.setText(price + " L.E");
+                        Update_Quantity(sqlProducts.get(position).getSqlID(), holder.quantity.getText().toString());
 
-            }
-        });
+                        //Update Total
+                        Intent intent = new Intent("Update");
+                        context.sendBroadcast(intent);
+                    }
 
+                }
+            });
 
+        }
+        else {
+
+            holder1.add.setVisibility(View.GONE);
+            holder1.min.setVisibility(View.GONE);
+            Glide // fast to get Item in Local //Picasso is the faster than glide from internet
+                    .with(context)
+                    .load(sqlProducts.get(position1).getImage_Url())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder1.Product_Image);
+
+            holder1.productName.setText(sqlProducts.get(position1).getBasketName());
+            holder1.quantity.setText(sqlProducts.get(position1).getBasketQuantity() + "");
+            holder1.product_company.setText(sqlProducts.get(position1).getBrand() + "");
+            final double price = sqlProducts.get(position1).getPrice() * Integer.parseInt(sqlProducts.get(position1).getBasketQuantity());
+            holder1.Price.setText(price + " L.E");
+
+            //Delete LeftMargin
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+            );
+            params.setMargins(0, 0, 0, 0);
+            holder1.foreground.setLayoutParams(params);
+
+        }
     }
 
     @Override

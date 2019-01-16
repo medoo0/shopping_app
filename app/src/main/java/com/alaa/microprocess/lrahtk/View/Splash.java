@@ -34,36 +34,16 @@ public class Splash extends AppCompatActivity {
           // ButterKnife initial .
           ButterKnife.bind(this);
 
+          progress();
 
 
 
+        lrahtk_img.setScaleX(.5f);
+        lrahtk_img.setScaleY(.5f);
+        lrahtk_img.animate().alpha(1).scaleX(1f).scaleY(1f).setDuration(500);
 
           //animate
-           lrahtk_img.setX( -300 );
-           lrahtk_img.animate().translationXBy(300).setDuration(500).setListener(new Animator.AnimatorListener() {
-               @Override
-               public void onAnimationStart(Animator animator) {
-
-               }
-
-               @Override
-               public void onAnimationEnd(Animator animator) {
-
-                   progress();
-
-               }
-
-               @Override
-               public void onAnimationCancel(Animator animator) {
-
-               }
-
-               @Override
-               public void onAnimationRepeat(Animator animator) {
-
-               }
-           });
-
+        lrahtk_img.animate().rotation(360).setDuration(1000);
 
 
     }
@@ -72,7 +52,7 @@ public class Splash extends AppCompatActivity {
        progress.setAlpha(.5f);
        progress.setVisibility(View.VISIBLE);
 
-       progress.animate().alpha(1).setDuration(2000).setListener(new Animator.AnimatorListener() {
+       progress.animate().alpha(1).setDuration(3000).setListener(new Animator.AnimatorListener() {
            @Override
            public void onAnimationStart(Animator animator) {
 
