@@ -25,6 +25,7 @@ import com.alaa.microprocess.lrahtk.pojo.SqlProduct;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressLint("ValidFragment")
 public class Suring_Paying extends Fragment implements View.OnClickListener {
 
     RecyclerView myRec;

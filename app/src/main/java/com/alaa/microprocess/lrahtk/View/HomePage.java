@@ -24,6 +24,7 @@ import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.Fragment.Basket;
+import com.alaa.microprocess.lrahtk.Fragment.Gift;
 import com.alaa.microprocess.lrahtk.Fragment.MainPage_Fragment;
 import com.alaa.microprocess.lrahtk.Fragment.Search;
 import com.alaa.microprocess.lrahtk.R;
@@ -334,7 +335,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
                 case R.id.gifts:
                     getSupportFragmentManager().popBackStack(); //finish
-                    Toast.makeText(HomePage.this, "العروض لسه حنفتح فرااااج بردو ", Toast.LENGTH_SHORT).show();
+                    getSupportFragmentManager().popBackStack(); //finish
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.replaceByFragment, new Gift())
+                            .commit();
                     return true;
 
                 case R.id.basket :

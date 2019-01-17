@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.alaa.microprocess.lrahtk.R;
 
 
+@SuppressLint("ValidFragment")
 public class ThanksOrder extends Fragment {
 
     String orderID;

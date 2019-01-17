@@ -41,6 +41,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+@SuppressLint("ValidFragment")
 public class Paying_Fragment extends Fragment  implements View.OnClickListener{
 
 

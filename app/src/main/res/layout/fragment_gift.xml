@@ -1,0 +1,111 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color3"
+    tools:context="com.alaa.microprocess.lrahtk.Fragment.Gift">
+
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="false"
+        android:scrollbars="none"
+        android:fillViewport="true"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/ic_frame"
+                android:src="@drawable/ic_user"
+                android:padding="28dp"
+                />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TI1"
+                android:layout_below="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_margin="20dp"
+                android:background="@android:color/white"
+                app:hintTextAppearance="@style/HintText"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/StudentName"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:drawablePadding="30dp"
+                    android:hint="@string/StudentName"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/blue"
+                    android:maxLines="1"
+                    android:fontFamily="@font/cairo"
+                    android:textDirection="rtl"
+                    android:gravity="start|center_vertical"
+                    android:textSize="20sp"
+                    android:background="@android:color/white"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TI2"
+                android:layout_below="@+id/TI1"
+                android:layout_width="match_parent"
+                android:layout_margin="20dp"
+                android:background="@android:color/white"
+                app:hintTextAppearance="@style/HintText"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:drawablePadding="30dp"
+                    android:hint="@string/Class"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/blue"
+                    android:maxLines="1"
+                    android:fontFamily="@font/cairo"
+                    android:textDirection="rtl"
+                    android:gravity="start|center_vertical"
+                    android:textSize="20sp"
+                    android:background="@android:color/white"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:singleLine="true" />
+
+
+            </android.support.design.widget.TextInputLayout>
+            <Button
+                android:layout_below="@+id/TI2"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="20sp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/cairo"
+                android:text="@string/Order"
+                android:textSize="22sp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+
+
+
+
+    </ScrollView>
+
+</FrameLayout>
