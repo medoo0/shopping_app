@@ -2,7 +2,6 @@ package com.alaa.microprocess.lrahtk.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +29,7 @@ import com.alaa.microprocess.lrahtk.Fragment.Search;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.pojo.Categories;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -123,13 +123,29 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         Call<List<com.alaa.microprocess.lrahtk.pojo.Categories>> call = client.getCategories();
         call.enqueue(new Callback<List<com.alaa.microprocess.lrahtk.pojo.Categories>>() {
             @Override
-            public void onResponse(@NonNull Call<List<Categories>> call,@NonNull Response<List<Categories>> response) {
+            public void onResponse(@NonNull Call<List<Categories>> call, @NonNull Response<List<Categories>> response) {
 
+                List<Categories> parent = new ArrayList<>();
+                List<Categories> childs = new ArrayList<>();
+                 for (int i = 0; i < response.body().size(); i++) {
+
+                    if (response.body().get(i).getParent() == null) {
+                        parent.add(response.body().get(i));
+                    }
+                    else {
+
+                        childs.add(response.body().get(i));
+                    }
+
+
+                }
 
                 //adapter (Navigation Drawer)
-                postAdapter = new Rec_Nav_Adapter(response.body(),HomePage.this,HomePage.this);
+                postAdapter = new Rec_Nav_Adapter(parent,childs,HomePage.this,HomePage.this);
                 Rec_Nav.setLayoutManager(new LinearLayoutManager(HomePage.this));
                 Rec_Nav.setAdapter(postAdapter);
+
+
 
 
 

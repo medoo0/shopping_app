@@ -82,7 +82,7 @@ public class MainPage_Fragment extends Fragment {
 
         recitems = v.findViewById(R.id.recitems);
         recitems.setNestedScrollingEnabled(false);
-        ShowIteminYellowRec();
+       ShowIteminYellowRec();
         showItemsinREC();
 
 
@@ -179,9 +179,23 @@ public void ShowIteminYellowRec(){
         @Override
         public void onResponse(@NonNull Call<List<Categories>> call, @NonNull Response<List<Categories>> response) {
 
+            List<Categories> parent = new ArrayList<>();
+            List<Categories> childs = new ArrayList<>();
+            for (int i = 0; i < response.body().size(); i++) {
+
+                if (response.body().get(i).getParent() == null) {
+                    parent.add(response.body().get(i));
+                }
+                else {
+
+                    childs.add(response.body().get(i));
+                }
+
+
+            }
 
             //adapter (Yellow Circles)
-            Rec_Nav_Adapter2 rec_items_adapter = new Rec_Nav_Adapter2(response.body(),getActivity(), (HomePageContract.viewMain) getActivity());
+            Rec_Nav_Adapter2 rec_items_adapter = new Rec_Nav_Adapter2(childs,getActivity(), (HomePageContract.viewMain) getActivity());
             rec_items_adapter.notifyDataSetChanged();
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),5);
             yellowCircle_rec.setLayoutManager(gridLayoutManager);

@@ -1,6 +1,5 @@
 package com.alaa.microprocess.lrahtk.ApiClient;
 
-import com.alaa.microprocess.lrahtk.pojo.Basket;
 import com.alaa.microprocess.lrahtk.pojo.Categories;
 import com.alaa.microprocess.lrahtk.pojo.LoginForm;
 import com.alaa.microprocess.lrahtk.pojo.Order;
@@ -14,8 +13,6 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 

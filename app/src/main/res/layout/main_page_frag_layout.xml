@@ -46,7 +46,8 @@
                 android:id="@+id/search_image"
                 android:layout_width="300dp"
                 android:layout_gravity="center"
-                android:src="@drawable/search"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_search"
                 android:layout_height="60dp" />
 
 

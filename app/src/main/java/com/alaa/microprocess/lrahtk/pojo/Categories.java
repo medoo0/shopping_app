@@ -5,6 +5,8 @@ package com.alaa.microprocess.lrahtk.pojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Categories {
 
 
@@ -33,6 +35,7 @@ public class Categories {
         @SerializedName("id")
         @Expose
         private String id;
+
 
         public String getDescription() {
             return description;
