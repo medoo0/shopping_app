@@ -19,7 +19,7 @@ public class Saving_Titles_Fragment extends Fragment {
 
     String [] names = {"MohamedRaslan" , "AlaaDaher","MostfaRaslan"};
     String [] adddress = {"Egypt-Cairo" , "Qweet","Qater_Q_aaa"};
-    String [] phone = {"01025458555" , "4568855544454","525555555555"};
+    String [] phone = {"0458555fff" , "4568855544454","525555555555"};
 
 
 

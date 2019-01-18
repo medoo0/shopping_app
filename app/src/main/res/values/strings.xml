@@ -52,6 +52,7 @@ places at once, so you only have one bag.
     <string name="StudentName">اسم الطالب</string>
     <string name="Class">الفصل</string>
     <string name="Order">اطلب الان</string>
+    <string name="offers">العروض</string>
 
 
 </resources>

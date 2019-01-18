@@ -183,7 +183,8 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
             getBasketList();
             //  Recycler adapter .
             adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct,false);
-            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            //recyclerView.setAdapter(adapter);
 
 
             //get total again
@@ -237,7 +238,9 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
                 getBasketList();
                 //  Recycler adapter .
                 adapter = new rec_Basket_Adapter(getActivity(), BasketTableName, sqlProduct,false);
-                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                //recyclerView.setAdapter(adapter);
+
 
 
                 //get total again

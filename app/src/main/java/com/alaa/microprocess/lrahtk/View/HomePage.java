@@ -24,6 +24,7 @@ import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.Fragment.Basket;
+import com.alaa.microprocess.lrahtk.Fragment.Featured;
 import com.alaa.microprocess.lrahtk.Fragment.Gift;
 import com.alaa.microprocess.lrahtk.Fragment.MainPage_Fragment;
 import com.alaa.microprocess.lrahtk.Fragment.Search;
@@ -141,13 +142,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
                 }
 
-                //adapter (Navigation Drawer)
-                postAdapter = new Rec_Nav_Adapter(parent,childs,HomePage.this,HomePage.this);
-                Rec_Nav.setLayoutManager(new LinearLayoutManager(HomePage.this));
-                Rec_Nav.setAdapter(postAdapter);
+                if(!HomePage.this.isFinishing()) {
+                    //adapter (Navigation Drawer)
+                    postAdapter = new Rec_Nav_Adapter(parent, childs, HomePage.this, HomePage.this);
+                    Rec_Nav.setLayoutManager(new LinearLayoutManager(HomePage.this));
+                    Rec_Nav.setAdapter(postAdapter);
 
 
-
+                }
 
 
 
@@ -330,11 +332,13 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
                 case R.id.action_message:
                     getSupportFragmentManager().popBackStack(); //finish
-                    Toast.makeText(HomePage.this, "العروض لسه حنفتح فرااااج", Toast.LENGTH_SHORT).show();
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.replaceByFragment, new Featured())
+                            .commit();
                     return true;
 
                 case R.id.gifts:
-                    getSupportFragmentManager().popBackStack(); //finish
                     getSupportFragmentManager().popBackStack(); //finish
                     getSupportFragmentManager()
                             .beginTransaction()
@@ -385,6 +389,7 @@ private void open_Navigation_drawer(){
         LastLinear.setVisibility(View.VISIBLE);
     }
 }
+
 
 }
 

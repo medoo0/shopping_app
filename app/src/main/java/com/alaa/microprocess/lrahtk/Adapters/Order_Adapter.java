@@ -15,7 +15,7 @@ public class Order_Adapter extends RecyclerView.Adapter<Order_Adapter.Holder> {
 
     private Context context;
      // three array until getting the real data from Api
-    private String [] orderTime ,orderId,userwantordernoworafterThat;
+    private String []  orderTime  ,  orderId  ,  userwantordernoworafterThat ;
 
 
     public Order_Adapter(Context context, String[] orderTime, String[] orderId, String[] userwantordernoworafterThat) {
@@ -47,14 +47,14 @@ public class Order_Adapter extends RecyclerView.Adapter<Order_Adapter.Holder> {
         return orderId.length;
     }
 
-    public static class Holder extends RecyclerView.ViewHolder{
+     static class Holder extends RecyclerView.ViewHolder{
 
 
         TextView dataofProduct,idofProduct,whatqwayuserWantProduct;
 
 
 
-        public Holder(View itemView) {
+         Holder(View itemView) {
 
             super(itemView);
             dataofProduct           = itemView.findViewById(R.id.dataofProduct);
