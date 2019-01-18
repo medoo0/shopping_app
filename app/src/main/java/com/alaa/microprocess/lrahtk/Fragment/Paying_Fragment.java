@@ -2,6 +2,7 @@ package com.alaa.microprocess.lrahtk.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -153,6 +154,10 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
                             payView.showThanksOrder(response.body().getId());
 
 
+                            //delete Basket
+                            db.execSQL("delete from "+BasketTableName );
+                            Intent intent = new Intent("Refresh");
+                            getActivity().sendBroadcast(intent);
 
                         }
                         else {
