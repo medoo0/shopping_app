@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter2;
@@ -57,6 +58,9 @@ public class MainPage_Fragment extends Fragment {
     @BindView(R.id.Indictor)
     CircleIndicator circleIndicator;
 
+    @BindView(R.id.Btn_offers)
+    Button Btn_offers;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -86,7 +90,17 @@ public class MainPage_Fragment extends Fragment {
         showItemsinREC();
 
 
-
+        Btn_offers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().popBackStack(); //finish
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.replaceByFragment, new Gift())
+                        .commit();
+                HomePage.select_bottomNav(R.id.gifts);
+            }
+        });
 
         Search_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +111,7 @@ public class MainPage_Fragment extends Fragment {
                         .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
                         .replace(R.id.replaceByFragment, new Search())
                         .commit();
+                HomePage.select_bottomNav(R.id.search);
             }
         });
 

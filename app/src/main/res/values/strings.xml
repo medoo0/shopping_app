@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MAKTBTK</string>
+    <string name="app_name">مكتبتك</string>
     <string name="getstarted">GET STARTED</string>
     <string name="getstarted1">Welcome to </string>
     <string name="getstarted2"> MAKTBTK</string>
@@ -53,6 +53,9 @@ places at once, so you only have one bag.
     <string name="Class">الفصل</string>
     <string name="Order">اطلب الان</string>
     <string name="offers">العروض</string>
+    <string name="Categories">الاقسام</string>
+    <string name="price">السعر</string>
+    <string name="filterBy">تصفية حسب</string>
 
 
 </resources>

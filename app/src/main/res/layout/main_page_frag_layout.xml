@@ -71,14 +71,13 @@
                     />
 
                 <Button
-
+                    android:id="@+id/Btn_offers"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="20sp"
                     android:background="@drawable/button_background"
                     android:fontFamily="@font/cairo"
-                    android:text="عرض اليوم"
-
+                    android:text="اطلب هديتك"
                     android:textColor="@android:color/white" />
 
 

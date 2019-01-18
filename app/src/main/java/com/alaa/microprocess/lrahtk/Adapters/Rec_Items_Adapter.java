@@ -50,16 +50,16 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
     public Rec_Items_Adapter(List<Products> products , Context context ) {
     this.context = context;
     this.products = products;
-    this.helper   = new FavHelper(context);
-    this.db       = helper.getWritableDatabase();
+    helper   = new FavHelper(context);
+    db       = helper.getWritableDatabase();
     preferences = context.getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
 
         if (preferences.getString("AreInOrNot","").equals("IN")){
 
-
             UserID      = preferences.getString("id","");
             TableName = "T"+UserID;
             BasketTableName = "B"+UserID;
+
         }
     }
 

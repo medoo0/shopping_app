@@ -23,6 +23,7 @@ import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
+import com.alaa.microprocess.lrahtk.Dialog.AlertDialog;
 import com.alaa.microprocess.lrahtk.Fragment.Basket;
 import com.alaa.microprocess.lrahtk.Fragment.Featured;
 import com.alaa.microprocess.lrahtk.Fragment.Gift;
@@ -65,7 +66,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
         Toolbar toolbar;
         Rec_Nav_Adapter postAdapter;
-        BottomNavigationView BottomNavigationView;
+        static BottomNavigationView BottomNavigationView;
+
 
         int dp200_To_pixel = 0 ;
         boolean NavIsOpened = false ;
@@ -389,8 +391,28 @@ private void open_Navigation_drawer(){
         LastLinear.setVisibility(View.VISIBLE);
     }
 }
+    public static   void select_bottomNav(int ID){
 
+        BottomNavigationView.setSelectedItemId(ID);
+    }
 
+    @Override
+    public void onBackPressed() {
+        final AlertDialog alertDialog = new AlertDialog(this, "تأكيد","هل انت متأكد من الخروج ؟");
+        alertDialog.show();
+        alertDialog.btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.btnYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
 }
 
 
