@@ -297,9 +297,20 @@ public void ShowIteminYellowRec(){
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
         if (broadcastReceiver != null) {
-            Log.d("Dest","Destroyed");
-            getActivity().unregisterReceiver(broadcastReceiver);
+            try {
+                getActivity().unregisterReceiver(broadcastReceiver);
+            }
+            catch (Exception e){
+
+            }
         }
     }
 }

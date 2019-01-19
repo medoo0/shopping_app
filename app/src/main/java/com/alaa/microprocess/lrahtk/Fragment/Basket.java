@@ -256,7 +256,13 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
     public void onDestroy() {
         super.onDestroy();
         if (broadcastReceiver != null) {
-            getActivity().unregisterReceiver(broadcastReceiver);
+            try {
+                getActivity().unregisterReceiver(broadcastReceiver);
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
     }
