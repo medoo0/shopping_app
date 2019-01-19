@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
+import com.alaa.microprocess.lrahtk.Contract.SearchInterface;
+import com.alaa.microprocess.lrahtk.Fragment.Search;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.pojo.Categories;
 
@@ -31,10 +33,11 @@ public class Checked_Categories_Adapter extends RecyclerView.Adapter<Checked_Cat
     List<Categories>  childs ;
 
     Context context;
-
-    public Checked_Categories_Adapter(List<Categories> childs, Context context ) {
+    SearchInterface searchInterface ;
+    public Checked_Categories_Adapter(List<Categories> childs, Context context, SearchInterface searchInterface) {
         this.context = context;
         this.childs = childs;
+        this.searchInterface = searchInterface;
     }
 
     @Override
@@ -44,13 +47,19 @@ public class Checked_Categories_Adapter extends RecyclerView.Adapter<Checked_Cat
     }
 
     @Override
-    public void onBindViewHolder( ViewHolder holder,  int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
 
         holder.checkbox.setText(childs.get(position).getName());
         holder.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(holder.checkbox.isChecked()){
+                    searchInterface.AddinCategoryIDsList(childs.get(position).getId());
+                }
+                else {
+                    searchInterface.RemoveFromCategoryIDsList(childs.get(position).getId());
+                }
 
             }
         });

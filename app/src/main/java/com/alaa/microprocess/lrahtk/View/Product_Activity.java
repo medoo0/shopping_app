@@ -10,6 +10,7 @@ import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter;
@@ -107,31 +108,36 @@ public class Product_Activity extends AppCompatActivity implements View.OnClickL
         call.enqueue(new Callback<List<Products>>() {
             @Override
             public void onResponse(@NonNull Call<List<Products>> call, @NonNull Response<List<Products>> response) {
+                if(response.isSuccess()) {
+                    List<Products> filterProduct = new ArrayList<>();
+                    for (int i = 0; i < response.body().size(); i++) {
 
-                List<Products> filterProduct = new ArrayList<>();
-                for (int i = 0 ; i<response.body().size(); i++){
+                        if (response.body().get(i).getCategory().getId().equals(ID)) {
+                            filterProduct.add(response.body().get(i));
+                        }
+                        if (i == response.body().size() - 1) {
+                            dialog.Close_Dialog();
+                        }
+                    }
 
-                    if(response.body().get(i).getCategory().getId().equals(ID)){
-                        filterProduct.add(response.body().get(i));
-                    }
-                    if(i == response.body().size() - 1){
-                        dialog.Close_Dialog();
-                    }
+
+                    //adapter
+                    adapter = new Rec_Items_Adapter(filterProduct, Product_Activity.this);
+                    adapter.notifyDataSetChanged();
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(Product_Activity.this, 2);
+                    rectwo.setLayoutManager(gridLayoutManager);
+                    rectwo.setAdapter(adapter);
                 }
-
-
-        //adapter
-        adapter = new Rec_Items_Adapter(filterProduct,Product_Activity.this);
-                adapter.notifyDataSetChanged();
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(Product_Activity.this,2);
-        rectwo.setLayoutManager(gridLayoutManager);
-        rectwo.setAdapter(adapter);
-
+                else {
+                    dialog.Close_Dialog();
+                    Toast.makeText(Product_Activity.this, "حدث خطأ الرجاء المحاولة مرة اخري .", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<List<Products>> call, @NonNull Throwable t) {
                 dialog.Close_Dialog();
+                Toast.makeText(Product_Activity.this, "الرجاء التحقق من اتصالك .", Toast.LENGTH_LONG).show();
             }
         });
 

@@ -7,6 +7,7 @@ import com.alaa.microprocess.lrahtk.pojo.Products;
 import com.alaa.microprocess.lrahtk.pojo.RegisterResponse;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -14,6 +15,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 
 
 public interface ApiMethod {
@@ -50,6 +52,9 @@ public interface ApiMethod {
 
     @GET("products")
     Call<List<Products>> getProducts();
+
+    @GET("products")
+    Call<List<Products>> getProducts(@QueryMap Map<String, String> params);
 
 
 
