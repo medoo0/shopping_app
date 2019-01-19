@@ -48,16 +48,24 @@
         android:layout_height="50dp"
         android:layout_weight="9"/>
 
-    <ImageView
-        android:id="@+id/searchindadding"
-        android:layout_width="50dp"
-        android:src="@drawable/ic_search_black_24dp"
-        android:layout_height="50dp"
-        android:scaleType="centerInside"
-        android:layout_margin="10dp"
+    <!--<ImageView-->
+        <!--android:id="@+id/searchindadding"-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:scaleType="centerInside"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:layout_weight="1"-->
+        <!--/>-->
+    <ProgressBar
         android:layout_weight="1"
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/CircularProgress2"
+        style="?android:attr/progressBarStyleSmall"
+        android:visibility="invisible"
+        android:layout_marginEnd="13dp"
         />
-
 
 </LinearLayout>
 
@@ -83,11 +91,13 @@
 
 
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_below="@+id/toobar1"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         >
 
 
@@ -97,7 +107,6 @@
             android:id="@+id/rectwo"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             >
 
 
@@ -108,9 +117,7 @@
 
 
 
-
-
-    </FrameLayout>
+    </LinearLayout>
 
 
 

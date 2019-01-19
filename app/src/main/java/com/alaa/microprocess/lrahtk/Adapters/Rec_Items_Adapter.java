@@ -202,6 +202,14 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
         return products.size();
     }
 
+    public void addMoreItems(List<Products> products){
+
+        this.products.addAll(products);
+        if (products.size() != 0) {
+            notifyItemInserted(this.products.size() - 1);
+        }
+    }
+
     public static class Holder extends RecyclerView.ViewHolder{
 
         CardView relative;
@@ -294,5 +302,6 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
             }
 
         }
+
 
 }

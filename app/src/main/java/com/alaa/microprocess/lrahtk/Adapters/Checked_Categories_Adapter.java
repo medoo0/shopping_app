@@ -1,6 +1,7 @@
 package com.alaa.microprocess.lrahtk.Adapters;
 
 import android.content.Context;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -49,7 +50,7 @@ public class Checked_Categories_Adapter extends RecyclerView.Adapter<Checked_Cat
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-
+        holder.checkbox.setTypeface(ResourcesCompat.getFont(context, R.font.cairo));
         holder.checkbox.setText(childs.get(position).getName());
         holder.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

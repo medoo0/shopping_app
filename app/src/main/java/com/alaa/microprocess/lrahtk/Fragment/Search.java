@@ -20,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +61,10 @@ public class Search extends Fragment implements SearchInterface{
     ArrayList<String> CategoriesIDs ;
     AnimatedDialog dialog;
     int PerPage = 10 , Page = 0 ;
-
+    ProgressBar progress;
+    boolean isThatyourfirstTime = true ,ListaFinished = false;
+    Rec_Items_Adapter adapter;
+    GridLayoutManager gridLayoutManager;
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -85,12 +89,14 @@ public class Search extends Fragment implements SearchInterface{
         Linear2 = view.findViewById(R.id.Linear2);
         Linear1 = view.findViewById(R.id.Linear1);
         searchView = view.findViewById(R.id.search);
+        progress =view.findViewById(R.id.progress);
         LinearRec = view.findViewById(R.id.LinearRec);
         CategoriesIDs = new ArrayList<>();
         dialog = new AnimatedDialog(getActivity());
         allChecked = view.findViewById(R.id.allChecked);
         downtoup = AnimationUtils.loadAnimation(getActivity(), R.anim.downtoup);
         uptodown = AnimationUtils.loadAnimation(getActivity(), R.anim.uptodown);
+
         // make sure if toobar is shown or not
         HomePageContract.viewMain viewMain = (HomePageContract.viewMain) getActivity();
 
@@ -113,7 +119,10 @@ public class Search extends Fragment implements SearchInterface{
                         Toast.makeText(getActivity(), "الرجاء اختيار القسم", Toast.LENGTH_SHORT).show();
                     }
                     else {
-
+                        Page = 0 ;
+                        isThatyourfirstTime = true ;
+                        ListaFinished = false ;
+                        dialog.ShowDialog();
                         SendRequest(Cat);
                     }
 
@@ -181,30 +190,47 @@ public class Search extends Fragment implements SearchInterface{
             }
         });
 
-        //adapter Rec
-
+        //adapter Rec Checked Categories .
         Checked_Categories_Adapter adapter = new Checked_Categories_Adapter(HomePage.getChildren(),getActivity(),this);
         rec_categories.setLayoutManager(new LinearLayoutManager(getActivity()));
         rec_categories.setAdapter(adapter);
 
 
+        ///pagination
+        gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+        rec_search.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (gridLayoutManager.findLastCompletelyVisibleItemPosition() == recyclerView.getAdapter().getItemCount() - 1) {
+                    if(!ListaFinished) {
+                        Page++;
+                        SendRequest(SerializeCategories(CategoriesIDs));
+                        progress.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
 
 
         return view ;
     }
 
-    private void SendRequest(String Cat) {
+    private void SendRequest(String SerializedCategories) {
         //لزم نضافة  .
         BtnCancel.setVisibility(View.GONE);
         Linear2.setVisibility(View.GONE);
         BtnFilter.setText(R.string.filter);
         Linear1.setVisibility(View.VISIBLE);
 
-        dialog.ShowDialog();
+
 
 
         Map<String,String> map = new HashMap<>();
-        map.put("category",Cat);
+        map.put("category",SerializedCategories);
         map.put("perPage", String.valueOf(PerPage));
         map.put("page", String.valueOf(Page));
 
@@ -224,12 +250,26 @@ public class Search extends Fragment implements SearchInterface{
             public void onResponse(Call<List<Products>> call, Response<List<Products>> response) {
                 if(response.isSuccess()){
 
-                    //adapter.
-                    Rec_Items_Adapter adapter = new Rec_Items_Adapter(response.body(), getActivity());
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
-                    rec_search.setLayoutManager(gridLayoutManager);
-                    rec_search.setAdapter(adapter);
+                    if(isThatyourfirstTime) {
+                        //adapter.
+                        rec_search.removeAllViews();
+                        adapter = new Rec_Items_Adapter(response.body(), getActivity());
+                        adapter.notifyDataSetChanged();
 
+                        rec_search.setLayoutManager(gridLayoutManager);
+                        rec_search.setAdapter(adapter);
+                        isThatyourfirstTime = false ;
+                    }
+                    else {
+
+                        adapter.addMoreItems(response.body());
+                        progress.setVisibility(View.INVISIBLE);
+
+                        if(response.body().size() < PerPage){
+                            ListaFinished = true ;
+                        }
+
+                    }
 
                     dialog.Close_Dialog();
                 }
