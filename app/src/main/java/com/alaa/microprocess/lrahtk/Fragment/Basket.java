@@ -53,8 +53,9 @@ public class Basket extends Fragment implements RecyclerItemTouchHelper.Recycler
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
+
+        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_basket, container, false);
         HomePage.texttoolbar.setText(getString(R.string.buying));
         HomePageContract.viewMain viewMain = (HomePageContract.viewMain) getActivity();

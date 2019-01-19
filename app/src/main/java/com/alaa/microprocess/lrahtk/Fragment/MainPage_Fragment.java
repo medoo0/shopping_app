@@ -1,6 +1,10 @@
 package com.alaa.microprocess.lrahtk.Fragment;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +21,7 @@ import android.widget.ImageView;
 
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter2;
 import com.alaa.microprocess.lrahtk.Adapters.SlideShowAdapter;
+import com.alaa.microprocess.lrahtk.Adapters.rec_Basket_Adapter;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
@@ -26,6 +31,7 @@ import com.alaa.microprocess.lrahtk.pojo.Categories;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -188,41 +194,48 @@ public class MainPage_Fragment extends Fragment {
 
 public void ShowIteminYellowRec(){
 
-    ApiMethod client = ApiRetrofit.getRetrofit().create(ApiMethod.class);
-    Call<List<Categories>> call = client.getCategories();
-    call.enqueue(new Callback<List<Categories>>() {
-        @Override
-        public void onResponse(@NonNull Call<List<Categories>> call, @NonNull Response<List<Categories>> response) {
+    //adapter (Yellow Circles)
+    Rec_Nav_Adapter2 rec_items_adapter = new Rec_Nav_Adapter2(HomePage.getChildren(),getActivity(), (HomePageContract.viewMain) getActivity());
+    rec_items_adapter.notifyDataSetChanged();
+    GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),5);
+    yellowCircle_rec.setLayoutManager(gridLayoutManager);
+    yellowCircle_rec.setAdapter(rec_items_adapter);
 
-            List<Categories> parent = new ArrayList<>();
-            List<Categories> childs = new ArrayList<>();
-            for (int i = 0; i < response.body().size(); i++) {
-
-                if (response.body().get(i).getParent() == null) {
-                    parent.add(response.body().get(i));
-                }
-                else {
-
-                    childs.add(response.body().get(i));
-                }
-
-
-            }
-
-            //adapter (Yellow Circles)
-            Rec_Nav_Adapter2 rec_items_adapter = new Rec_Nav_Adapter2(childs,getActivity(), (HomePageContract.viewMain) getActivity());
-            rec_items_adapter.notifyDataSetChanged();
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),5);
-            yellowCircle_rec.setLayoutManager(gridLayoutManager);
-            yellowCircle_rec.setAdapter(rec_items_adapter);
-
-        }
-
-        @Override
-        public void onFailure(@NonNull Call<List<Categories>> call, @NonNull Throwable t) {
-
-        }
-    });
+//    ApiMethod client = ApiRetrofit.getRetrofit().create(ApiMethod.class);
+//    Call<List<Categories>> call = client.getCategories();
+//    call.enqueue(new Callback<List<Categories>>() {
+//        @Override
+//        public void onResponse(@NonNull Call<List<Categories>> call, @NonNull Response<List<Categories>> response) {
+//
+//            List<Categories> parent = new ArrayList<>();
+//            List<Categories> childs = new ArrayList<>();
+//            for (int i = 0; i < response.body().size(); i++) {
+//
+//                if (response.body().get(i).getParent() == null) {
+//                    parent.add(response.body().get(i));
+//                }
+//                else {
+//
+//                    childs.add(response.body().get(i));
+//                }
+//
+//
+//            }
+//
+//            //adapter (Yellow Circles)
+//            Rec_Nav_Adapter2 rec_items_adapter = new Rec_Nav_Adapter2(childs,getActivity(), (HomePageContract.viewMain) getActivity());
+//            rec_items_adapter.notifyDataSetChanged();
+//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),5);
+//            yellowCircle_rec.setLayoutManager(gridLayoutManager);
+//            yellowCircle_rec.setAdapter(rec_items_adapter);
+//
+//        }
+//
+//        @Override
+//        public void onFailure(@NonNull Call<List<Categories>> call, @NonNull Throwable t) {
+//
+//        }
+//    });
 }
 
     public void showItemsinREC(){
@@ -257,5 +270,34 @@ public void ShowIteminYellowRec(){
 //        recitems.setLayoutManager(HorizontalLayout);
 //        recitems.setAdapter(rec_items_adapter);
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("Yellow");
+        getActivity().registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (Objects.equals(intent.getAction(), "Yellow")) {
+
+                ShowIteminYellowRec();
+
+            }
+
+
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (broadcastReceiver != null) {
+            getActivity().unregisterReceiver(broadcastReceiver);
+        }
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.alaa.microprocess.lrahtk.Adapters.Checked_Categories_Adapter;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.View.HomePage;
@@ -115,8 +117,17 @@ public class Search extends Fragment {
         });
 
 
+        //adapter Rec
+
+        Checked_Categories_Adapter adapter = new Checked_Categories_Adapter(HomePage.getChildren(),getActivity());
+        rec_categories.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rec_categories.setAdapter(adapter);
+
         return view ;
     }
+
+
+
 
     @Override
     public void onDestroy() {

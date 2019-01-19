@@ -75,7 +75,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         SharedPreferences.Editor editor;
         ImageView gotoPersonalData;
 
-
+        public static List<Categories> Children ;
         String email , id , name , phone ;
 
     @Override
@@ -87,6 +87,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         logout   = findViewById(R.id.logout);
         settings = findViewById(R.id.settings);
         toolbar    = findViewById(R.id.toolbar);
+        Children = new ArrayList<>();
         setSupportActionBar(toolbar);
         BottomNavigationView =  findViewById(R.id.custom_bottom_navigation);
         texttoolbar = findViewById(R.id.texttoolbar);
@@ -146,10 +147,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
                 if(!HomePage.this.isFinishing()) {
                     //adapter (Navigation Drawer)
+                    Children = childs;
                     postAdapter = new Rec_Nav_Adapter(parent, childs, HomePage.this, HomePage.this);
                     Rec_Nav.setLayoutManager(new LinearLayoutManager(HomePage.this));
                     Rec_Nav.setAdapter(postAdapter);
 
+                    //Yellow broadcast
+                    Intent intent = new Intent("Yellow");
+                    sendBroadcast(intent);
 
                 }
 
@@ -412,6 +417,11 @@ private void open_Navigation_drawer(){
                 finish();
             }
         });
+    }
+
+    public static List<Categories> getChildren(){
+
+        return Children;
     }
 }
 
