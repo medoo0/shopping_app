@@ -59,6 +59,8 @@ places at once, so you only have one bag.
     <string name="all">الكل</string>
     <string name="lessthan">اقل سعر</string>
     <string name="MoreThan">اكبر سعر</string>
+    <string name="school">المدرسة</string>
+    <string name="subject">المادة</string>
 
 
 </resources>

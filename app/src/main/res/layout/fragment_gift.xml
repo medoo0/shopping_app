@@ -37,7 +37,9 @@
                 android:id="@+id/TI1"
                 android:layout_below="@+id/photo"
                 android:layout_width="match_parent"
-                android:layout_margin="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
                 android:background="@android:color/white"
                 app:hintTextAppearance="@style/HintText"
                 android:gravity="end|center_vertical"
@@ -63,17 +65,51 @@
 
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/TI2"
+                android:id="@+id/TI3"
                 android:layout_below="@+id/TI1"
                 android:layout_width="match_parent"
-                android:layout_margin="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
                 android:background="@android:color/white"
                 app:hintTextAppearance="@style/HintText"
                 android:gravity="end|center_vertical"
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/school"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:drawablePadding="30dp"
+                    android:hint="@string/school"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/blue"
+                    android:maxLines="1"
+                    android:fontFamily="@font/cairo"
+                    android:textDirection="rtl"
+                    android:gravity="start|center_vertical"
+                    android:textSize="20sp"
+                    android:background="@android:color/white"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:singleLine="true" />
+
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TI2"
+                android:layout_below="@+id/TI3"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:background="@android:color/white"
+                app:hintTextAppearance="@style/HintText"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/classRoom"
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:drawablePadding="30dp"
@@ -92,11 +128,47 @@
 
 
             </android.support.design.widget.TextInputLayout>
-            <Button
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TI4"
                 android:layout_below="@+id/TI2"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:background="@android:color/white"
+                app:hintTextAppearance="@style/HintText"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/subject"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:drawablePadding="30dp"
+                    android:hint="@string/subject"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/blue"
+                    android:maxLines="1"
+                    android:fontFamily="@font/cairo"
+                    android:textDirection="rtl"
+                    android:gravity="start|center_vertical"
+                    android:textSize="20sp"
+                    android:background="@android:color/white"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:singleLine="true" />
+
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <Button
+                android:layout_below="@+id/TI4"
                 android:layout_width="200dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="20sp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/button_background"
                 android:fontFamily="@font/cairo"
                 android:text="@string/Order"
