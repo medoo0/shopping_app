@@ -15,6 +15,8 @@ import com.alaa.microprocess.lrahtk.Fragment.SignUp;
 import com.alaa.microprocess.lrahtk.Presenter.MainActivityPresenter;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.Fragment.SignIn;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
 
         }
+
 
 
 

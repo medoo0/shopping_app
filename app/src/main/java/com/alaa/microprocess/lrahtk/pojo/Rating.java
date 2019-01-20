@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName;
 public class Rating implements Parcelable {
     @SerializedName("rate")
     @Expose
-    private int rate;
+    private float rate;
     @SerializedName("length")
     @Expose
     private int length;
@@ -35,11 +35,11 @@ public class Rating implements Parcelable {
         }
     };
 
-    public int getRate() {
+    public float getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 
@@ -58,7 +58,7 @@ public class Rating implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(rate);
+        parcel.writeFloat(rate);
         parcel.writeInt(length);
     }
 }

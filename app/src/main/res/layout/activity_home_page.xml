@@ -154,6 +154,7 @@
             app:itemIconTint="@drawable/custom_navigation_selector"
             app:itemTextColor="@android:color/white"
             app:menu="@menu/bottom_navigation_main"
+            android:theme="@style/Widget.BottomNavigationView"
             />
 
         <LinearLayout

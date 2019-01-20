@@ -68,7 +68,6 @@
             android:layout_gravity="center_vertical"
             android:scaleType="fitXY"
             android:transitionName="transition"
-            android:src="@drawable/layer1"
 
             />
     </LinearLayout>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
@@ -46,6 +47,7 @@ public class Rec_Nav_Adapter2 extends RecyclerView.Adapter<Rec_Nav_Adapter2.View
 
         holder.Icon.setScaleX(.5f);
         holder.Icon.setScaleY(.5f);
+        holder.YellowName.setText(categories.get(position).getName());
         holder.Icon.animate().scaleX(1f).scaleY(1f).setDuration(500);
 
 
@@ -72,14 +74,14 @@ public class Rec_Nav_Adapter2 extends RecyclerView.Adapter<Rec_Nav_Adapter2.View
     public static class ViewHolder extends RecyclerView.ViewHolder   {
 
         ImageView Icon;
-
+        TextView YellowName;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
 
             Icon       = itemView.findViewById(R.id.Icon);
-
+            YellowName = itemView.findViewById(R.id.YellowName);
 
 
         }

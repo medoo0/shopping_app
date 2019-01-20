@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +21,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.alaa.microprocess.lrahtk.Adapters.Rec_Comments_Adapter;
+import com.alaa.microprocess.lrahtk.Adapters.Rec_Items_Adapter;
 import com.alaa.microprocess.lrahtk.Adapters.Rec_Nav_Adapter2;
 import com.alaa.microprocess.lrahtk.Adapters.SlideShowAdapter;
 import com.alaa.microprocess.lrahtk.Adapters.rec_Basket_Adapter;
@@ -28,25 +33,37 @@ import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.HomePageContract;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.View.HomePage;
+import com.alaa.microprocess.lrahtk.View.MainActivity;
+import com.alaa.microprocess.lrahtk.View.Product_Activity;
+import com.alaa.microprocess.lrahtk.View.ShowProduct;
 import com.alaa.microprocess.lrahtk.pojo.Categories;
+import com.alaa.microprocess.lrahtk.pojo.Comments;
+import com.alaa.microprocess.lrahtk.pojo.Products;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.relex.circleindicator.CircleIndicator;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainPage_Fragment extends Fragment {
 
-    ArrayList<String> items;
-    ArrayList<Integer> images;
-    ArrayList<String> productID;
 
     @BindView(R.id.yellowCircle_rec)
     RecyclerView yellowCircle_rec ;
@@ -67,7 +84,8 @@ public class MainPage_Fragment extends Fragment {
 
     @BindView(R.id.Btn_offers)
     Button Btn_offers;
-
+    SharedPreferences preferences ;
+    String UserID , FavTableName , BasketTableName , token ;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -87,14 +105,26 @@ public class MainPage_Fragment extends Fragment {
 
         Search_image  = v.findViewById(R.id.search_image);
 
-        items   = new ArrayList<>();
-        images  = new ArrayList<>();
-        productID= new ArrayList<>();
 
-        recitems = v.findViewById(R.id.recitems);
-        recitems.setNestedScrollingEnabled(false);
-       ShowIteminYellowRec();
-        showItemsinREC();
+        preferences = getActivity().getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
+
+        if (preferences.getString("AreInOrNot","").equals("IN")){
+
+            token = preferences.getString("Token","");
+            if(token.isEmpty()){
+               HomePage.logout();
+                getActivity().finish();
+                Intent intent = new Intent(getActivity() , MainActivity.class);
+                startActivity(intent);
+            }
+
+            UserID      = preferences.getString("id","");
+            FavTableName = "T"+UserID;
+            BasketTableName = "B"+UserID;
+        }
+
+        ShowIteminYellowRec();
+        ShowTopProduct();
 
 
         Btn_offers.setOnClickListener(new View.OnClickListener() {
@@ -199,6 +229,7 @@ public void ShowIteminYellowRec(){
     Rec_Nav_Adapter2 rec_items_adapter = new Rec_Nav_Adapter2(HomePage.getChildren(),getActivity(), (HomePageContract.viewMain) getActivity());
     rec_items_adapter.notifyDataSetChanged();
     GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),5);
+    yellowCircle_rec.hasFixedSize();
     yellowCircle_rec.setLayoutManager(gridLayoutManager);
     yellowCircle_rec.setAdapter(rec_items_adapter);
 
@@ -239,39 +270,6 @@ public void ShowIteminYellowRec(){
 //    });
 }
 
-    public void showItemsinREC(){
-
-//        items.add("لبن");
-//        items.add("شيكولاته");
-//        items.add("خبز");
-//        items.add("عصائر");
-//        items.add("زبادي");
-//        items.add("لبن");
-//        items.add("لبن");
-//        images.add(R.drawable.millkingone);
-//        images.add(R.drawable.checlotes);
-//        images.add(R.drawable.breads);
-//        images.add(R.drawable.drinks);
-//        images.add(R.drawable.johina);
-//        images.add(R.drawable.millkingone);
-//        images.add(R.drawable.millkingone);
-//        productID.add("1");
-//        productID.add("2");
-//        productID.add("3");
-//        productID.add("4");
-//        productID.add("5");
-//        productID.add("6");
-//        productID.add("7");
-//
-//
-//        Rec_Items_Adapter rec_items_adapter = new Rec_Items_Adapter(items,images,productID,getActivity(),dpwrite,dpread);
-//        rec_items_adapter.notifyDataSetChanged();
-//        LinearLayoutManager HorizontalLayout  =
-//                new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-//        recitems.setLayoutManager(HorizontalLayout);
-//        recitems.setAdapter(rec_items_adapter);
-
-    }
 
     @Override
     public void onStart() {
@@ -293,6 +291,72 @@ public void ShowIteminYellowRec(){
 
         }
     };
+
+    public void ShowTopProduct (){
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder client = new OkHttpClient.Builder();
+        client.readTimeout(60, TimeUnit.SECONDS);
+        client.writeTimeout(60, TimeUnit.SECONDS);
+        client.connectTimeout(60, TimeUnit.SECONDS);
+        client.addInterceptor(interceptor);
+        client.addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+
+                request = request
+                        .newBuilder()
+                        .addHeader("Content-Type","application/json")
+                        .addHeader("Authorization", "Bearer " + token)
+                        .build();
+
+                return chain.proceed(request);
+            }
+        });
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiRetrofit.API_BASE_URL)
+                .client(client.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        ApiMethod service = retrofit.create(ApiMethod.class);
+        Call<List<Products>> call = service.getTopProducts();
+        call.enqueue(new Callback<List<Products>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Products>> call, @NonNull Response<List<Products>> response) {
+                if(response.isSuccess()) {
+
+
+
+                        //adapter
+                    Rec_Items_Adapter   adapter = new Rec_Items_Adapter(response.body(), getActivity());
+                    adapter.notifyDataSetChanged();
+                    recitems.setLayoutManager(new GridLayoutManager(getActivity(),2));
+                    recitems.setAdapter(adapter);
+
+
+                }
+                else {
+
+                   // Toast.makeText(getActivity(), "حدث خطأ الرجاء المحاولة مرة اخري .", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Products>> call, @NonNull Throwable t) {
+
+                //Toast.makeText(getActivity(), "الرجاء التحقق من اتصالك .", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+
+    }
 
     @Override
     public void onDestroy() {

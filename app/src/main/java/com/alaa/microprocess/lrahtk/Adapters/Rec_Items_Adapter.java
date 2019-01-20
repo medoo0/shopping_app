@@ -85,14 +85,7 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
 
         Glide.with(context)
                 .load(ApiRetrofit.API_IMAGE_BASE_URL + products.get(position).getThumbnail())
-                .asBitmap()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(new SimpleTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation glideAnimation) {
-                        holder.thumbnail.setImageBitmap(resource); // Possibly runOnUiThread()
-                    }
-                });
+                .into(holder.thumbnail);
 
 
         //        Glide.with(context).load(ApiRetrofit.API_IMAGE_BASE_URL + products.get(position).getThumbnail())
@@ -117,17 +110,16 @@ public class Rec_Items_Adapter extends RecyclerView.Adapter<Rec_Items_Adapter.Ho
                 intent.putExtra("category",products.get(position).getCategory().getName());
                 intent.putExtra("ImageURl",ApiRetrofit.API_IMAGE_BASE_URL + products.get(position).getThumbnail());
                 intent.putExtra("proID",products.get(position).getId());
-                try {
-                    Bitmap bitmap = ((BitmapDrawable)holder.thumbnail.getDrawable()).getBitmap();
-                    intent.putExtra("Image",ConvertTobyteArray(bitmap));
-                }catch (Exception e){
+//                try {
+//                    Bitmap bitmap = ((BitmapDrawable)holder.thumbnail.getDrawable()).getBitmap();
+//                    intent.putExtra("Image",ConvertTobyteArray(bitmap));
+//                }catch (Exception e){
+//
+//                }
 
-                }
-
-
-                ActivityOptionsCompat option = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context
-                        , holder.thumbnail, ViewCompat.getTransitionName(holder.thumbnail));
-                context.startActivity(intent , option.toBundle());
+//                ActivityOptionsCompat option = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context
+//                        , holder.thumbnail, ViewCompat.getTransitionName(holder.thumbnail));
+                context.startActivity(intent);
 
             }
         });

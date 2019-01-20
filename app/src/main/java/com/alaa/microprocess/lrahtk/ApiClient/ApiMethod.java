@@ -1,8 +1,10 @@
 package com.alaa.microprocess.lrahtk.ApiClient;
 
 import com.alaa.microprocess.lrahtk.pojo.Categories;
+import com.alaa.microprocess.lrahtk.pojo.Comments;
 import com.alaa.microprocess.lrahtk.pojo.LoginForm;
 import com.alaa.microprocess.lrahtk.pojo.Order;
+import com.alaa.microprocess.lrahtk.pojo.PostComment;
 import com.alaa.microprocess.lrahtk.pojo.Products;
 import com.alaa.microprocess.lrahtk.pojo.RegisterResponse;
 
@@ -15,6 +17,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 
@@ -56,6 +59,14 @@ public interface ApiMethod {
     @GET("products")
     Call<List<Products>> getProducts(@QueryMap Map<String, String> params);
 
+    @POST("review/{Id}")
+    Call<PostComment> PutComment(@Path("Id") String Id, @Body PostComment postComment);
+
+    @GET("review/{Id}")
+    Call<List<Comments>> getAllComments(@Path("Id") String Id,@QueryMap Map<String, String> params);
+
+    @GET("products/top")
+    Call<List<Products>> getTopProducts();
 
 
 }

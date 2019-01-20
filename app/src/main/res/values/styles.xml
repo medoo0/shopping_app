@@ -14,8 +14,9 @@
     <style name="CircularProgress2" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@android:color/black</item>
     </style>
-
-
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+    <item name="fontFamily">@font/cairo</item>
+    </style>
     <style name="flatbutton" parent="Widget.AppCompat.Button.Borderless">
 
     </style>

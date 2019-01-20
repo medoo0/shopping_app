@@ -31,6 +31,7 @@ import com.alaa.microprocess.lrahtk.Fragment.MainPage_Fragment;
 import com.alaa.microprocess.lrahtk.Fragment.Search;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.pojo.Categories;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,8 +72,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
 
         int dp200_To_pixel = 0 ;
         boolean NavIsOpened = false ;
-        SharedPreferences preferences;
-        SharedPreferences.Editor editor;
+    static  SharedPreferences preferences;
+    static SharedPreferences.Editor editor;
         ImageView gotoPersonalData;
 
         public static List<Categories> Children ;
@@ -114,7 +115,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
         }
 
 
-
+        FirebaseMessaging.getInstance().subscribeToTopic("Maktbtk");
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -238,16 +239,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener,
     public void onClick(View v) {
 
         if (v == logout){
-
-            editor.putString("AreInOrNot","");
-            editor.putString("Email","");
-            editor.putString("id","");
-            editor.putString("Phone","");
-            editor.putString("Name","");
-            editor.putString("Token","");
-            editor.apply();
-
-            Intent intent = new Intent(this , MainActivity.class);
+            logout();
+            Intent intent = new Intent(HomePage.this , MainActivity.class);
             startActivity(intent);
             finish();
 
@@ -422,6 +415,16 @@ private void open_Navigation_drawer(){
     public static List<Categories> getChildren(){
 
         return Children;
+    }
+     public static void logout(){
+        editor.putString("AreInOrNot","");
+        editor.putString("Email","");
+        editor.putString("id","");
+        editor.putString("Phone","");
+        editor.putString("Name","");
+        editor.putString("Token","");
+        editor.apply();
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("Maktbtk");
     }
 }
 
