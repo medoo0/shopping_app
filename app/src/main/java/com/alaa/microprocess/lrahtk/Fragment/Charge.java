@@ -3,6 +3,7 @@ package com.alaa.microprocess.lrahtk.Fragment;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
@@ -12,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.res.ResourcesCompat;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -23,11 +25,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alaa.microprocess.lrahtk.Contract.PayScreenContract;
@@ -55,6 +60,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -64,17 +71,27 @@ public class Charge extends Fragment implements View.OnClickListener /*,OnMapRea
 
     Button continuation ;
 
-    SupportMapFragment  mapFragment ;
-    AutoCompleteTextView CompleteTextView;
-    PlaceAutocompleteAdapter placeAutocompleteAdapter;
+    //SupportMapFragment  mapFragment ;
+    //AutoCompleteTextView CompleteTextView;
+    //PlaceAutocompleteAdapter placeAutocompleteAdapter;
     // GoogleApiClient mGoogleApiClient;
     // GoogleMap mMap ;
+    Spinner CitySpinner , VillageSpinner;
+    EditText moreDetails , nots;
+    String[] CitiesArray  ;
+    ArrayList<String> VillageArray;
+    String City ="" , village ="" ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_charge, container, false);
         continuation  = v.findViewById(R.id.continuation);
+        CitySpinner = v.findViewById(R.id.CitySpinner);
+        VillageSpinner = v.findViewById(R.id.VillageSpinner);
+        moreDetails = v.findViewById(R.id.address_Details);
+        nots = v.findViewById(R.id.nots);
+
       //  CompleteTextView = v.findViewById(R.id.search);
         continuation.setOnClickListener(this);
 //        CompleteTextView.setOnItemClickListener(autocomplteClicklistener);
@@ -99,6 +116,99 @@ public class Charge extends Fragment implements View.OnClickListener /*,OnMapRea
 //        placeAutocompleteAdapter = new PlaceAutocompleteAdapter(getActivity(), mGoogleApiClient, null, null);
 //        CompleteTextView.setAdapter(placeAutocompleteAdapter);
 
+        CitiesArray = new String[]{"حدد المدينة","العاشر","العبور","الشروق","بدر"};
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
+                (getActivity(), android.R.layout.simple_spinner_item,
+                        CitiesArray){
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(ResourcesCompat.getFont(getActivity(),R.font.cairo));
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.parseColor("#bb377d"));
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+        CitySpinner.setAdapter(spinnerArrayAdapter);
+        CitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                if (i > 0) {
+                    City = CitiesArray[i];
+                    if(i == 1 ){
+                        VillageSpinner.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        VillageSpinner.setVisibility(View.GONE);
+                    }
+                }
+
+                else {
+                    City="";
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+        VillageArray = new ArrayList<>();
+        VillageArray.add("حدد المجاورة");
+        for(int i=1 ; i <= 30 ; i++){
+            VillageArray.add("المجاورة رقم " + (i));
+        }
+        ArrayAdapter<String> spinnerArrayAdapter2 = new ArrayAdapter<String>
+                (getActivity(), android.R.layout.simple_spinner_item,
+                        VillageArray){
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(ResourcesCompat.getFont(getActivity(),R.font.cairo));
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.parseColor("#bb377d"));
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+
+        };
+        VillageSpinner.setAdapter(spinnerArrayAdapter2);
+        VillageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                if (i > 0) {
+                    village = VillageArray.get(i);
+                }
+                else {
+                    village = "";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
         return v;
     }
 
@@ -112,11 +222,16 @@ public class Charge extends Fragment implements View.OnClickListener /*,OnMapRea
 
             if (payView!=null){
 
-                if(!CompleteTextView.getText().toString().isEmpty()) {
-                    payView.showNextFragment_SuringPay(CompleteTextView.getText().toString());
+//                if(!CompleteTextView.getText().toString().isEmpty()) {
+//                    payView.showNextFragment_SuringPay(CompleteTextView.getText().toString());
+//                }
+                if(!City.isEmpty()){
+                    payView.showNextFragment_SuringPay(City + " "+ village
+                            + "\n" + moreDetails.getText().toString()
+                            +  "\n" + nots.getText().toString() );
                 }
                 else {
-                    AlertDialog alertDialog = new AlertDialog(getActivity(), "الرجاء كتابة العنوان الخاص بمكان التسليم . ");
+                    AlertDialog alertDialog = new AlertDialog(getActivity(), "الرجاء اختيار عنوان التسليم . ");
                     alertDialog.show();
                 }
 
