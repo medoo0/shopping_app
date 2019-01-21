@@ -51,16 +51,17 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
     String address, UserID, BasketTableName ,token ;
     FavHelper helper;
     SQLiteDatabase db;
-    double Total = 0;
+    double Total = 0 , finaltotal;
     SharedPreferences preferences;
     List<com.alaa.microprocess.lrahtk.pojo.Basket> BasketList;
-    TextView txTotal;
+    TextView txTotal ;
     EditText Coupon;
     AnimatedDialog dialog;
 
     @SuppressLint("ValidFragment")
-    public Paying_Fragment(String address) {
+    public Paying_Fragment(String address , double finaltotal) {
         this.address = address ;
+        this.finaltotal =finaltotal;
     }
 
     @Nullable
@@ -72,6 +73,7 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
         btn_pay     =  view.findViewById(R.id.btn_pay);
         txTotal     = view.findViewById(R.id.txTotal);
         Coupon       = view.findViewById(R.id.edPay);
+
         dialog = new AnimatedDialog(getActivity());
         BasketList = new ArrayList<>();
         btn_pay.setOnClickListener(this);
@@ -183,18 +185,18 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
 
     public void TotalPrice() {
 
-        //get all basket .
-        String[] Cols = {FavHelper.BasketQuantity, FavHelper.prices};
-        Cursor Pointer = db.query(BasketTableName, Cols, null, null, null, null, null);
+//        //get all basket .
+//        String[] Cols = {FavHelper.BasketQuantity, FavHelper.prices};
+//        Cursor Pointer = db.query(BasketTableName, Cols, null, null, null, null, null);
+//
+//        while (Pointer.moveToNext()) {
+//
+//            double pricePerQuantity = Integer.parseInt(Pointer.getString(0)) * Pointer.getDouble(1);
+//            Total += pricePerQuantity;
+//
+//        }
 
-        while (Pointer.moveToNext()) {
-
-            double pricePerQuantity = Integer.parseInt(Pointer.getString(0)) * Pointer.getDouble(1);
-            Total += pricePerQuantity;
-
-        }
-
-        txTotal.setText(Total + " L.E");
+        txTotal.setText(finaltotal + " L.E");
 
     }
     public void getBasketList() {

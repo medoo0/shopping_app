@@ -35,11 +35,12 @@ public class Suring_Paying extends Fragment implements View.OnClickListener {
     SharedPreferences preferences;
     String UserID, BasketTableName , address;
     double Total = 0 , extra = 0 , finaltotal =  0;
-    TextView txTotal1 , txAddress , finalTotal;
+    TextView txTotal1 , txAddress , finalTotal , txextra;
     List<SqlProduct> sqlProduct;
     @SuppressLint("ValidFragment")
-    public Suring_Paying(String address) {
+    public Suring_Paying(String address , double extra) {
         this.address = address;
+        this.extra = extra;
     }
 
     @Nullable
@@ -52,6 +53,7 @@ public class Suring_Paying extends Fragment implements View.OnClickListener {
         txTotal1 = view.findViewById(R.id.txTotal1);
         txAddress = view.findViewById(R.id.txAddress);
         finalTotal = view.findViewById(R.id.finalTotal);
+        txextra = view.findViewById(R.id.extra);
         sqlProduct = new ArrayList<>();
         sure.setOnClickListener(this);
 
@@ -75,7 +77,7 @@ public class Suring_Paying extends Fragment implements View.OnClickListener {
         txAddress.setText(address);
         //get total .
         TotalPrice();
-
+        txextra.setText(String.valueOf(extra) + " L.E");
          finaltotal =  extra + Total ;
         finalTotal.setText( finaltotal +" L.E");
 
@@ -110,7 +112,7 @@ public class Suring_Paying extends Fragment implements View.OnClickListener {
 
             if (payView!=null){
 
-                payView.showNextLastFragmentPayingFragment();
+                payView.showNextLastFragmentPayingFragment(finaltotal);
 
             }
 

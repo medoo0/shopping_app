@@ -197,9 +197,18 @@ public class Charge extends Fragment implements View.OnClickListener /*,OnMapRea
 //                    payView.showNextFragment_SuringPay(CompleteTextView.getText().toString());
 //                }
                 if(!City.isEmpty()){
+
+                    double extra = 0;
+                    if(City.equals(CitiesArray[1])){
+                        extra = 10 ;
+                    }
+                    else {
+                        extra = 20 ;
+                    }
+
                     payView.showNextFragment_SuringPay(City + " "+ village
                             + "\n" + moreDetails.getText().toString()
-                            +  "\n" + nots.getText().toString() );
+                            +  "\n" + nots.getText().toString() ,extra);
                 }
                 else {
                     AlertDialog alertDialog = new AlertDialog(getActivity(), "الرجاء اختيار عنوان التسليم . ");

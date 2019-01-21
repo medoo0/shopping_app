@@ -359,6 +359,7 @@ public class ShowProduct extends AppCompatActivity {
         helper.CreateFavTable(FavTableName);
 
         String [] Cols = {FavHelper.FavID};
+        if(!ProductID.isEmpty()){
         Cursor Pointer = db.query(FavTableName,Cols,Cols[0]+" = ?",new String[]{ProductID},null,null,null);
         if(Pointer.moveToNext()){
             return true ;
@@ -367,6 +368,10 @@ public class ShowProduct extends AppCompatActivity {
 
             return false ;
 
+        }
+        }
+        else {
+            return false ;
         }
 
     }

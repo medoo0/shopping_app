@@ -6,7 +6,8 @@
     tools:context="com.alaa.microprocess.lrahtk.Fragment.Featured">
 
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -17,7 +18,8 @@
             android:id="@+id/rec_offers"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
             >
 
 
@@ -26,7 +28,18 @@
 
         </android.support.v7.widget.RecyclerView>
 
+        <ProgressBar
+           android:layout_weight="1"
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/CircularProgress2"
+            style="?android:attr/progressBarStyle"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+
+            />
 
 
-    </RelativeLayout>
+    </LinearLayout>
 </FrameLayout>

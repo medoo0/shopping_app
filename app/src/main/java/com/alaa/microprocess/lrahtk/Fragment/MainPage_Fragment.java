@@ -111,7 +111,7 @@ public class MainPage_Fragment extends Fragment {
         if (preferences.getString("AreInOrNot","").equals("IN")){
 
             token = preferences.getString("Token","");
-            if(token.isEmpty()){
+            if(token.isEmpty()|| token.equals(null)){
                HomePage.logout();
                 getActivity().finish();
                 Intent intent = new Intent(getActivity() , MainActivity.class);

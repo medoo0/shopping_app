@@ -76,26 +76,26 @@ public class Pay extends AppCompatActivity  implements PayScreenContract.payView
     }
 
     @Override
-    public void showNextFragment_SuringPay(String address) {
+    public void showNextFragment_SuringPay(String address , double extra) {
         setDoneIcon(0);
         moveTo(1);
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left,R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(R.id.Frame_layout, new Suring_Paying(address))
+                .replace(R.id.Frame_layout, new Suring_Paying(address , extra))
                 .commit();
 
         this.address = address;
     }
 
     @Override
-    public void showNextLastFragmentPayingFragment() {
+    public void showNextLastFragmentPayingFragment(double finaltotal) {
         setDoneIcon(1);
         moveTo(2);
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left,R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(R.id.Frame_layout, new Paying_Fragment(address))
+                .replace(R.id.Frame_layout, new Paying_Fragment(address,finaltotal))
                 .commit();
     }
 
