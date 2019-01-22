@@ -94,31 +94,35 @@ public class Favourite_Fragment extends Fragment {
         call.enqueue(new Callback<List<Products>>() {
             @Override
             public void onResponse(@NonNull Call<List<Products>> call, @NonNull Response<List<Products>> response) {
+                if (response.isSuccess()) {
 
-                List<Products> filterProduct = new ArrayList<>();
-                for (int i = 0 ; i<response.body().size(); i++){
+                        if (getActivity() != null && !getActivity().isFinishing()) {
+                            List<Products> filterProduct = new ArrayList<>();
+                            for (int i = 0; i < response.body().size(); i++) {
 
-                   for (int j = 0 ; j < fav_id_list.size(); j++ ) {
+                                for (int j = 0; j < fav_id_list.size(); j++) {
 
-                       if(response.body().get(i).getId().equals(fav_id_list.get(j))){
-                           filterProduct.add(response.body().get(i));
-                       }
+                                    if (response.body().get(i).getId().equals(fav_id_list.get(j))) {
+                                        filterProduct.add(response.body().get(i));
+                                    }
 
-                   }
-                    if(i == response.body().size() - 1){
-                        if(!getActivity().isFinishing()) {
-                            MyPersonalPage.endProgress();
+                                }
+                                if (i == response.body().size() - 1) {
+
+                                    MyPersonalPage.endProgress();
+
+                                }
+                            }
+
+
+                            //adapter
+                            adapter = new Rec_Items_Adapter(filterProduct, getActivity());
+                            adapter.notifyDataSetChanged();
+                            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+                            rec_favourite.setLayoutManager(gridLayoutManager);
+                            rec_favourite.setAdapter(adapter);
                         }
                     }
-                }
-
-
-                //adapter
-                adapter = new Rec_Items_Adapter(filterProduct,getActivity());
-                adapter.notifyDataSetChanged();
-                GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
-                rec_favourite.setLayoutManager(gridLayoutManager);
-                rec_favourite.setAdapter(adapter);
 
             }
 

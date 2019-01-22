@@ -485,11 +485,11 @@ public class ShowProduct extends AppCompatActivity {
             public void onResponse(Call<List<Comments>> call, Response<List<Comments>> response) {
 
                 if(response.isSuccess()){
-
-                    Rec_Comments_Adapter adapter = new Rec_Comments_Adapter(response.body());
-                    rec_Comments.setLayoutManager(new LinearLayoutManager(ShowProduct.this));
-                    rec_Comments.setAdapter(adapter);
-
+                    if(!ShowProduct.this.isFinishing()) {
+                        Rec_Comments_Adapter adapter = new Rec_Comments_Adapter(response.body());
+                        rec_Comments.setLayoutManager(new LinearLayoutManager(ShowProduct.this));
+                        rec_Comments.setAdapter(adapter);
+                    }
                 }
 
             }

@@ -143,27 +143,28 @@ public class Product_Activity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onResponse(@NonNull Call<List<Products>> call, @NonNull Response<List<Products>> response) {
                 if(response.isSuccess()) {
-                    dialog.Close_Dialog();
+                    if(!Product_Activity.this.isFinishing()) {
+                        dialog.Close_Dialog();
 
-                   if(isThatyourfirstTime) {
+                        if (isThatyourfirstTime) {
 
-                       //adapter
-                       adapter = new Rec_Items_Adapter(response.body(), Product_Activity.this);
-                       adapter.notifyDataSetChanged();
-                       rectwo.setLayoutManager(gridLayoutManager);
-                       rectwo.setAdapter(adapter);
-                       isThatyourfirstTime = false;
-                   }
-                   else {
+                            //adapter
+                            adapter = new Rec_Items_Adapter(response.body(), Product_Activity.this);
+                            adapter.notifyDataSetChanged();
+                            rectwo.setLayoutManager(gridLayoutManager);
+                            rectwo.setAdapter(adapter);
+                            isThatyourfirstTime = false;
+                        } else {
 
-                       adapter.addMoreItems(response.body());
-                       progress.setVisibility(View.INVISIBLE);
+                            adapter.addMoreItems(response.body());
+                            progress.setVisibility(View.INVISIBLE);
 
-                       if(response.body().size() < PerPage){
-                           ListaFinished = true ;
-                       }
+                            if (response.body().size() < PerPage) {
+                                ListaFinished = true;
+                            }
 
-                   }
+                        }
+                    }
                 }
                 else {
                     dialog.Close_Dialog();
