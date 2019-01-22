@@ -19,6 +19,7 @@ import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Dialog.AnimatedDialog;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.SQLite.FavHelper;
+import com.alaa.microprocess.lrahtk.View.MyPersonalPage;
 import com.alaa.microprocess.lrahtk.View.Product_Activity;
 import com.alaa.microprocess.lrahtk.pojo.Products;
 
@@ -73,8 +74,7 @@ public class Favourite_Fragment extends Fragment {
         }
 
 
-
-        dialog.ShowDialog();
+        MyPersonalPage.startProgress();
         showItemsinREC();
 
 
@@ -106,7 +106,9 @@ public class Favourite_Fragment extends Fragment {
 
                    }
                     if(i == response.body().size() - 1){
-                        dialog.Close_Dialog();
+                        if(!getActivity().isFinishing()) {
+                            MyPersonalPage.endProgress();
+                        }
                     }
                 }
 
@@ -122,7 +124,9 @@ public class Favourite_Fragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<List<Products>> call, @NonNull Throwable t) {
-                dialog.Close_Dialog();
+                if(!getActivity().isFinishing()) {
+                    MyPersonalPage.endProgress();
+                }
             }
         });
 

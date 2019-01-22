@@ -7,13 +7,25 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +35,12 @@ import android.widget.Toast;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.View.HomePage;
 import com.bumptech.glide.Glide;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -41,8 +59,8 @@ public class Gift extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_gift, container, false);
         HomePage.texttoolbar.setText("الهدايا");
         IMageView = view.findViewById(R.id.photo);
-
         IMageView.setOnClickListener(this);
+
 
         return view;
     }
@@ -62,7 +80,7 @@ public class Gift extends Fragment implements View.OnClickListener {
                                     switch (which) {
                                         // Open Camera
                                         case 0:
-                                            if (!checkPermissionForCamera()) {
+                                            if (!checkPermissionForCamera() && !checkPermissionForًWriteExternal()) {
                                                 requestPermissionForCamera();
                                             } else {
                                                 openCamera();
@@ -71,8 +89,8 @@ public class Gift extends Fragment implements View.OnClickListener {
 
                                         // Open Gallery
                                         case 1:
-                                            if (!checkPermissionForًWriteExternal()) {
-                                                requestPermissionForExternalWrite();
+                                            if (!checkPermissionForReadExternal()) {
+                                                requestPermissionForExternalRead();
                                             } else {
 
                                                 openGallary();
@@ -105,8 +123,18 @@ public class Gift extends Fragment implements View.OnClickListener {
         }
     }
 
-    public boolean checkPermissionForًWriteExternal() {  //check if permmision done .
+    public boolean checkPermissionForReadExternal() {  //check if permmision done .
         int result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public boolean checkPermissionForًWriteExternal() {  //check if permmision done .
+        int result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE );
         if (result == PackageManager.PERMISSION_GRANTED) {
             return true;
         } else {
@@ -116,20 +144,56 @@ public class Gift extends Fragment implements View.OnClickListener {
 
     public void requestPermissionForCamera() {  // camera request of permision
 
-            requestPermissions( new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE}, Gallary_camera);
+            requestPermissions( new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, Gallary_camera);
 
     }
 
-    public void requestPermissionForExternalWrite() {  // READ_EXTERNAL_STORAGE request of permision
+    public void requestPermissionForExternalRead() {  // READ_EXTERNAL_STORAGE request of permision
 
-       requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Gallary_intent);
+       requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, Gallary_intent);
 
     }
 
     // OPEN CAMERA
     public void openCamera() {
+
+
+        //** Add following code block before start camera or file browsing
+//        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+//        StrictMode.setVmPolicy(builder.build());
+
+
+        File file = new File(Environment.getExternalStorageDirectory(),  "Maktbtk/temp/"+"temp"+".png");
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+        }else{
+            file.delete();
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+        }
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            UploadPhotouri = FileProvider.getUriForFile(
+                    getActivity(),
+                    "com.alaa.microprocess.lrahtk.provider", //(use your app signature + ".provider" )
+                    file);
+        } else{
+            UploadPhotouri = Uri.fromFile(file);
+        }
+
+
+
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, Gallary_camera);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, UploadPhotouri);
+        startActivityForResult(intent , Gallary_camera);
     }
 
     @Override
@@ -137,16 +201,23 @@ public class Gift extends Fragment implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == Gallary_camera && resultCode == RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            UploadPhotouri = data.getData();
-            IMageView.setImageBitmap(photo);
+
+            Glide.with(getActivity()).load(UploadPhotouri)
+                    .into(IMageView);
+
         }
 
         if (requestCode == Gallary_intent && resultCode == RESULT_OK) {
+            try {
 
-            UploadPhotouri = data.getData();
-            Glide.with(getActivity()).load(UploadPhotouri)
-                    .into(IMageView);
+                UploadPhotouri = data.getData();
+                Glide.with(getActivity()).load(UploadPhotouri)
+                        .into(IMageView);
+
+            }catch (Exception e){
+
+            }
+
         }
 
     }
@@ -190,4 +261,5 @@ public class Gift extends Fragment implements View.OnClickListener {
             }
         }
     }
+
 }

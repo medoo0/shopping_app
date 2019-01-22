@@ -14,6 +14,7 @@ import com.alaa.microprocess.lrahtk.R;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 public class MyPersonalPage extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,7 +23,7 @@ public class MyPersonalPage extends AppCompatActivity implements View.OnClickLis
     private ViewPager viewPager;
     String userID,userName , email , phone;
     ImageView backhome;
-
+    public static ProgressBar progressBar;
 
 
     @Override
@@ -31,6 +32,8 @@ public class MyPersonalPage extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_my_personal_page);
 
         backhome = findViewById(R.id.backhome);
+        progressBar = findViewById(R.id.progress);
+
         backhome.setOnClickListener(this);
         Bundle data = getIntent().getExtras();
 
@@ -80,5 +83,12 @@ public class MyPersonalPage extends AppCompatActivity implements View.OnClickLis
 
         }
 
+    }
+
+    public static void startProgress(){
+        progressBar.setVisibility(View.VISIBLE);
+    }
+    public static void endProgress(){
+        progressBar.setVisibility(View.INVISIBLE);
     }
 }
