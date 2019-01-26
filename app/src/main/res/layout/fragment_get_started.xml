@@ -66,7 +66,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/cairo"
             android:textSize="30sp"
             android:textColor="#333333"
             android:text="@string/getstarted1"
@@ -75,7 +75,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/cairo"
             android:text="@string/getstarted2"
             android:textColor="#000000"
             android:textSize="30sp"
@@ -99,7 +99,7 @@
                 android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/ubuntu"
+                android:fontFamily="@font/cairo"
                 android:text="@string/getstarted3"
                 android:textAlignment="center"
                 android:textColor="#231b0c"
@@ -123,7 +123,7 @@
         android:textSize="25sp"
         android:text="@string/getstarted"
         android:textColor="@color/white"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/cairo"
         android:layout_alignParentBottom="true"
         android:elevation="8dp"
 
