@@ -95,8 +95,8 @@ public class Favourite_Fragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<List<Products>> call, @NonNull Response<List<Products>> response) {
                 if (response.isSuccess()) {
-
-                        if (getActivity() != null && !getActivity().isFinishing()) {
+                    if (getActivity() != null) {
+                        if (!getActivity().isFinishing()) {
                             List<Products> filterProduct = new ArrayList<>();
                             for (int i = 0; i < response.body().size(); i++) {
 
@@ -123,13 +123,15 @@ public class Favourite_Fragment extends Fragment {
                             rec_favourite.setAdapter(adapter);
                         }
                     }
-
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<List<Products>> call, @NonNull Throwable t) {
-                if(!getActivity().isFinishing()) {
-                    MyPersonalPage.endProgress();
+                if(getActivity() != null) {
+                    if (!getActivity().isFinishing()) {
+                        MyPersonalPage.endProgress();
+                    }
                 }
             }
         });

@@ -3,6 +3,7 @@ package com.alaa.microprocess.lrahtk.ApiClient;
 import com.alaa.microprocess.lrahtk.pojo.Categories;
 import com.alaa.microprocess.lrahtk.pojo.Comments;
 import com.alaa.microprocess.lrahtk.pojo.LoginForm;
+import com.alaa.microprocess.lrahtk.pojo.MyOrder;
 import com.alaa.microprocess.lrahtk.pojo.Order;
 import com.alaa.microprocess.lrahtk.pojo.PostComment;
 import com.alaa.microprocess.lrahtk.pojo.Products;
@@ -68,5 +69,7 @@ public interface ApiMethod {
     @GET("products/top")
     Call<List<Products>> getTopProducts();
 
+    @GET("orders/user")
+    Call<List<MyOrder>> getMyOrder(@QueryMap Map<String, String> params);
 
 }

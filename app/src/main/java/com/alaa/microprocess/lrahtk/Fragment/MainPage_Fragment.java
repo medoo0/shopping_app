@@ -84,8 +84,14 @@ public class MainPage_Fragment extends Fragment {
 
     @BindView(R.id.Btn_offers)
     Button Btn_offers;
+
+    @BindView(R.id.btnMyorders)
+    Button btnMyorders ;
+
     SharedPreferences preferences ;
     String UserID , FavTableName , BasketTableName , token ;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -136,6 +142,18 @@ public class MainPage_Fragment extends Fragment {
                         .replace(R.id.replaceByFragment, new Gift())
                         .commit();
                 HomePage.select_bottomNav(R.id.gifts);
+            }
+        });
+
+        btnMyorders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().popBackStack(); //finish
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.replaceByFragment, new MyOrders_Fragment())
+                        .commit();
+
             }
         });
 

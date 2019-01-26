@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color3"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toobar1"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:elevation="10dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/backhome"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:scaleType="centerInside"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:layout_weight="1"
+                    />
+                <TextView
+                    android:id="@+id/txToolbar"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/cairo"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_height="50dp"
+                    android:layout_weight="9"/>
+
+                <ProgressBar
+                    android:layout_weight="1"
+                    android:id="@+id/progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/CircularProgress2"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:visibility="invisible"
+                    android:layout_marginEnd="13dp"
+                    />
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/SearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:background="@color/white"
+                android:layout_below="@+id/linear"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                >
+
+            </android.support.v7.widget.SearchView>
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/Rec"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment"
+        />
+
+</LinearLayout>
+

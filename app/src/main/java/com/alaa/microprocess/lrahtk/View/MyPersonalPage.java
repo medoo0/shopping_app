@@ -1,6 +1,5 @@
 package com.alaa.microprocess.lrahtk.View;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -46,7 +45,7 @@ public class MyPersonalPage extends AppCompatActivity implements View.OnClickLis
         }
         viewPager =  findViewById(R.id.viewpager);
         setupViewPager(viewPager,userName,email,phone);
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -67,7 +66,6 @@ public class MyPersonalPage extends AppCompatActivity implements View.OnClickLis
         myAccount_fragment.setArguments(data);
         TabsPager adapter = new TabsPager(getSupportFragmentManager());
         adapter.addFrag(myAccount_fragment, "حسابي");
-        adapter.addFrag(new MyOrders_Fragment(), "طلباتك");
         adapter.addFrag(new Favourite_Fragment(), "المفضل");
         adapter.addFrag(new Saving_Titles_Fragment(), "العناوين المحفوضه");
         viewPager.setAdapter(adapter);
