@@ -197,7 +197,7 @@ public void Register(ApiMethod client , String createdAt, String updatedAt, Stri
 
 }
 
-    private void Login(String email, String password) {
+    private void Login(String email, final String password) {
         RegisterForm registerForm = new RegisterForm();
 
         registerForm.setEmail(email);
@@ -233,6 +233,7 @@ public void Register(ApiMethod client , String createdAt, String updatedAt, Stri
                         editor.putString("Phone",user.getPhone());
                         editor.putString("Name",user.getName());
                         editor.putString("Token",response.body().getToken());
+                        editor.putString("password",password);
                         editor.apply();
                         intent.putExtra("Email",user.getEmail());
                         intent.putExtra("id",user.getId());

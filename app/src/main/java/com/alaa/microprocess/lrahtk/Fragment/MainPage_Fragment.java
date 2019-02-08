@@ -78,7 +78,8 @@ public class MainPage_Fragment extends Fragment {
 
     AsyncTask asyncTask;
 
-    int pos ; //global
+    int pos ; // global .
+
     @BindView(R.id.Indictor)
     CircleIndicator circleIndicator;
 

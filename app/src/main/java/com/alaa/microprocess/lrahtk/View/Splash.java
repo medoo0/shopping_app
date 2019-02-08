@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
-import com.alaa.microprocess.lrahtk.Fragment.Paying_Fragment;
 import com.alaa.microprocess.lrahtk.R;
 
 import butterknife.BindView;
@@ -21,9 +18,9 @@ public class Splash extends AppCompatActivity {
     @BindView(R.id.lrahtk_img)
     ImageView lrahtk_img;
 
-
     @BindView(R.id.progress)
     ProgressBar progress;
+
     @BindView(R.id.replacetest)
     RelativeLayout replacetest;
 
@@ -62,8 +59,8 @@ public class Splash extends AppCompatActivity {
            public void onAnimationEnd(Animator animator) {
 
                //goto MainActivity
-               Intent intent = new Intent(Splash.this , MainActivity.class);
-               startActivity(intent);
+                Intent intent = new Intent(Splash.this , MainActivity.class);
+                startActivity(intent);
                 finish();
            }
 

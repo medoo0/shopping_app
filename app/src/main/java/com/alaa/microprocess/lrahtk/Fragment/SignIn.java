@@ -166,6 +166,7 @@ public class SignIn extends Fragment implements View.OnClickListener{
                                editor.putString("Phone",user.getPhone());
                                editor.putString("Name",user.getName());
                                editor.putString("Token",response.body().getToken());
+                               editor.putString("password",password.getText().toString());
                                editor.apply();
                                intent.putExtra("Email",user.getEmail());
                                intent.putExtra("id",user.getId());

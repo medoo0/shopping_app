@@ -107,6 +107,9 @@ public class Search extends Fragment implements SearchInterface{
 
         }
 
+
+
+
         BtnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

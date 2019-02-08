@@ -2,6 +2,8 @@ package com.alaa.microprocess.lrahtk.Fragment;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -43,7 +45,14 @@ public class ThanksOrder extends Fragment {
             }
         });
 
+        //LastOrderId
+        if (getActivity()!=null){
 
+            SharedPreferences preferences   = getActivity().getSharedPreferences("Sign_in_out", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor        = preferences.edit();
+            editor.putString("LastOrderId",orderID);
+
+        }
         return view;
     }
 

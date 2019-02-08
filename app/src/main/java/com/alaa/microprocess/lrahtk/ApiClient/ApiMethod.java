@@ -2,6 +2,7 @@ package com.alaa.microprocess.lrahtk.ApiClient;
 
 import com.alaa.microprocess.lrahtk.pojo.Categories;
 import com.alaa.microprocess.lrahtk.pojo.Comments;
+import com.alaa.microprocess.lrahtk.pojo.Gift;
 import com.alaa.microprocess.lrahtk.pojo.LoginForm;
 import com.alaa.microprocess.lrahtk.pojo.MyOrder;
 import com.alaa.microprocess.lrahtk.pojo.Order;
@@ -12,12 +13,17 @@ import com.alaa.microprocess.lrahtk.pojo.RegisterResponse;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
@@ -71,5 +77,13 @@ public interface ApiMethod {
 
     @GET("orders/user")
     Call<List<MyOrder>> getMyOrder(@QueryMap Map<String, String> params);
+
+//    @Multipart
+//    @POST("orders/{id}/gift")
+//    Call <ResponseBody> GiftPost (
+//            @Path("id") String id,
+//            @Body Gift gift,
+//            @Part("avatar") MultipartBody.Part file
+//            );
 
 }

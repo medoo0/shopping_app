@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiMethod;
 import com.alaa.microprocess.lrahtk.ApiClient.ApiRetrofit;
 import com.alaa.microprocess.lrahtk.Contract.PayScreenContract;
+import com.alaa.microprocess.lrahtk.Dialog.AlertDialog;
 import com.alaa.microprocess.lrahtk.Dialog.AnimatedDialog;
 import com.alaa.microprocess.lrahtk.R;
 import com.alaa.microprocess.lrahtk.SQLite.FavHelper;
@@ -47,7 +48,7 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
 
 
     RadioButton sound;
-    Button btn_pay;
+    Button btn_pay , apply;
     String address, UserID, BasketTableName ,token ;
     FavHelper helper;
     SQLiteDatabase db;
@@ -57,6 +58,7 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
     TextView txTotal ;
     EditText Coupon;
     AnimatedDialog dialog;
+    String couponNumber = null;
 
     @SuppressLint("ValidFragment")
     public Paying_Fragment(String address , double finaltotal) {
@@ -73,6 +75,7 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
         btn_pay     =  view.findViewById(R.id.btn_pay);
         txTotal     = view.findViewById(R.id.txTotal);
         Coupon       = view.findViewById(R.id.edPay);
+        apply       = view.findViewById(R.id.apply);
 
         dialog = new AnimatedDialog(getActivity());
         BasketList = new ArrayList<>();
@@ -93,6 +96,13 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
 
         getBasketList();
         TotalPrice();
+
+        apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                couponNumber = Coupon.getText().toString();
+            }
+        });
 
         return view;
     }
@@ -141,7 +151,7 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
 
                 Order order = new Order();
                 order.setAddress(address);
-                order.setCoupon(null);
+                order.setCoupon(couponNumber);
                 order.setBasket(BasketList);
 
                 Call<Order> call = service.ORDER_CALL(order);
