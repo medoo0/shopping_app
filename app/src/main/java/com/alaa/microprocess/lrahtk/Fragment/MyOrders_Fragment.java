@@ -141,7 +141,6 @@ public class MyOrders_Fragment extends Fragment {
                             if (isThatyourfirstTime) {
 
                                 //adapter
-
                                 order_adapter = new Order_Adapter(getActivity(), response.body());
                                 order_adapter.notifyDataSetChanged();
                                 rec_order.setLayoutManager(linearLayoutManager);

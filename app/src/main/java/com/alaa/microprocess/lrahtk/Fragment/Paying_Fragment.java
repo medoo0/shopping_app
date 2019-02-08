@@ -101,6 +101,12 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
             @Override
             public void onClick(View view) {
                 couponNumber = Coupon.getText().toString();
+                if(couponNumber.equals("backtoschool")) {
+                    AlertDialog alertDialog = new AlertDialog(getActivity(), "لقد حصلت علي خصم 10 % .");
+                    alertDialog.show();
+                    finaltotal = finaltotal - (finaltotal * 10 ) / 100;
+                    txTotal.setText(finaltotal + " L.E");
+                }
             }
         });
 
@@ -151,7 +157,7 @@ public class Paying_Fragment extends Fragment  implements View.OnClickListener{
 
                 Order order = new Order();
                 order.setAddress(address);
-                order.setCoupon(couponNumber);
+                order.setCoupon(null); // should be couponNumber
                 order.setBasket(BasketList);
 
                 Call<Order> call = service.ORDER_CALL(order);
