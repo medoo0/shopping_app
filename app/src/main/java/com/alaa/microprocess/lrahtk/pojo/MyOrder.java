@@ -31,7 +31,7 @@ public class MyOrder implements Parcelable {
     private int total;
     @SerializedName("user")
     @Expose
-    private String user;
+    private User user;
     @SerializedName("address")
     @Expose
     private String address;
@@ -48,7 +48,6 @@ public class MyOrder implements Parcelable {
         updatedAt = in.readString();
         basket = in.createTypedArrayList(Basket2.CREATOR);
         total = in.readInt();
-        user = in.readString();
         address = in.readString();
         v = in.readInt();
         id = in.readString();
@@ -106,14 +105,6 @@ public class MyOrder implements Parcelable {
         this.total = total;
     }
 
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -150,7 +141,6 @@ public class MyOrder implements Parcelable {
         parcel.writeString(updatedAt);
         parcel.writeTypedList(basket);
         parcel.writeInt(total);
-        parcel.writeString(user);
         parcel.writeString(address);
         parcel.writeInt(v);
         parcel.writeString(id);
